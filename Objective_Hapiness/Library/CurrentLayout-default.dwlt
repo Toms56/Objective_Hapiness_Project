@@ -189,8 +189,13 @@ MonoBehaviour:
   m_MinSize: {x: 643, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
+<<<<<<< Updated upstream
   controlID: 92
 --- !u!114 &9
+=======
+  controlID: 146
+--- !u!114 &6
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,8 +219,13 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 492}
   m_MaxSize: {x: 14003, y: 14042}
   vertical: 1
+<<<<<<< Updated upstream
   controlID: 93
 --- !u!114 &10
+=======
+  controlID: 55
+--- !u!114 &7
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,8 +249,13 @@ MonoBehaviour:
   m_MinSize: {x: 402, y: 221}
   m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
+<<<<<<< Updated upstream
   controlID: 94
 --- !u!114 &11
+=======
+  controlID: 56
+--- !u!114 &8
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -317,8 +332,13 @@ MonoBehaviour:
   m_MinSize: {x: 333, y: 271}
   m_MaxSize: {x: 14003, y: 10021}
   vertical: 0
+<<<<<<< Updated upstream
   controlID: 147
 --- !u!114 &14
+=======
+  controlID: 82
+--- !u!114 &11
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -611,9 +631,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< Updated upstream
     m_Target: {x: 1.3181067, y: 0.38359153, z: -2.7813208}
     speed: 2
     m_Value: {x: 1.2929457, y: 0.36661306, z: -2.7714944}
+=======
+    m_Target: {x: 0, y: 1, z: -10}
+    speed: 2
+    m_Value: {x: 0, y: 1, z: -10}
+>>>>>>> Stashed changes
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
