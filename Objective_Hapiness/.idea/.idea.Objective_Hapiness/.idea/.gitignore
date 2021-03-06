@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/projectSettingsUpdater.xml
+/modules.xml
+/.idea.Objective_Hapiness.iml
+/contentModel.xml
+# Datasource local storage ignored files
+/../../../../../../../../../:\E-artsup\2e semestre\Unity\Objective_Hapiness_Project\Objective_Hapiness\.idea\.idea.Objective_Hapiness\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
