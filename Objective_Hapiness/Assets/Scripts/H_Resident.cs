@@ -18,6 +18,7 @@ public class H_Resident : MonoBehaviour
     // For parameters' resident
     private int age = 20;
     protected bool tired;
+    private bool hobo;
     
     #endregion
     // Start is called before the first frame update
@@ -33,12 +34,13 @@ public class H_Resident : MonoBehaviour
         {
             tired = true;
         }
-
+        
         if (age >= 70)
         {
             Destroy(gameObject);
         }
     }
+    
     
     #region Pathfinding
     // allows to transform the list of nodes into a list of vectors which can be used for the movement of the ghost.

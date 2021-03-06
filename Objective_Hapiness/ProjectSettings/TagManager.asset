@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Lumberjack
+  - Builder
+  - Hobo
+  - Minor
+  - Student
+  - Harvester
   layers:
   - Default
   - TransparentFX
