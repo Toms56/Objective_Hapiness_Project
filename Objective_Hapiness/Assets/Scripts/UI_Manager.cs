@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -29,40 +27,29 @@ public class UI_Manager : MonoBehaviour
     void Update()
     {
         #region SelectResident
-        Vector3 mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
-        mousepos.z = 0f;
         if (Input.GetButtonDown("Fire1"))
         {
+            Vector3 mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
+            mousepos.z = 0f;
             RaycastHit2D[] arraycast = Physics2D.RaycastAll(mousepos, Vector3.forward, 10f);
-                /*if (arraycast.Length != 0)
+            print(arraycast.Length);
+            if (arraycast.Length != 0)
+            {
+                for (int i = 0; i < arraycast.Length; i++)
                 {
-                    for (int i = 0; i < arraycast.Length; i++)
+                    RaycastHit2D element = arraycast[i];
+                    print(element);
+                    if (element.collider != null && element.collider.CompareTag("Hobo"))
                     {
-                        RaycastHit2D element = arraycast[i];
-                        if (element.collider != null && element.collider.CompareTag("camp") &&
-                            !element.collider.CompareTag("tower"))
-                        {
-                            followtower.GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 0.8f);
-                            if (Input.GetButtonDown("Fire2"))
-                            {
-                                element.collider.tag = "tower";
-                                followtower.GetComponent<Tower>().builded = true;
-                                building = false;
-                            }
-                        }
-                        else
-                        {
-                            followtower.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.8f);
-                        }
+                        print("hobo hit");
+                    }
+                    else
+                    {
+                        print("not hobo hit");
                     }
                 }
-                else
-                {
-                    if (followtower != null)
-                    {
-                        followtower.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.8f);
-                    }
-                } */
+            }
+            print("not raycast");
         }
         #endregion
     }
