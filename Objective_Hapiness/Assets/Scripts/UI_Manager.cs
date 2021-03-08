@@ -53,4 +53,11 @@ public class UI_Manager : MonoBehaviour
         }
         #endregion
     }
+
+
+    public void OnclickResident()
+    {
+        print("hobo hit");
+        Debug.Log("hobo hitttttt");
+    }
 }
