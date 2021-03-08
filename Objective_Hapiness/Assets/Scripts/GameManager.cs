@@ -5,6 +5,25 @@ using UnityEngine.Tilemaps;
 public class GameManager : MonoBehaviour
 {
     #region Variables
+    
+    public float prosperity;
+    
+    //PNJ Comportment Management 
+    /*
+     * public bool isEating;
+     */
+    
+    //TimeManagement
+    /*
+     * public float dayTime;
+     * public int dayCycle;
+     */
+    //Resources management 
+    /* 
+     * public int food;
+     * public int wood;
+     * public int stone;
+     */
 
     // The instance allows all variables declared in the game manager
     // to exist only once in the scene and remain unique.
@@ -15,9 +34,9 @@ public class GameManager : MonoBehaviour
     public Dictionary<Vector3Int, Node> dictio = new Dictionary<Vector3Int, Node>();
 
     //World settings
-    private int timeworld;
+    private int timeWorld;
     public bool day;
-    public bool schoolbuilded;
+    public bool schoolBuilded;
     
     // Tilemap bounds
     BoundsInt bounds;
@@ -50,7 +69,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //CheatCode
+        if (Input.GetKey(KeyCode.Insert))
+        {
+            prosperity = 95;
+        }
     }
 
 
@@ -74,4 +97,10 @@ public class GameManager : MonoBehaviour
                     Debug.DrawLine(tilemapPath.layoutGrid.GetCellCenterWorld(coord),
                         tilemapPath.layoutGrid.GetCellCenterWorld(coord +dir ), Color.red, 10 ); } } } }
     #endregion
+
+    public void GoToEat()
+    {
+        
+    }
+    
 }
