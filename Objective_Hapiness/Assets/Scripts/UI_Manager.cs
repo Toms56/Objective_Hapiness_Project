@@ -1,13 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
 {
+    #region variables
+
     public static UI_Manager Instance;
 
     [SerializeField] private Camera cam;
+
+    //TimeScale management
+    public float turnDuration = 1f;
+    public float fastForwardMultiplier = 5;
+    public bool pause = false;
+    public bool fastForward;
+    private float advanceTimer;
+    public delegate void OnTimeAdvanceHandler();
+
+    public static event OnTimeAdvanceHandler OnTimeAdvance;
     
+    //ProsperityBar Management
+    public Slider prosperityBar;
+    #endregion
     private void Awake()
     {
         if (Instance == null)
@@ -22,48 +36,107 @@ public class UI_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        #region proserity
+
         
+
+        #endregion
+        prosperityBar.value = GameManager.Instance.prosperity;
+
+        #region timerManagement
+        advanceTimer = turnDuration;
+        #endregion
     }
 
     // Update is called once per frame
     void Update()
     {
+
         #region SelectResident
-        Vector3 mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
-        mousepos.z = 0f;
         if (Input.GetButtonDown("Fire1"))
         {
+            Vector3 mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
+            mousepos.z = 0f;
             RaycastHit2D[] arraycast = Physics2D.RaycastAll(mousepos, Vector3.forward, 10f);
-                /*if (arraycast.Length != 0)
+            print(arraycast.Length);
+            if (arraycast.Length != 0)
+            {
+                for (int i = 0; i < arraycast.Length; i++)
                 {
-                    for (int i = 0; i < arraycast.Length; i++)
+                    RaycastHit2D element = arraycast[i];
+                    print(element);
+                    if (element.collider != null && element.collider.CompareTag("Hobo"))
                     {
-                        RaycastHit2D element = arraycast[i];
-                        if (element.collider != null && element.collider.CompareTag("camp") &&
-                            !element.collider.CompareTag("tower"))
-                        {
-                            followtower.GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 0.8f);
-                            if (Input.GetButtonDown("Fire2"))
-                            {
-                                element.collider.tag = "tower";
-                                followtower.GetComponent<Tower>().builded = true;
-                                building = false;
-                            }
-                        }
-                        else
-                        {
-                            followtower.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.8f);
-                        }
+                        print("hobo hit");
+                    }
+                    else
+                    {
+                        print("not hobo hit");
                     }
                 }
-                else
-                {
-                    if (followtower != null)
-                    {
-                        followtower.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.8f);
-                    }
-                } */
+            }
+            print("not raycast");
         }
         #endregion
+
+        #region TimeMAnagement
+
+        if (!pause)
+        {
+            advanceTimer -= Time.deltaTime * (fastForward ? fastForwardMultiplier : 1f);
+            if (advanceTimer <= 0)
+            {
+                advanceTimer += turnDuration;
+                OnTimeAdvance?.Invoke(); //the Event will be Invoked only if it's not null
+            }
+        }
+        #endregion
+    }
+
+    public void Step()
+    {
+       OnTimeAdvance?.Invoke(); 
+    }
+    public void Pause()
+    {
+        pause = true;
+        fastForward = false;
+        /*if (pause == false)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
+        
+        if (pause == true)
+        {
+            pause = false;
+            Debug.Log("Game on Pause : " + pause);
+        }
+        else
+        {
+            pause = true;
+            Debug.Log("The Game has resumed : " + pause);
+        }*/
+    }
+
+    public void Play()
+    {
+        pause = false;
+        fastForward = false;
+    }
+    public void FastForward()
+    {
+        pause = false;
+        fastForward = true;
+    }
+
+
+    public void OnclickResident()
+    {
+        print("hobo hit");
+        Debug.Log("hobo hitttttt");
     }
 }
