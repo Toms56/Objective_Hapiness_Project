@@ -218,8 +218,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  scrollSpeed: 80
+  scrollSpeed: 1
   pannelLimite: {x: 3.63, y: 2.1, z: 0.3}
+  ZoomLerpSpeed: 2
+--- !u!1 &588812703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 588812704}
+  m_Layer: 0
+  m_Name: HoboWaypoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &588812704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588812703}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.066, y: -0.158, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &614823641 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 1179267879219326125, guid: d2ceacea571ca304a8ad273d50ae2873,
@@ -281,7 +312,51 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1566200338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1566200340}
+  - component: {fileID: 1566200339}
+  m_Layer: 0
+  m_Name: PoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1566200339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566200338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f904227c2d852542ad6eb8a76182087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hobo: {fileID: 4537799661246838000, guid: 5bb7780b01cfb1e4ebdc39c13845b28b, type: 3}
+--- !u!4 &1566200340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566200338}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1603774176 stripped
 GameObject:
@@ -302,6 +377,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 97060292}
+  turnDuration: 1
+  fastForwardMultiplier: 5
+  pause: 0
+  fastForward: 0
+  prosperityBar: {fileID: 0}
 --- !u!1 &1729596100
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +437,37 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1792500341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1792500342}
+  m_Layer: 0
+  m_Name: HoboWaypoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1792500342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792500341}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.283, y: 0.167, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1888844461
 GameObject:
@@ -496,7 +606,7 @@ PrefabInstance:
     - target: {fileID: 1179267878349908698, guid: d2ceacea571ca304a8ad273d50ae2873,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1179267878349908698, guid: d2ceacea571ca304a8ad273d50ae2873,
         type: 3}
@@ -576,7 +686,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2002864820
 MonoBehaviour:
@@ -671,7 +781,7 @@ PrefabInstance:
     - target: {fileID: 2390486085258571666, guid: 769d3939849cc8542932bf106e0f03a3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2390486085258571666, guid: 769d3939849cc8542932bf106e0f03a3,
         type: 3}
@@ -693,5 +803,15 @@ PrefabInstance:
       propertyPath: tilemapPath
       value: 
       objectReference: {fileID: 614823641}
+    - target: {fileID: 2390486085258571667, guid: 769d3939849cc8542932bf106e0f03a3,
+        type: 3}
+      propertyPath: hoboWaypoint1
+      value: 
+      objectReference: {fileID: 588812703}
+    - target: {fileID: 2390486085258571667, guid: 769d3939849cc8542932bf106e0f03a3,
+        type: 3}
+      propertyPath: hoboWaypoint2
+      value: 
+      objectReference: {fileID: 1792500341}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 769d3939849cc8542932bf106e0f03a3, type: 3}

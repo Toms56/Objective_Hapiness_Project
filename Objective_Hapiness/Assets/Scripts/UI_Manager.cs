@@ -58,13 +58,11 @@ public class UI_Manager : MonoBehaviour
             Vector3 mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
             mousepos.z = 0f;
             RaycastHit2D[] arraycast = Physics2D.RaycastAll(mousepos, Vector3.forward, 10f);
-            print(arraycast.Length);
             if (arraycast.Length != 0)
             {
                 for (int i = 0; i < arraycast.Length; i++)
                 {
                     RaycastHit2D element = arraycast[i];
-                    print(element);
                     if (element.collider != null && element.collider.CompareTag("Hobo"))
                     {
                         print("hobo hit");
@@ -131,12 +129,5 @@ public class UI_Manager : MonoBehaviour
     {
         pause = false;
         fastForward = true;
-    }
-
-
-    public void OnclickResident()
-    {
-        print("hobo hit");
-        Debug.Log("hobo hitttttt");
     }
 }

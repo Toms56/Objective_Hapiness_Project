@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public Tilemap tilemapPath;
     public Dictionary<Vector3Int, Node> dictio = new Dictionary<Vector3Int, Node>();
+    public GameObject hoboWaypoint1;
+    public GameObject hoboWaypoint2;
 
     //World settings
     private int timeWorld;
@@ -58,8 +60,7 @@ public class GameManager : MonoBehaviour
         }
         bounds = tilemapPath.cellBounds;
     }
-    
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour
 
 
     #region NodesPathfinding
-    // Detects all black tiles and associates their position
+    // Detects all displacement tiles and associates their position
     // With a position vector in the dictionary as well as a node.
     private void DetectNodes()
     { for (int x = bounds.xMin; x < (bounds.xMax); x++)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class H_Resident : MonoBehaviour
@@ -9,35 +10,88 @@ public class H_Resident : MonoBehaviour
     [SerializeField] private float speed;
     private bool move;
     private float startTime;
-    private Vector3Int Vactual;
-    private Vector3Int Vtarget;
+    private Vector3Int vectorActual;
+    private Vector3Int vectorTarget;
     private List<Vector3Int> listMove = new List<Vector3Int>();
-    private Node Nstart;    
-    private Node Ntarget;
-    
+    private List<Vector3Int> listMoveSave = new List<Vector3Int>();
+    private Node nodeStart;    
+    private Node nodeTarget;
+    private Grid grid;
+    private Dictionary<Vector3Int, Node> pathDictio;
+    private bool switchBool;
+
+
     // For parameters' resident
     private int age = 20;
     protected bool tired;
-    private bool hobo;
+    protected bool hobo;
     
     #endregion
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-        
+        grid = GameManager.Instance.tilemapPath.layoutGrid;
+        pathDictio = GameManager.Instance.dictio;
+        nodeStart = pathDictio[grid.WorldToCell(GameManager.Instance.hoboWaypoint1.transform.position)];
+        nodeTarget = pathDictio[grid.WorldToCell(GameManager.Instance.hoboWaypoint2.transform.position)];
+        listMoveSave = NodelisttoVectorlist(DisplayPath(nodeStart, nodeTarget));
+    }
+
+    // Start is called before the first frame update
+    public virtual void Start()
+    {
+        hobo = true;
+        nodeStart = pathDictio[grid.WorldToCell(transform.position)];
+        nodeTarget = pathDictio[grid.WorldToCell(GameManager.Instance.hoboWaypoint1.transform.position)];
+        listMove = NodelisttoVectorlist(DisplayPath(nodeStart, nodeTarget));
+        vectorActual = listMove[0];
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (GameManager.Instance.day)
         {
             tired = true;
         }
-        
+
+        if (hobo)
+        {
+            if (listMove.Count <= 0)
+            {
+                if (!switchBool)
+                {
+                    listMove = listMoveSave;
+                    switchBool = true;
+                }
+                else
+                {
+                    listMove = listMoveSave;
+                    listMove.Reverse();
+                    switchBool = false;
+                }
+            }
+            // !move allows him to finish his move and listMove.Count> 0 avoids list errors.
+            if (!move && listMove.Count > 0)
+            {
+                startTime = Time.time;
+                vectorTarget = listMove[0];
+                move = true;
+            }
+            float actualTime = Time.time - startTime;
+            float percent = actualTime * speed;
+            transform.position = Vector3.Lerp(grid.GetCellCenterWorld(vectorActual), grid.GetCellCenterWorld(vectorTarget),percent);
+
+            if (percent >= 1 && listMove.Count > 0)
+            {
+                listMove.RemoveAt(0);
+                move = false;
+                vectorActual = vectorTarget;
+            }
+        }
         if (age >= 70)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
     
