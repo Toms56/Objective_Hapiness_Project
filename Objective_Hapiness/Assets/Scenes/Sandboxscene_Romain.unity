@@ -266,7 +266,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 140
-  orthographic: 0
+  orthographic: 1
   orthographic size: 3
   m_Depth: -1
   m_CullingMask:
@@ -310,8 +310,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  scrollSpeed: 80
+  scrollSpeed: 1
   pannelLimite: {x: 3.63, y: 2.1, z: 0.3}
+  ZoomLerpSpeed: 2
 --- !u!1001 &1179267879722975034
 PrefabInstance:
   m_ObjectHideFlags: 0
