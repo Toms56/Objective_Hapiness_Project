@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -72,6 +71,7 @@ public class H_Resident : MonoBehaviour
                 {
                     listMove = listMoveSave;
                     listMove.Reverse();
+                    vectorActual = listMove[0];
                     switchBool = false;
                 }
             }
@@ -93,6 +93,7 @@ public class H_Resident : MonoBehaviour
                 vectorActual = vectorTarget;
             }
         }
+        
         if (age >= 70)
         {
             gameObject.SetActive(false);
