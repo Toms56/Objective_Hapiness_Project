@@ -18,12 +18,11 @@ public class GameManager : MonoBehaviour
      * public float dayTime;
      * public int dayCycle;
      */
+    
     //Resources management 
-    /* 
-     * public int food;
-     * public int wood;
-     * public int stone;
-     */
+    public int food;
+    public int wood;
+    public int stone;
 
     // The instance allows all variables declared in the game manager
     // to exist only once in the scene and remain unique.
@@ -70,6 +69,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        #region Resources Management
+        //prevent the resources number to be less than 0
+        if (food <= 0)
+        {
+            food = 0;
+        }
+        if (wood <= 0)
+        {
+            wood = 0;
+        }
+        if (stone <= 0)
+        {
+            stone = 0;
+        }
+
+        #endregion
         //CheatCode
         if (Input.GetKey(KeyCode.Insert))
         {

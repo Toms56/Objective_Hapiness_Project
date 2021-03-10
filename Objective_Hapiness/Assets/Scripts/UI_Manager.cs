@@ -4,6 +4,14 @@ using UnityEngine.UI;
 public class UI_Manager : MonoBehaviour
 {
     #region variables
+    
+    //UI Management
+    //public GameObject panelResources;
+    //public GameObject panelResident;
+    public GameObject panelJobSelection;
+    public Text foodText;
+    public Text woodText;
+    public Text stoneText;
 
     public static UI_Manager Instance;
 
@@ -89,6 +97,12 @@ public class UI_Manager : MonoBehaviour
             }
         }
         #endregion
+
+        #region RessourcesManagement
+        foodText.text = "Food : " + GameManager.Instance.food;
+        woodText.text = "Wood : " + GameManager.Instance.wood;
+        stoneText.text = "Stone : " + GameManager.Instance.stone;
+        #endregion
     }
 
     public void Step()
@@ -129,5 +143,15 @@ public class UI_Manager : MonoBehaviour
     {
         pause = false;
         fastForward = true;
+    }
+
+    public void OnClickDisplayChangeJob()
+    {
+        panelJobSelection.SetActive(true);
+    }
+
+    public void OnClickCloseJobPanel()
+    {
+        panelJobSelection.SetActive(false);
     }
 }

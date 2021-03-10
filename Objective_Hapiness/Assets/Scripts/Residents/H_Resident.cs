@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class H_Resident : MonoBehaviour
 {
@@ -19,7 +20,10 @@ public class H_Resident : MonoBehaviour
     private Grid grid;
     private Dictionary<Vector3Int, Node> pathDictio;
     private bool switchBool;
-
+    
+    //UI Management
+    public Text ageText;
+    public Text jobText;
 
     // For parameters' resident
     private int age = 20;
@@ -93,6 +97,16 @@ public class H_Resident : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
+        #region TextDisplay
+
+        if (gameObject != null)
+        {
+            ageText.text = "Score : " + age;
+            jobText.text = "Job : " + gameObject.name;
+        }
+
+        #endregion
     }
     
     
