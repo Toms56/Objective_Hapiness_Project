@@ -20,9 +20,6 @@ public class H_Resident : MonoBehaviour
     private Dictionary<Vector3Int, Node> pathDictio;
     private bool switchBool;
     
-    //UI Management
-    public Text ageText;
-    public Text jobText;
     
     //Works
     
@@ -37,7 +34,7 @@ public class H_Resident : MonoBehaviour
     }
 
     // For parameters' resident
-    private int age = 20;
+    public int age = 20;
     protected bool tired;
     protected bool hobo;
     
@@ -110,16 +107,7 @@ public class H_Resident : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-
-        #region TextDisplay
-
-        if (gameObject != null)
-        {
-            ageText.text = "Score : " + age;
-            jobText.text = "Job : " + gameObject.name;
-        }
-
-        #endregion
+        
     }
     
     

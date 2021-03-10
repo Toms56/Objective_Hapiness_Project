@@ -12,7 +12,11 @@ public class UI_Manager : MonoBehaviour
     public Text foodText;
     public Text woodText;
     public Text stoneText;
+    
+    public Text ageText;
+    public Text jobText;
 
+    private GameObject selectedResident;
     public static UI_Manager Instance;
 
     [SerializeField] private Camera cam;
@@ -103,6 +107,16 @@ public class UI_Manager : MonoBehaviour
         woodText.text = "Wood : " + GameManager.Instance.wood;
         stoneText.text = "Stone : " + GameManager.Instance.stone;
         #endregion
+        
+        #region TextDisplay
+
+        if (gameObject != null)
+        {
+            ageText.text = "Score : " + selectedResident.GetComponent<H_Resident>().age;
+            jobText.text = "Job : " + gameObject.name;
+        }
+
+        #endregion
     }
 
     public void Step()
@@ -113,25 +127,6 @@ public class UI_Manager : MonoBehaviour
     {
         pause = true;
         fastForward = false;
-        /*if (pause == false)
-        {
-            Time.timeScale = 1;
-        }
-        else
-        {
-            Time.timeScale = 0;
-        }
-        
-        if (pause == true)
-        {
-            pause = false;
-            Debug.Log("Game on Pause : " + pause);
-        }
-        else
-        {
-            pause = true;
-            Debug.Log("The Game has resumed : " + pause);
-        }*/
     }
 
     public void Play()
