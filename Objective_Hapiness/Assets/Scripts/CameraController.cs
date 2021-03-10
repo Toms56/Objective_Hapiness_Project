@@ -31,6 +31,7 @@ public class CameraController : MonoBehaviour
         if (Input.mousePosition.y >= Screen.height - screenBorderDeviation)
         {
             position.y += 1 * speed * Time.deltaTime;
+            // Second method
             //transform.Translate(0, 1 * speed * Time.deltaTime, 0, Space.World);
         }
 
@@ -52,16 +53,16 @@ public class CameraController : MonoBehaviour
             //transform.Translate(-1 * speed * Time.deltaTime, 0, 0, Space.World);
         }
 
-        
-        // Scrolling for Camera Perspective
         float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        // Scrolling for Camera Perspective
         //position.z += scroll * scrollSpeed * Time.deltaTime;
         // Second method
-         //Camera.main.fieldOfView += scroll * scrollSpeed * Time.deltaTime;
+        //Camera.main.fieldOfView += scroll * scrollSpeed * Time.deltaTime;
 
         // Scrolling for Camera Orthographic
         targetZoom -= scroll * scrollSpeed;
-        targetZoom = Mathf.Clamp(targetZoom, 2f, 5f); // Clamp for Camera Orthographic
+        targetZoom = Mathf.Clamp(targetZoom, 2f, 5.25f); // Clamp for Camera Orthographic
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * ZoomLerpSpeed);
 
         // Clamp between two value the position on the different axes
