@@ -1,5 +1,6 @@
-﻿
-public class Student : H_Resident
+﻿using UnityEngine;
+
+public class Student : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

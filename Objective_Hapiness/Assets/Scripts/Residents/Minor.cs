@@ -1,5 +1,6 @@
-﻿
-public class Minor : H_Resident
+﻿using UnityEngine;
+
+public class Minor : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

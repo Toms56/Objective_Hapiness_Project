@@ -23,6 +23,18 @@ public class H_Resident : MonoBehaviour
     //UI Management
     public Text ageText;
     public Text jobText;
+    
+    //Works
+    
+    public enum Works
+    {
+        Builder,
+        Harvester,
+        Lumberjack,
+        Minor,
+        Student,
+        Hobo
+    }
 
     // For parameters' resident
     private int age = 20;
@@ -158,4 +170,38 @@ public class H_Resident : MonoBehaviour
         else
         { return GetParentPath(node.parent, path); } }
     #endregion
+    
+    public void ChangeWork(GameObject resident, Works work)
+    {
+        switch (work)
+        {
+            case Works.Builder :
+                resident.name = "Builder";
+                resident.tag = "Builder";
+                Destroy(resident.GetComponent<H_Resident>());
+                resident.AddComponent<Builder>();
+                break;
+            case Works.Harvester : 
+                resident.name = "Harvester";
+                resident.tag = "Harvester";
+                Destroy(resident.GetComponent<H_Resident>());
+                resident.AddComponent<Harvester>();
+                break;
+            case Works.Lumberjack :
+                resident.name = "Lumberjack";
+                resident.tag = "Lumberjack";
+                Destroy(resident.GetComponent<H_Resident>());
+                resident.AddComponent<Lumberjack>();
+                break;
+            case Works.Minor :
+                resident.name = "Minor";
+                resident.tag = "Minor";
+                Destroy(resident.GetComponent<H_Resident>());
+                resident.AddComponent<Minor>();
+                break;
+            default:
+                Debug.LogError("pas de métier");
+                break;
+        }
+    }
 }
