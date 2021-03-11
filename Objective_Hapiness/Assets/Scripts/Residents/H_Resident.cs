@@ -5,15 +5,7 @@ public class H_Resident : MonoBehaviour
 {
     #region Variables
     
-    public enum Works
-    {
-        Builder,
-        Harvester,
-        Lumberjack,
-        Minor,
-        Student,
-        Hobo
-    }
+    
     
     // For deplacement
     [SerializeField] private float speed;
@@ -67,33 +59,5 @@ public class H_Resident : MonoBehaviour
         }
     }
 
-    public void ChangeWork(GameObject resident, Works work)
-    {
-        switch (work)
-        {
-            case Works.Builder :
-                resident.name = "Builder";
-                resident.tag = "Builder";
-                resident.AddComponent<Builder>();
-                break;
-            case Works.Harvester : 
-                resident.name = "Harvester";
-                resident.tag = "Harvester";
-                resident.AddComponent<Harvester>();
-                break;
-            case Works.Lumberjack :
-                resident.name = "Lumberjack";
-                resident.tag = "Lumberjack";
-                resident.AddComponent<Lumberjack>();
-                break;
-            case Works.Minor :
-                resident.name = "Minor";
-                resident.tag = "Minor";
-                resident.AddComponent<Minor>();
-                break;
-            default:
-                Debug.LogError("pas de métier");
-                break;
-        }
-    }
+    
 }

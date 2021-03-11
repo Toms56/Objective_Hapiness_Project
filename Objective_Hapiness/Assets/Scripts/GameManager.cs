@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,7 +33,16 @@ public class GameManager : MonoBehaviour
     public GameObject farmWaypoint;
     public GameObject mineWaypoint;
     public GameObject forestWaypoint;
-
+    
+    public enum Works
+    {
+        Builder,
+        Harvester,
+        Lumberjack,
+        Minor,
+        Student,
+        Hobo
+    }
 
     [SerializeField] GameObject poolManager;
 
@@ -98,6 +105,40 @@ public class GameManager : MonoBehaviour
     public void RebuildSurface()
     {
         surface2d.BuildNavMesh();
+    }
+    
+    public void ChangeWork(GameObject resident, Works work)
+    {
+        switch (work)
+        {
+            case Works.Builder :
+                resident.name = Works.Builder.ToString();
+                resident.tag = Works.Builder.ToString();
+                resident.GetComponent<H_Resident>().hobo = false;
+                resident.AddComponent<Builder>();
+                break;
+            case Works.Harvester : 
+                resident.name = Works.Harvester.ToString();
+                resident.tag = Works.Harvester.ToString();
+                resident.GetComponent<H_Resident>().hobo= false;
+                resident.AddComponent<Harvester>();
+                break;
+            case Works.Lumberjack :
+                resident.name = Works.Lumberjack.ToString();
+                resident.tag = Works.Lumberjack.ToString();
+                resident.GetComponent<H_Resident>().hobo = false;
+                resident.AddComponent<Lumberjack>();
+                break;
+            case Works.Minor :
+                resident.name = Works.Lumberjack.ToString();
+                resident.tag = Works.Lumberjack.ToString();
+                resident.GetComponent<H_Resident>().hobo = false;
+                resident.AddComponent<Minor>();
+                break;
+            default:
+                Debug.LogError("pas de métier");
+                break;
+        }
     }
     
 }

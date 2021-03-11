@@ -542,7 +542,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: fd3d20131e8c80848bc93a478dcedefe,
+      objectReference: {fileID: 23800000, guid: 5d562b57296694f48ad0c9a8be5c3fab,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a488d72188a720469a0170cf9e97872, type: 3}
