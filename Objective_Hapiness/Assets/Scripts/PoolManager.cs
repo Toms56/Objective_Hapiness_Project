@@ -36,11 +36,13 @@ public class PoolManager : MonoBehaviour
         {
             Instantiate(hobo, transform);
         }
-
+        
         Instantiate(builder, transform);
         Instantiate(harvester, transform);
         Instantiate(lumberjack, transform);
         Instantiate(minor, transform);
+        GameObject hobo1 = Instantiate(hobo, transform);
+        hobo1.SetActive(true);
     }
 
     

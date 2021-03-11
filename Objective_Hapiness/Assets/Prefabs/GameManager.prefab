@@ -43,5 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef825e14fa022c645903a3dc86302667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 0}
+  prosperity: 0
+  food: 0
+  wood: 0
+  stone: 0
+  surface2d: {fileID: 0}
+  hoboWaypoint1: {fileID: 0}
+  hoboWaypoint2: {fileID: 0}
+  farmWaypoint: {fileID: 0}
+  mineWaypoint: {fileID: 0}
+  forestWaypoint: {fileID: 0}
+  poolManager: {fileID: 7404926754416519036, guid: bd344784eab08514485d58208d2fea06,
+    type: 3}
   day: 0
+  schoolBuilded: 0
