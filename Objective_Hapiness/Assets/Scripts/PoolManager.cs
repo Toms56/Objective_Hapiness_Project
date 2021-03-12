@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class PoolManager : MonoBehaviour
     void Start()
     {
         SpawnResidents();
+        StartCoroutine(changework());
     }
 
     // Update is called once per frame
@@ -43,5 +45,11 @@ public class PoolManager : MonoBehaviour
         Instantiate(minor, transform);
     }
 
-    
+    IEnumerator changework()
+    {
+        GameObject hobo1 = Instantiate(hobo, transform);
+        hobo1.SetActive(true);
+        yield return new WaitForSeconds(10);
+        GameManager.Instance.ChangeWork(hobo1,GameManager.Works.Builder);
+    }
 }
