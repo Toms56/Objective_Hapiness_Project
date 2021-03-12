@@ -1,14 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
 {
     #region variables
     
+    //CountDown TimeManagement
+    private float startingTime;
+    public float totalTime;
+    public Text countDownTxt;
+
+    private float minutes;
+    private float seconds;
+
+    public bool useEventTimer = false;
+    public UnityEvent TimerEvent;
+    
     //UI Management
     //public GameObject panelResources;
     //public GameObject panelResident;
     public GameObject panelJobSelection;
+    public GameObject panelBuildingSelection;
     public Text foodText;
     public Text woodText;
     public Text stoneText;
@@ -58,6 +71,10 @@ public class UI_Manager : MonoBehaviour
         #region timerManagement
         advanceTimer = turnDuration;
         #endregion
+
+        #region CountDownJob
+        startingTime = totalTime;
+        #endregion
     }
 
     // Update is called once per frame
@@ -103,20 +120,39 @@ public class UI_Manager : MonoBehaviour
         #endregion
 
         #region RessourcesManagement
-        foodText.text = "Food : " + GameManager.Instance.food;
+        /*foodText.text = "Food : " + GameManager.Instance.food;
         woodText.text = "Wood : " + GameManager.Instance.wood;
-        stoneText.text = "Stone : " + GameManager.Instance.stone;
+        stoneText.text = "Stone : " + GameManager.Instance.stone;*/
         #endregion
         
         #region TextDisplay
 
         if (gameObject != null)
         {
-            ageText.text = "Score : " + selectedResident.GetComponent<H_Resident>().age;
-            jobText.text = "Job : " + gameObject.name;
+            /*ageText.text = "Score : " + selectedResident.GetComponent<H_Resident>().age;
+            jobText.text = "Job : " + gameObject.name;*/
         }
 
         #endregion
+
+        #region JobCountDownDisplay
+
+        minutes = (int) (totalTime / 60);
+        seconds = (int) (totalTime % 60);
+
+        if (useEventTimer)
+        {
+            totalTime -= Time.deltaTime;
+            if (minutes <= 0 && seconds <= 0)
+            {
+                totalTime = startingTime;
+                Debug.Log("TimerEvent");
+                TimerEvent.Invoke();
+            }
+        }
+        countDownTxt.text = "Studing time : "+ minutes.ToString() + " : " + seconds.ToString();
+        #endregion
+
     }
 
     public void Step()
@@ -148,5 +184,15 @@ public class UI_Manager : MonoBehaviour
     public void OnClickCloseJobPanel()
     {
         panelJobSelection.SetActive(false);
+    }
+
+    public void OnClickDisplayBuilding()
+    {
+        panelBuildingSelection.SetActive(true);
+    }
+
+    public void OnClickCloseBuildingPanel()
+    {
+        panelBuildingSelection.SetActive(false);
     }
 }
