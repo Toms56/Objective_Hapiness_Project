@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
 
         // Scrolling for Camera Orthographic
         targetZoom -= scroll * scrollSpeed;
-        targetZoom = Mathf.Clamp(targetZoom, 2f, 5.25f); // Clamp for Camera Orthographic
+        targetZoom = Mathf.Clamp(targetZoom, 2f, 5f); // Clamp for Camera Orthographic
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * ZoomLerpSpeed);
 
         // Clamp between two value the position on the different axes
