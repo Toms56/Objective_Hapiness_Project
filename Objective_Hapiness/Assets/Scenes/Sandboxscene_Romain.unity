@@ -550,7 +550,7 @@ MonoBehaviour:
   - {fileID: 729467786066431382, guid: 04d04ec712cf39a49b77f196240a2216, type: 3}
   - {fileID: 729467786066431382, guid: 04d04ec712cf39a49b77f196240a2216, type: 3}
   - {fileID: 729467786066431382, guid: 04d04ec712cf39a49b77f196240a2216, type: 3}
-  mindistance: 0.6
+  mindistance: 0.5
   buildingTransform: {fileID: 458292324}
   dontbuild: {r: 1, g: 0, b: 0, a: 1}
   build: {r: 0, g: 1, b: 0.047753334, a: 1}

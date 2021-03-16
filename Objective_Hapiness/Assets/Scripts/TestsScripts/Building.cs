@@ -30,12 +30,12 @@ public class BuildingManager : MonoBehaviour
     {
         mousepos = _camera.ScreenToWorldPoint(Input.mousePosition);
         mousepos.z = 1;
+
         if (spawned == true)
         {
-            Debug.Log(" CircleTest" + CircleTest());
-           //Debug.DrawRay(thisBuilding.transform.position, transform.up * mindistance, Color.red);
+            Debug.Log("CircleTest" + CircleTest());
+            //Debug.DrawRay(thisBuilding.transform.position, transform.up * mindistance, Color.red);
             thisBuilding.transform.position = mousepos;
-            //Checkbuildcamp();
             if (CircleTest())
             {
                 thisBuilding.GetComponent<SpriteRenderer>().color = build;
@@ -48,13 +48,24 @@ public class BuildingManager : MonoBehaviour
             {
                 thisBuilding.GetComponent<SpriteRenderer>().color = dontbuild;
             }
+
+            if (Input.GetButtonDown("Fire2"))
+            {
+                Destroy(thisBuilding.gameObject);
+                spawned = false;
+                
+            }
         }
     }
 
     public void onClickInstBuild(int index)
     {
-        spawned = true; ;
-        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity);
+        if (!spawned)
+        {
+            spawned = true; ;
+            thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity);
+        }
+
     }
 
     bool CircleTest()
