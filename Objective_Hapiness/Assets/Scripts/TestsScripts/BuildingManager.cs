@@ -19,16 +19,11 @@ public class BuildingManager : MonoBehaviour
     private bool spawned = false;
 
     public int builderIndex;
-    private int nbStone;
-    private int nbFood;
-    private int nbWood;
 
     // Start is called before the first frame update
     void Start()
     {
-        nbStone = GameManager.Instance.stone;
-        nbFood = GameManager.Instance.food;
-        nbWood = GameManager.Instance.wood;
+
     }
 
     // Update is called once per frame
@@ -36,7 +31,6 @@ public class BuildingManager : MonoBehaviour
     {
         mousepos = _camera.ScreenToWorldPoint(Input.mousePosition);
         mousepos.z = 1;
-        Debug.Log(nbStone + nbFood);
 
         if (spawned == true)
         {
@@ -49,17 +43,17 @@ public class BuildingManager : MonoBehaviour
                 if (Input.GetButtonDown("Fire1"))
                 {
                    
-                    switch (builderIndex)
+                    switch(builderIndex)
                     {
                         case 0 :
                             spawned = false;
-                            nbStone -= 5;
-                            nbFood -= 1;
+                            GameManager.Instance.stone -= 5;
+                            GameManager.Instance.food -= 1;
                             break;
                         case 1:
                             spawned = false;
-                            nbStone -= 5;
-                            nbFood -= 1;
+                            GameManager.Instance.stone -= 6;
+                            GameManager.Instance.food -= 7;
                             break;
                     }
                 }
@@ -86,7 +80,7 @@ public class BuildingManager : MonoBehaviour
             switch (index)
             {
                 case 0: 
-                    if (nbStone >= 5 && nbFood >= 1)
+                    if (GameManager.Instance.stone >= 5 && GameManager.Instance.food >= 1)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity);
@@ -96,8 +90,9 @@ public class BuildingManager : MonoBehaviour
                         Debug.Log("Il vous manque des ressources");
                     }
                     break;
+
                 case 1:
-                    if (nbStone >= 6 && nbFood >= 7)
+                    if (GameManager.Instance.stone >= 6 && GameManager.Instance.food >= 7)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity);
@@ -122,7 +117,7 @@ public class BuildingManager : MonoBehaviour
         {
             if (hit[i].collider != null && hit[i].collider.gameObject != thisBuilding)
             {
-                //Debug.Log(hit[i].collider.gameObject);
+                Debug.Log(hit[i].collider.gameObject);
                 return false;
             }
         }

@@ -1,5 +1,13 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/SandboxScene_Oscar/SandboxScene_Oscar.unity
+=======
+<<<<<<< Updated upstream
+- path: Assets/Scenes/SandboxScene_Thomas.unity
+=======
+- path: Assets/Scenes/Sandboxscene_Romain.unity
+>>>>>>> Stashed changes
+>>>>>>> main
   isLoaded: 1
   isActive: 1
   isSubScene: 0
