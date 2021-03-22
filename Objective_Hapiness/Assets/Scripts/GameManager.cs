@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public GameObject farmWaypoint;
     public GameObject mineWaypoint;
     public GameObject forestWaypoint;
+    public GameObject home;
     
     public enum Works
     {

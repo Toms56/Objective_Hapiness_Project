@@ -103,7 +103,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.43
-  m_BaseOffset: 0.2
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &5417781397964824489
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd926c38ab19ce44989a4d7c5a40d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resident: {fileID: 7987442574238083785}
 --- !u!114 &7987442574238083785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,3 +134,5 @@ MonoBehaviour:
   speed: 1.5
   agent: {fileID: 4402335659970684842}
   age: 20
+  tired: 0
+  hobo: 0

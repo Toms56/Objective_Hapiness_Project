@@ -2,12 +2,11 @@
 
 public class Minor : MonoBehaviour
 {
-    private H_Resident resident;
+    [SerializeField] H_Resident resident;
     private Vector3 mine;
 
     private void Awake()
     {
-        resident = GetComponent<H_Resident>();
         mine = GameManager.Instance.mineWaypoint.transform.position;
     }
 

@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669e1e98bc2a9204bb48b68406a270d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resident: {fileID: 5557087746315914680}
 --- !u!114 &5557087746315914680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,3 +134,5 @@ MonoBehaviour:
   speed: 1.5
   agent: {fileID: -6420757552901872518}
   age: 20
+  tired: 0
+  hobo: 0
