@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class Harvester : MonoBehaviour
 {
-    private H_Resident resident;
+    [SerializeField] H_Resident resident;
     private Vector3 farm;
 
     private void Awake()
     {
-        resident = GetComponent<H_Resident>();
         farm = GameManager.Instance.farmWaypoint.transform.position;
     }
 
