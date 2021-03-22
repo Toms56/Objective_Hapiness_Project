@@ -1244,17 +1244,17 @@ PrefabInstance:
     - target: {fileID: 2390486085258571667, guid: 769d3939849cc8542932bf106e0f03a3,
         type: 3}
       propertyPath: food
-      value: 10
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2390486085258571667, guid: 769d3939849cc8542932bf106e0f03a3,
         type: 3}
       propertyPath: wood
-      value: 10
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2390486085258571667, guid: 769d3939849cc8542932bf106e0f03a3,
         type: 3}
       propertyPath: stone
-      value: 10
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 769d3939849cc8542932bf106e0f03a3, type: 3}

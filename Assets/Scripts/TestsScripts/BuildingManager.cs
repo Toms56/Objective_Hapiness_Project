@@ -49,11 +49,13 @@ public class BuildingManager : MonoBehaviour
                             spawned = false;
                             GameManager.Instance.stone -= 5;
                             GameManager.Instance.food -= 1;
+                            thisBuilding.GetComponent<Building>().builded = true;
                             break;
                         case 1:
                             spawned = false;
                             GameManager.Instance.stone -= 6;
                             GameManager.Instance.food -= 7;
+                            thisBuilding.GetComponent<Building>().builded = true;
                             break;
                     }
                 }
