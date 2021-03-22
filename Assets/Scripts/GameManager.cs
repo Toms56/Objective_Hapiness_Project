@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     public GameObject farmWaypoint;
     public GameObject mineWaypoint;
     public GameObject forestWaypoint;
+    
+    //futur list d'objets
     public GameObject home;
 
     public GameObject school;

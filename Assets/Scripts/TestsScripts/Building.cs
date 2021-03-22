@@ -24,11 +24,12 @@ public class Building : MonoBehaviour
     IEnumerator Construct()
     {
         yield return new WaitUntil(() => builded);
+        spriteRend.color = Color.clear;     
         while (spriteRend.color.a < 1)
         {
-            spriteRend.color = Vector4.Lerp(new Vector4(1f, 1f, 1f, 0f), new Vector4(0.5f, 0.5f, 0.5f, 1f), interpol);
+            spriteRend.color = Vector4.Lerp(Color.clear, Color.magenta, interpol);
             interpol += 0.5f * Time.deltaTime;
-            //yield return new;
+            yield return new WaitForFixedUpdate();
         }
     }
 }
