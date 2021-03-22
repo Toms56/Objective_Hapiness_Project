@@ -80,7 +80,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.026666665
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: fd3d20131e8c80848bc93a478dcedefe, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: bc6e74b7599a75c45bf9a15a09ed65ad, type: 2}
 --- !u!19719996 &4938326771310202998
 TilemapCollider2D:
   m_ObjectHideFlags: 0

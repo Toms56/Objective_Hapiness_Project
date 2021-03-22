@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     public GameObject mineWaypoint;
     public GameObject forestWaypoint;
     public GameObject home;
+
+    public GameObject school;
     
     public enum Works
     {
@@ -141,5 +143,4 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-    
 }
