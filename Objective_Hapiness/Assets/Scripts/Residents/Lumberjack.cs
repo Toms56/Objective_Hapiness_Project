@@ -1,15 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Lumberjack : MonoBehaviour
 {
     [SerializeField] H_Resident resident;
     private Vector3 forest;
-    private GameObject homelumberjack;
+    private GameObject homeLumberjack;
+    private bool working;
 
     private void Awake()
     {
         forest = GameManager.Instance.forestWaypoint.transform.position;
-        homelumberjack = GameManager.Instance.home;
+        homeLumberjack = GameManager.Instance.home;
     }
 
     // Start is called before the first frame update
@@ -25,14 +27,24 @@ public class Lumberjack : MonoBehaviour
         {
             resident.agent.SetDestination(forest);
             
-            if (Vector3.Distance(transform.position,forest) <= 1f)
+            if (Vector3.Distance(transform.position,forest) <= 0.5f && !working)            
             {
-                //Debug.Log("Lumberjack in forest");
+                StartCoroutine(AddWood());
+                working = true;
             }
         }
         else
         {
-            resident.agent.SetDestination(homelumberjack.transform.position);
+            resident.agent.SetDestination(homeLumberjack.transform.position);
+        }
+    }
+
+    IEnumerator AddWood()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(5);
+            GameManager.Instance.wood++;
         }
     }
 }
