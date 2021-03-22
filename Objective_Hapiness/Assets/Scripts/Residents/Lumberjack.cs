@@ -35,6 +35,7 @@ public class Lumberjack : MonoBehaviour
         }
         else
         {
+            working = false;
             resident.agent.SetDestination(homeLumberjack.transform.position);
         }
     }

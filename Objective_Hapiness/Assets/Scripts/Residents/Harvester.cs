@@ -38,6 +38,7 @@ public class Harvester : MonoBehaviour
         }
         else
         {
+            working = false;
             resident.agent.SetDestination(homeHarvester.transform.position);
         }
     }

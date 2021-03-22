@@ -28,6 +28,7 @@ public class Builder : MonoBehaviour
         }
         else
         {
+            building = false;
             resident.agent.SetDestination(homeBuilder.transform.position);
         }*/
     }

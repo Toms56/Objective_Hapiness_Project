@@ -36,6 +36,7 @@ public class Minor : MonoBehaviour
         }
         else
         {
+            working = false;
             resident.agent.SetDestination(homeMinor.transform.position);
         }
     }

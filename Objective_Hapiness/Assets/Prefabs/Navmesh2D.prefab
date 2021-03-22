@@ -80,7 +80,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.026666665
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: bc6e74b7599a75c45bf9a15a09ed65ad, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!19719996 &4938326771310202998
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -36404,6 +36404,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.x
       value: 57
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961855949129589415, guid: d2ceacea571ca304a8ad273d50ae2873,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2ceacea571ca304a8ad273d50ae2873, type: 3}

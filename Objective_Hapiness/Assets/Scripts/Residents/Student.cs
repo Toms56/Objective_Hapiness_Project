@@ -28,6 +28,7 @@ public class Student : MonoBehaviour
         }
         else
         {
+            studying = false;
             resident.agent.SetDestination(homeStudent.transform.position);
         }
     }
