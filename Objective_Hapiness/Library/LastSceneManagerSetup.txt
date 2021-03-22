@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Sandboxscene_Romain.unity
-=======
-- path: Assets/Scenes/SandboxScene_Oscar/SandboxScene_Oscar.unity
->>>>>>> main
+- path: Assets/Scenes/SandboxScene_Thomas.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
