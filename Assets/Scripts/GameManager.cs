@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     //World settings
     private int timeWorld;
     public bool day;
+    public bool endofday;
     public bool schoolBuilded;
 
     #endregion
@@ -100,6 +101,15 @@ public class GameManager : MonoBehaviour
         {
             prosperity = 95;
         }
+
+        if (school == null)
+        {
+            schoolBuilded = false;
+        }
+        else
+        {
+            schoolBuilded = true;
+        }
     }
 
     public void GoToEat()
@@ -114,6 +124,23 @@ public class GameManager : MonoBehaviour
     
     public void ChangeWork(GameObject resident, Works work)
     {
+        /*if (resident.GetComponent<Builder>())
+        {
+            Destroy(resident.GetComponent<Builder>());
+        }
+        if (resident.GetComponent<Harvester>())
+        {
+            Destroy(resident.GetComponent<Harvester>());
+        }
+        if (resident.GetComponent<Lumberjack>())
+        {
+            Destroy(resident.GetComponent<Lumberjack>());
+        }
+        if (resident.GetComponent<Minor>())
+        {
+            Destroy(resident.GetComponent<Minor>());
+        }*/
+        
         switch (work)
         {
             case Works.Builder :
@@ -144,5 +171,33 @@ public class GameManager : MonoBehaviour
                 Debug.LogError("pas de métier");
                 break;
         }
+    }
+
+    public void ToStudy(GameObject resident, Works work)
+    {
+        switch (resident.tag)
+        {
+            case "Builder" :
+                Destroy(resident.GetComponent<Builder>());
+                break;
+            case "Harvester":
+                Destroy(resident.GetComponent<Harvester>());
+                break;
+            case "Lumberjack":
+                Destroy(resident.GetComponent<Lumberjack>());
+                break;
+            case "Minor":
+                Destroy(resident.GetComponent<Minor>());
+                break;
+            default:
+                Debug.Log("no tag");
+                break;
+        }
+        
+        resident.name = Works.Student.ToString();
+        resident.tag = Works.Student.ToString();
+        resident.GetComponent<H_Resident>().hobo = false;
+        resident.AddComponent<Student>().studywork = work;
+        
     }
 }

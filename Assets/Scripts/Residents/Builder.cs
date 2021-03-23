@@ -12,6 +12,10 @@ public class Builder : MonoBehaviour
     {
         build = GameManager.Instance.school.transform.position;
         homeBuilder = GameManager.Instance.home;
+        if (resident == null)
+        {
+            resident = gameObject.GetComponent<H_Resident>();
+        }
     }
     
     // Start is called before the first frame update

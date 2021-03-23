@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class H_Resident : MonoBehaviour
@@ -35,13 +37,16 @@ public class H_Resident : MonoBehaviour
     void Start()
     {
         if (hobo)
-        { agent.SetDestination(hobWay1); }
+        {
+            agent.SetDestination(hobWay1);
+            StartCoroutine(Wandering());
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.day)
+        if (GameManager.Instance.day && !hobo)
         {
             tired = true;
         }
@@ -50,14 +55,39 @@ public class H_Resident : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        if (hobo)
+        if (!hobo)
+        {
+            StopCoroutine(Wandering());
+        }
+        /*if (hobo)
         {
             if (Vector3.Distance(transform.position,hobWay1) < 0.8f)
             { agent.SetDestination(hobWay2); }
             if (Vector3.Distance(transform.position,hobWay2) < 0.8f)
             { agent.SetDestination(hobWay1); }
+        }*/
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Building"))
+        {
+            /*if (other.home.places <= 0)
+            {
+                StartCoroutine(Wandering());
+            }*/
         }
     }
 
-    
+    IEnumerator Wandering()
+    {
+        while (true)
+        {
+            if (Vector3.Distance(transform.position,hobWay1) < 1f)
+            { agent.SetDestination(hobWay2); }
+            if (Vector3.Distance(transform.position,hobWay2) < 1f)
+            { agent.SetDestination(hobWay1); }
+            yield return new WaitForSeconds(1f);
+        }
+    }
 }

@@ -12,6 +12,10 @@ public class Lumberjack : MonoBehaviour
     {
         forest = GameManager.Instance.forestWaypoint.transform.position;
         homeLumberjack = GameManager.Instance.home;
+        if (resident == null)
+        {
+            resident = gameObject.GetComponent<H_Resident>();
+        }
     }
 
     // Start is called before the first frame update

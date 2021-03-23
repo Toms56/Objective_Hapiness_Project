@@ -17,7 +17,8 @@ public class PoolManager : MonoBehaviour
     { if (Instance == null)
         { Instance = this; }
         else
-        { Destroy(this.gameObject); } }
+        { Destroy(this.gameObject); } 
+    }
 
     // Start is called before the first frame update
     void Start()
