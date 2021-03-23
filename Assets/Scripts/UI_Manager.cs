@@ -5,10 +5,12 @@ using UnityEngine.UI;
 public class UI_Manager : MonoBehaviour
 {
     #region variables
-    
+
+    private int turn = 0;
+    private GameObject resident;
     //CountDown TimeManagement
     private float startingTime;
-    public float totalTime;
+    [SerializeField]private float totalTime;
     public Text countDownTxt;
 
     private float minutes;
@@ -22,6 +24,7 @@ public class UI_Manager : MonoBehaviour
     //public GameObject panelResident;
     public GameObject panelJobSelection;
     public GameObject panelBuildingSelection;
+    public GameObject panelSelectedPnj;
     public Text foodText;
     public Text woodText;
     public Text stoneText;
@@ -31,6 +34,7 @@ public class UI_Manager : MonoBehaviour
 
     private GameObject selectedResident;
     public static UI_Manager Instance;
+    
 
     [SerializeField] private Camera cam;
 
@@ -42,6 +46,7 @@ public class UI_Manager : MonoBehaviour
     private float advanceTimer;
     public delegate void OnTimeAdvanceHandler();
 
+    //public static event OnTimeAdvanceHandler OnTimeAdvance;
     public static event OnTimeAdvanceHandler OnTimeAdvance;
     
     //ProsperityBar Management
@@ -62,49 +67,23 @@ public class UI_Manager : MonoBehaviour
     void Start()
     {
         #region proserity
-
-        
-
-        #endregion
         prosperityBar.value = GameManager.Instance.prosperity;
-
+        #endregion
+        
         #region timerManagement
         advanceTimer = turnDuration;
         #endregion
 
-        #region CountDownJob
+        /*#region CountDownJob
         startingTime = totalTime;
-        #endregion
+        #endregion*/
+
+        bool changeWork = GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        #region SelectResident
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Vector3 mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
-            mousepos.z = 0f;
-            RaycastHit2D[] arraycast = Physics2D.RaycastAll(mousepos, Vector3.forward, 10f);
-            if (arraycast.Length != 0)
-            {
-                for (int i = 0; i < arraycast.Length; i++)
-                {
-                    RaycastHit2D element = arraycast[i];
-                    if (element.collider != null && element.collider.CompareTag("Hobo"))
-                    {
-                        print("hobo hit");
-                    }
-                    else
-                    {
-                        print("not hobo hit");
-                    }
-                }
-            }
-            print("not raycast");
-        }
-        #endregion
 
         #region TimeMAnagement
 
@@ -120,9 +99,9 @@ public class UI_Manager : MonoBehaviour
         #endregion
 
         #region RessourcesManagement
-        /*foodText.text = "Food : " + GameManager.Instance.food;
-        woodText.text = "Wood : " + GameManager.Instance.wood;
-        stoneText.text = "Stone : " + GameManager.Instance.stone;*/
+        foodText.text = " " + GameManager.Instance.food;
+        woodText.text = " " + GameManager.Instance.wood;
+        stoneText.text = " " + GameManager.Instance.stone;
         #endregion
         
         #region TextDisplay
@@ -143,16 +122,138 @@ public class UI_Manager : MonoBehaviour
         if (useEventTimer)
         {
             totalTime -= Time.deltaTime;
-            if (minutes <= 0 && seconds <= 0)
+            if (totalTime <= 0)
+            {
+                useEventTimer = false;
+            }
+            /*if (minutes <= 0 && seconds <= 0)
             {
                 totalTime = startingTime;
                 Debug.Log("TimerEvent");
                 TimerEvent.Invoke();
-            }
+                useEventTimer = false;
+            }*/
         }
         countDownTxt.text = "Studing time : "+ minutes.ToString() + " : " + seconds.ToString();
         #endregion
+        
+        SelectResident();
+    }
 
+    void ActiveCountDown(int time)
+    {
+        #region CountDownJob
+        //startingTime = totalTime;
+        totalTime = time;
+        useEventTimer = true;
+        #endregion
+    }
+
+    public void SelectResident()
+    {
+        #region SelectResident
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Vector3 mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
+            mousepos.z = 0f;
+            RaycastHit2D[] arraycast = Physics2D.RaycastAll(mousepos, Vector3.forward, 10f);
+            Debug.DrawLine(mousepos,Vector3.forward,Color.red);
+            if (arraycast.Length != 0)
+            {
+                for (int i = 0; i < arraycast.Length; i++)
+                {
+                    Debug.Log(arraycast[i].collider.gameObject);
+                    RaycastHit2D element = arraycast[i];
+                    if (element.collider != null && element.collider.CompareTag("Hobo"))
+                    {
+                        print("hobo hit");
+                        panelSelectedPnj.SetActive(true);
+                        ageText.text = "Age : " + GetComponent<H_Resident>().age;
+                        jobText.text = " Job : " + GetComponent<H_Resident>().name;
+                    }
+                    else if (element.collider != null && element.collider.CompareTag("Builder"))
+                    {
+                        print("Builder Hit");
+                        panelSelectedPnj.SetActive(true);
+                        ageText.text = "Age : " + GetComponent<H_Resident>().age;
+                        jobText.text = " Job : " + GetComponent<H_Resident>().name;
+                    }
+                    else if (element.collider != null && element.collider.CompareTag("Lumberjack"))
+                    {
+                        print("Lumberjack hit");
+                        panelSelectedPnj.SetActive(true);
+                        ageText.text = "Age : " + GetComponent<H_Resident>().age;
+                        jobText.text = " Job : " + GetComponent<H_Resident>().name;
+                    }
+                    else if (element.collider != null && element.collider.CompareTag("Harvester"))
+                    {
+                        print("Harvester hit");
+                        panelSelectedPnj.SetActive(true);
+                        ageText.text = "Age : " + GetComponent<H_Resident>().age;
+                        jobText.text = " Job : " + GetComponent<H_Resident>().name;
+                    }
+                    else if (element.collider != null && element.collider.CompareTag("Minor"))
+                    {
+                        print("Minor hit");
+                        panelSelectedPnj.SetActive(true);
+                        ageText.text = "Age : " + GetComponent<H_Resident>().age;
+                        jobText.text = " Job : " + GetComponent<H_Resident>().name;
+                    }
+                }
+            }
+        }
+        #endregion
+    }
+
+    public void OnClickBecomeBuilder()
+    {
+        panelJobSelection.SetActive(false);
+        totalTime = 5;
+        useEventTimer = true;
+        Debug.Log("He's learning a new job");
+        if (totalTime <= 0)
+        {
+            GameManager.Instance.ChangeWork(resident, GameManager.Works.Builder);
+            Debug.Log("His job has changed");
+        }
+    }
+    public void OnClickBecomeHarvester()
+    {
+        panelJobSelection.SetActive(false);
+        //totalTime = 5;
+        useEventTimer = true;
+        Debug.Log("He's learning a new job");
+        if (totalTime <= 0)
+        {
+            GameManager.Instance.ChangeWork(resident, GameManager.Works.Harvester);
+            Debug.Log("His job has changed");
+            //totalTime = 5;
+        }
+    }
+    public void OnClickBecomeLumberjack()
+    {
+        panelJobSelection.SetActive(false);
+        ActiveCountDown(6);
+        Debug.Log("He's learning a new job");
+        if (totalTime <= 0)
+        {
+            useEventTimer = false;
+            GameManager.Instance.ChangeWork(resident, GameManager.Works.Lumberjack);
+            Debug.Log("His job has changed");
+            //totalTime = 5;
+        }
+    }
+    public void OnClickBecomeMinor()
+    {
+        panelJobSelection.SetActive(false);
+        totalTime = 5;
+        useEventTimer = true;
+        Debug.Log("He's learning a new job");
+        if (totalTime <= 0)
+        {
+            GameManager.Instance.ChangeWork(resident, GameManager.Works.Minor);
+            Debug.Log("His job has changed");
+        }
     }
 
     public void Step()
@@ -184,6 +285,11 @@ public class UI_Manager : MonoBehaviour
     public void OnClickCloseJobPanel()
     {
         panelJobSelection.SetActive(false);
+    }
+
+    public void OnClickClosePnjPanel()
+    {
+        panelSelectedPnj.SetActive(false);
     }
 
     public void OnClickDisplayBuilding()
