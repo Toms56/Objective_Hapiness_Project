@@ -49,13 +49,13 @@ public class BuildingManager : MonoBehaviour
                             spawned = false;
                             GameManager.Instance.stone -= 5;
                             GameManager.Instance.food -= 1;
-                            thisBuilding.GetComponent<Building>().builded = true;
+                            thisBuilding.GetComponent<Building>().construction = true;
                             break;
                         case 1:
                             spawned = false;
                             GameManager.Instance.stone -= 6;
                             GameManager.Instance.food -= 7;
-                            thisBuilding.GetComponent<Building>().builded = true;
+                            thisBuilding.GetComponent<Building>().construction = true;
                             break;
                     }
                 }
@@ -85,7 +85,7 @@ public class BuildingManager : MonoBehaviour
                     if (GameManager.Instance.stone >= 5 && GameManager.Instance.food >= 1)
                     {
                         spawned = true;
-                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity);
+                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity,this.gameObject.transform);
                     }
                     else
                     {
@@ -97,7 +97,7 @@ public class BuildingManager : MonoBehaviour
                     if (GameManager.Instance.stone >= 6 && GameManager.Instance.food >= 7)
                     {
                         spawned = true;
-                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity);
+                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity,this.gameObject.transform);
                     }
                     else
                     {

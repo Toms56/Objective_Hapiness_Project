@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class Building : MonoBehaviour
 {
-    public bool builded = false;
+    public bool construction = false;
     public float interpol = 0;
-    [SerializeField] SpriteRenderer spriteRend;
+    protected bool builded = false;
+    public SpriteRenderer spriteRend;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         StartCoroutine(Construct());
     }
@@ -18,12 +19,12 @@ public class Building : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Builded : " + builded);
+        Debug.Log("Builded : " + construction);
     }
 
-    IEnumerator Construct()
+    public  IEnumerator Construct()
     {
-        yield return new WaitUntil(() => builded);
+        yield return new WaitUntil(() => construction);
         spriteRend.color = Color.clear;     
         while (spriteRend.color.a < 1)
         {
@@ -31,5 +32,6 @@ public class Building : MonoBehaviour
             interpol += 0.5f * Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
+        builded = true;
     }
 }

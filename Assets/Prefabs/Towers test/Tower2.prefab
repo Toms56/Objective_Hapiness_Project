@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 729467786066431380}
   - component: {fileID: 729467786066431381}
   - component: {fileID: 6520233073934260196}
+  - component: {fileID: -287894536161319151}
   m_Layer: 9
   m_Name: Tower2
   m_TagString: Building
@@ -116,11 +117,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729467786066431382}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 169cbb5d12c64a94eb741699ea656363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  builded: 0
+  construction: 0
+  interpol: 0
+  spriteRend: {fileID: 729467786066431380}
+--- !u!114 &-287894536161319151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729467786066431382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9742c5569b5494c9aef54794363ced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  construction: 0
   interpol: 0
   spriteRend: {fileID: 729467786066431380}

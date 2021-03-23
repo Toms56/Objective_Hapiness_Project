@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Sandboxscene_Romain.unity
+    path: Assets/Scenes/Sandboxscene_Romain/Sandboxscene_Romain.unity
     guid: d77c351003b00e54b90cdd1c7076afea
   m_configObjects: {}
