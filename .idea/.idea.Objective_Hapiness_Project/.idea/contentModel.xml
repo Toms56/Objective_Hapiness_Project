@@ -45,6 +45,7 @@
           <e p="TestsScripts" t="Include">
             <e p="Building.cs" t="Include" />
             <e p="BuildingManager.cs" t="Include" />
+            <e p="School.cs" t="Include" />
             <e p="TestZoom.cs" t="Include" />
             <e p="TurnCounterSystem.cs" t="Include" />
           </e>
