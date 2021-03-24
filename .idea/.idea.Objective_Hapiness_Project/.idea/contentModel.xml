@@ -65,6 +65,7 @@
           </e>
           <e p="CameraController.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="MenuManager.cs" t="Include" />
           <e p="PoolManager.cs" t="Include" />
           <e p="Residents" t="Include">
             <e p="Builder.cs" t="Include" />
