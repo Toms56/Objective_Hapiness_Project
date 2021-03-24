@@ -10,7 +10,11 @@ TagManager:
   - Minor
   - Student
   - Harvester
-  - Building
+  - School
+  - Home
+  - Farm
+  - Librairy
+  - Museum
   layers:
   - Default
   - TransparentFX

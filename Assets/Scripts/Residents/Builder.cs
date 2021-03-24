@@ -21,6 +21,7 @@ public class Builder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.nbrBuilder++;
         /*if (GameManager.Instance.day)
         {
             resident.agent.SetDestination(build);
