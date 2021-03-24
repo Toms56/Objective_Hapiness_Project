@@ -72,7 +72,9 @@ public class PoolManager : MonoBehaviour
                 int killresidents = Mathf.Abs(foodavailable);
                 for (int i = 0; i < killresidents; i++)
                 {
-                    residents[Random.Range(0,residents.Count)].gameObject.SetActive(false);
+                    int supp = Random.Range(0,residents.Count);
+                    residents[supp].gameObject.SetActive(false);
+                    residents.RemoveAt(supp);
                     Debug.Log("resident kill");
                 }
                 GameManager.Instance.food = foodavailable;
