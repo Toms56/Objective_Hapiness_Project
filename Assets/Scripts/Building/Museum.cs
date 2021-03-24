@@ -8,13 +8,13 @@ public class Museum : Building
     void Start()
     {
         StartCoroutine(Construct(0.5f));
-        GameManager.Instance.prosperity += 10;
+        GameManager.prosperity += 10;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (builded == true)
+        if (builded)
         {
             GameManager.Instance.RebuildSurface();
         }

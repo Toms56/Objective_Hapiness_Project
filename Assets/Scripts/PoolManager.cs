@@ -34,13 +34,13 @@ public class PoolManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.endofday && !foodverification)
+        if (!GameManager.Instance.day && !foodverification)
         {
             foodverification = true;
             Foodverification();
             SpawnHobo();
         }
-        if (!GameManager.Instance.endofday)
+        if (GameManager.Instance.day)
         {
             foodverification = false;   
         }
@@ -49,8 +49,8 @@ public class PoolManager : MonoBehaviour
     private void Foodverification()
     {
         foodavailable = GameManager.food - activeResidents.Count;
-        Debug.Log("residents :" + activeResidents.Count);
-        Debug.Log("food available : " + foodavailable);
+        //Debug.Log("residents :" + activeResidents.Count);
+        //Debug.Log("food available : " + foodavailable);
         if (foodavailable > 0)
         {
             GameManager.food = foodavailable;

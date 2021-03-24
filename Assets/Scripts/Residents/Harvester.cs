@@ -8,7 +8,9 @@ public class Harvester : MonoBehaviour
     private GameObject homeHarvester;
 
     private bool working;
-
+    private int homeindex = 1;
+    private Vector3 sleepPos = new Vector3(10, 10, 0);
+    private bool sleep;
 
     private void Awake()
     {
@@ -29,31 +31,74 @@ public class Harvester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.day)
+        sleep = false;
+        if (transform.position == sleepPos)
+        {
+            transform.position = homeHarvester.transform.position + Vector3.left;
+            resident.agent.enabled = true;
+        }
+        if (GameManager.Instance.day && !working && !resident.tired)
         {
             resident.agent.SetDestination(farm);
             
-            if (Vector3.Distance(transform.position,farm) <= 1f && !working)
+            if (Vector3.Distance(transform.position,farm) <= 1f && !working)            
             {
                 StartCoroutine(AddFood());
+                resident.tired = true;
                 working = true;
             }
         }
-        else
+        else if (!GameManager.Instance.day && working)
         {
             working = false;
-            resident.agent.SetDestination(homeHarvester.transform.position);
+            if (GameManager.Instance.homes.Count == 0)
+            {
+                resident.agent.SetDestination(resident.hobWay1);
+                StartCoroutine(resident.Wandering());
+            }
+            else
+            {
+                homeHarvester = GameManager.Instance.homes[0].gameObject;
+                resident.agent.SetDestination(homeHarvester.transform.position);
+            }
         }
     }
-
-
-
+    
     IEnumerator AddFood()
     {
         while (true)
         {
             yield return new WaitForSeconds(5);
-            GameManager.food += 1 + GameManager.Instance.nbrFarm;
+            GameManager.food += 1 + GameManager.nbrFarm;
+        }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag(GameManager.Buildings.Home.ToString()))
+        {
+            if (other.GetComponent<Home>().nbrplace > 0)
+            {
+                other.GetComponent<Home>().nbrplace--;
+                resident.tired = false;
+                sleep = true;
+                resident.agent.enabled = false;
+                transform.position = sleepPos;
+                Debug.Log("sleep");
+            }
+            else
+            {
+                if (GameManager.Instance.homes.Count > homeindex)
+                {
+                    homeHarvester = GameManager.Instance.homes[homeindex].gameObject;
+                    resident.agent.SetDestination(homeHarvester.transform.position);
+                }
+                else
+                {
+                    Debug.Log("wandering");
+                    StartCoroutine(resident.Wandering());
+                }
+            }
         }
     }
 }

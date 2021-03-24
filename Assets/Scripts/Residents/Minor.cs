@@ -8,6 +8,9 @@ public class Minor : MonoBehaviour
     private GameObject homeMinor;
 
     private bool working;
+    private int homeindex = 1;
+    private Vector3 sleepPos = new Vector3(10, 10, 0);
+    private bool sleep;
 
     private void Awake()
     {
@@ -28,20 +31,36 @@ public class Minor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.day)
+        if (GameManager.Instance.day && !working && !resident.tired)
         {
+            sleep = false;
+            if (transform.position == sleepPos)
+            {
+                transform.position = homeMinor.transform.position + Vector3.left;
+                resident.agent.enabled = true;
+            }
             resident.agent.SetDestination(mine);
             
-            if (Vector3.Distance(transform.position,mine) <= 1f && !working)
+            if (Vector3.Distance(transform.position,mine) <= 1f && !working)            
             {
                 StartCoroutine(AddStone());
+                resident.tired = true;
                 working = true;
             }
         }
-        else
+        else if (!GameManager.Instance.day && working)
         {
             working = false;
-            resident.agent.SetDestination(homeMinor.transform.position);
+            if (GameManager.Instance.homes.Count == 0)
+            {
+                resident.agent.SetDestination(resident.hobWay1);
+                StartCoroutine(resident.Wandering());
+            }
+            else
+            {
+                homeMinor = GameManager.Instance.homes[0].gameObject;
+                resident.agent.SetDestination(homeMinor.transform.position);
+            }
         }
     }
 
@@ -53,6 +72,35 @@ public class Minor : MonoBehaviour
         {
             yield return new WaitForSeconds(5);
             GameManager.stone++;
+        }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag(GameManager.Buildings.Home.ToString()))
+        {
+            if (other.GetComponent<Home>().nbrplace > 0)
+            {
+                other.GetComponent<Home>().nbrplace--;
+                resident.tired = false;
+                sleep = true;
+                resident.agent.enabled = false;
+                transform.position = sleepPos;
+                Debug.Log("sleep");
+            }
+            else
+            {
+                if (GameManager.Instance.homes.Count > homeindex)
+                {
+                    homeMinor = GameManager.Instance.homes[homeindex].gameObject;
+                    resident.agent.SetDestination(homeMinor.transform.position);
+                }
+                else
+                {
+                    Debug.Log("wandering");
+                    StartCoroutine(resident.Wandering());
+                }
+            }
         }
     }
 }

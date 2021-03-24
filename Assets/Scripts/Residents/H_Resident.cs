@@ -7,8 +7,6 @@ public class H_Resident : MonoBehaviour
 {
     #region Variables
     
-    
-    
     // For deplacement
     [SerializeField] private float speed;
     public NavMeshAgent agent;
@@ -46,10 +44,6 @@ public class H_Resident : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.day && !hobo)
-        {
-            tired = true;
-        }
         if (age >= 70)
         {
             ResetToHobo();
@@ -65,9 +59,9 @@ public class H_Resident : MonoBehaviour
     {
         while (true)
         {
-            if (Vector3.Distance(transform.position,hobWay1) < 1f)
+            if (Vector3.Distance(transform.position,hobWay1) < 2f)
             { agent.SetDestination(hobWay2); }
-            if (Vector3.Distance(transform.position,hobWay2) < 1f)
+            if (Vector3.Distance(transform.position,hobWay2) < 2f)
             { agent.SetDestination(hobWay1); }
             yield return new WaitForSeconds(1f);
         }
@@ -88,6 +82,8 @@ public class H_Resident : MonoBehaviour
                 break;
             case "Minor":
                 Destroy(gameObject.GetComponent<Minor>());
+                break;
+            case "Hobo":
                 break;
             default:
                 Debug.Log("no tag");

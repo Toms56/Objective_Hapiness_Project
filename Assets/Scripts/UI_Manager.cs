@@ -76,7 +76,7 @@ public class UI_Manager : MonoBehaviour
     void Start()
     {
         #region proserity
-        prosperityBar.value = GameManager.Instance.prosperity;
+        prosperityBar.value = GameManager.prosperity;
         #endregion
         
         #region timerManagement
@@ -114,7 +114,7 @@ public class UI_Manager : MonoBehaviour
         
         #endregion
         #region proserity
-        prosperityBar.value = GameManager.Instance.prosperity;
+        prosperityBar.value = GameManager.prosperity;
         #endregion
         #region TimeMAnagement
 
@@ -187,7 +187,7 @@ public class UI_Manager : MonoBehaviour
                 await new WaitForSeconds(durationDay);
                 GameManager.Instance.day = false;
                 dayNum += 1;
-                GameManager.Instance.prosperity += 3;
+                GameManager.prosperity += 3;
             }
             else
             {

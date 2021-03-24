@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Lumberjack : MonoBehaviour
@@ -9,6 +8,8 @@ public class Lumberjack : MonoBehaviour
     private GameObject homeLumberjack;
     private bool working;
     private int homeindex = 1;
+    private Vector3 sleepPos = new Vector3(10, 10, 0);
+    private bool sleep;
 
     private void Awake()
     {
@@ -30,33 +31,38 @@ public class Lumberjack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.day && !working)
+        if (GameManager.Instance.day && !working && !resident.tired)
         {
+            sleep = false;
+            if (transform.position == sleepPos)
+            {
+                transform.position = homeLumberjack.transform.position + Vector3.left;
+                resident.agent.enabled = true;
+            }
             resident.agent.SetDestination(forest);
-            
             if (Vector3.Distance(transform.position,forest) <= 1f && !working)            
             {
                 StartCoroutine(AddWood());
+                resident.tired = true;
                 working = true;
             }
         }
-        else
+        else if (!GameManager.Instance.day && working)
         {
-            
-        }
-
-        if (GameManager.Instance.endofday && working)
-        {
-            working = false;
-            if (GameManager.Instance.homes.Count == 0)
+            if (!sleep)
             {
-                resident.agent.SetDestination(resident.hobWay1);
-                StartCoroutine(resident.Wandering());
-            }
-            else
-            {
-                homeLumberjack = GameManager.Instance.homes[0].gameObject;
-                resident.agent.SetDestination(homeLumberjack.transform.position);
+                working = false;
+                if (GameManager.Instance.homes.Count == 0)
+                {
+                    resident.agent.SetDestination(resident.hobWay1);
+                    StartCoroutine(resident.Wandering());
+                }
+                else
+                {
+                    homeLumberjack = GameManager.Instance.homes[0].gameObject;
+                    resident.agent.SetDestination(homeLumberjack.transform.position);
+                    Debug.Log("go home");
+                }
             }
         }
     }
@@ -77,6 +83,10 @@ public class Lumberjack : MonoBehaviour
             if (other.GetComponent<Home>().nbrplace > 0)
             {
                 other.GetComponent<Home>().nbrplace--;
+                resident.tired = false;
+                sleep = true;
+                resident.agent.enabled = false;
+                transform.position = sleepPos;
                 Debug.Log("sleep");
             }
             else

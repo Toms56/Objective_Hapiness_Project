@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     // to exist only once in the scene and remain unique.
     public static GameManager Instance;
     
-    public float prosperity;
+    public static float prosperity;
     
     //PNJ Comportment Management 
     /*
@@ -24,12 +24,17 @@ public class GameManager : MonoBehaviour
      */
     
     //Resources management 
-    public static int food;
-    public static int wood;
-    public static int stone;
+    public static int food = 10;
+    public static int wood = 10;
+    public static int stone = 10;
+    
+    [SerializeField] int readfood;
+    [SerializeField] int readwood;
+    [SerializeField] int readstone;
 
-    public int nbrFarm = 0;
-    public int nbrBuilder = 0;
+
+    public static int nbrFarm = 0;
+    public static int nbrBuilder = 0;
 
     public NavMeshSurface2d surface2d;
     public GameObject hoboWaypoint1;
@@ -65,7 +70,6 @@ public class GameManager : MonoBehaviour
     //World settings
     private int timeWorld;
     public bool day;
-    public bool endofday;
     public bool schoolBuilded;
 
     #endregion
@@ -80,8 +84,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        school = new GameObject();
     }
 
     // Start is called before the first frame update
@@ -108,6 +110,10 @@ public class GameManager : MonoBehaviour
             stone = 0;
         }
 
+        readfood = food;
+        readstone = stone;
+        readwood = wood;
+
         #endregion
         //CheatCode
         if (Input.GetKey(KeyCode.Insert))
@@ -132,23 +138,6 @@ public class GameManager : MonoBehaviour
     
     public void ChangeWork(GameObject resident, Works work)
     {
-        /*if (resident.GetComponent<Builder>())
-        {
-            Destroy(resident.GetComponent<Builder>());
-        }
-        if (resident.GetComponent<Harvester>())
-        {
-            Destroy(resident.GetComponent<Harvester>());
-        }
-        if (resident.GetComponent<Lumberjack>())
-        {
-            Destroy(resident.GetComponent<Lumberjack>());
-        }
-        if (resident.GetComponent<Minor>())
-        {
-            Destroy(resident.GetComponent<Minor>());
-        }*/
-        
         switch (work)
         {
             case Works.Builder :

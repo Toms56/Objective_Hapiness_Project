@@ -8,13 +8,13 @@ public class Librairy : Building
     void Start()
     {
         StartCoroutine(Construct(0.5f));
-        GameManager.Instance.prosperity += 5;
+        GameManager.prosperity += 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (builded == true)
+        if (builded)
         {
             GameManager.Instance.RebuildSurface();
         }
