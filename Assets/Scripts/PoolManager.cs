@@ -47,12 +47,12 @@ public class PoolManager : MonoBehaviour
 
     private void Foodverification()
     {
-        foodavailable = GameManager.Instance.food - activeResidents.Count;
+        foodavailable = GameManager.food - activeResidents.Count;
         Debug.Log("residents :" + activeResidents.Count);
         Debug.Log("food available : " + foodavailable);
         if (foodavailable > 0)
         {
-            GameManager.Instance.food = foodavailable;
+            GameManager.food = foodavailable;
         }
         else
         {
@@ -71,7 +71,7 @@ public class PoolManager : MonoBehaviour
                     activeResidents[supp].gameObject.SetActive(false);
                     activeResidents.RemoveAt(supp);
                 }
-                GameManager.Instance.food = foodavailable;
+                GameManager.food = foodavailable;
                 Debug.Log("residents killed : " + killresidents);
             }
         }

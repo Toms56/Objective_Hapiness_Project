@@ -42,8 +42,7 @@ public class Lumberjack : MonoBehaviour
         }
         else
         {
-            /*working = false;
-            resident.agent.SetDestination(homeLumberjack.transform.position);*/
+            
         }
 
         if (GameManager.Instance.endofday && working)
@@ -67,7 +66,7 @@ public class Lumberjack : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(5);
-            GameManager.Instance.wood++;
+            GameManager.wood++;
         }
     }
 

@@ -24,9 +24,9 @@ public class GameManager : MonoBehaviour
      */
     
     //Resources management 
-    public int food;
-    public int wood;
-    public int stone = 50;
+    public static int food;
+    public static int wood;
+    public static int stone;
 
     public int nbrFarm = 0;
     public int nbrBuilder = 0;

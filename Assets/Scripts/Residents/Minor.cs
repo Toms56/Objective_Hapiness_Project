@@ -52,7 +52,7 @@ public class Minor : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(5);
-            GameManager.Instance.stone++;
+            GameManager.stone++;
         }
     }
 }

@@ -53,7 +53,7 @@ public class Harvester : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(5);
-            GameManager.Instance.food += 1 + GameManager.Instance.nbrFarm;
+            GameManager.food += 1 + GameManager.Instance.nbrFarm;
         }
     }
 }

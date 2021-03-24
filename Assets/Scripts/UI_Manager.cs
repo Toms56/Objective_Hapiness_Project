@@ -130,9 +130,9 @@ public class UI_Manager : MonoBehaviour
         #endregion
 
         #region RessourcesManagement
-        foodText.text = " " + GameManager.Instance.food;
-        woodText.text = " " + GameManager.Instance.wood;
-        stoneText.text = " " + GameManager.Instance.stone;
+        foodText.text = " " + GameManager.food;
+        woodText.text = " " + GameManager.wood;
+        stoneText.text = " " + GameManager.stone;
         #endregion
         
         #region TextDisplay

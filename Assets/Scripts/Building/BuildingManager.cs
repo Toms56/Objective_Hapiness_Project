@@ -47,40 +47,40 @@ public class BuildingManager : MonoBehaviour
                     {
                         case 0 :
                             spawned = false;
-                            GameManager.Instance.stone -= 5;
-                            GameManager.Instance.food -= 1;
+                            GameManager.stone -= 5;
+                            GameManager.food -= 1;
                             thisBuilding.GetComponent<Home>().construction = true;
                             thisBuilding.tag = GameManager.Buildings.Home.ToString();
                             break;
 
                         case 1:
                             spawned = false;
-                            GameManager.Instance.stone -= 6;
-                            GameManager.Instance.food -= 7;
+                            GameManager.stone -= 6;
+                            GameManager.food -= 7;
                             thisBuilding.GetComponent<School>().construction = true;
                             thisBuilding.tag = GameManager.Buildings.School.ToString();
                             break;
 
                         case 2:
                             spawned = false;
-                            GameManager.Instance.stone -= 6;
-                            GameManager.Instance.food -= 7;
+                            GameManager.stone -= 6;
+                            GameManager.food -= 7;
                             thisBuilding.GetComponent<Farm>().construction = true;
                             thisBuilding.tag = GameManager.Buildings.Farm.ToString();
                             break;
 
                         case 3:
                             spawned = false;
-                            GameManager.Instance.stone -= 6;
-                            GameManager.Instance.food -= 7;
+                            GameManager.stone -= 6;
+                            GameManager.food -= 7;
                             thisBuilding.GetComponent<Librairy>().construction = true;
                             thisBuilding.tag = GameManager.Buildings.Librairy.ToString();
                             break;
 
                         case 4:
                             spawned = false;
-                            GameManager.Instance.stone -= 6;
-                            GameManager.Instance.food -= 7;
+                            GameManager.stone -= 6;
+                            GameManager.food -= 7;
                             thisBuilding.GetComponent<Museum>().construction = true;
                             thisBuilding.tag = GameManager.Buildings.Museum.ToString();
                             break;
@@ -109,7 +109,7 @@ public class BuildingManager : MonoBehaviour
             switch (index)
             {
                 case 0: 
-                    if (GameManager.Instance.stone >= 5 && GameManager.Instance.food >= 1)
+                    if (GameManager.stone >= 5 && GameManager.food >= 1)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity,this.gameObject.transform);
@@ -121,7 +121,7 @@ public class BuildingManager : MonoBehaviour
                     break;
 
                 case 1:
-                    if (GameManager.Instance.stone >= 6 && GameManager.Instance.food >= 7)
+                    if (GameManager.stone >= 6 && GameManager.food >= 7)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity,this.gameObject.transform);
@@ -133,7 +133,7 @@ public class BuildingManager : MonoBehaviour
                     break;
 
                 case 2:
-                    if (GameManager.Instance.stone >= 6 && GameManager.Instance.food >= 7)
+                    if (GameManager.stone >= 6 && GameManager.food >= 7)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
@@ -145,7 +145,7 @@ public class BuildingManager : MonoBehaviour
                     break;
 
                 case 3:
-                    if (GameManager.Instance.stone >= 6 && GameManager.Instance.food >= 7)
+                    if (GameManager.stone >= 6 && GameManager.food >= 7)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
@@ -157,7 +157,7 @@ public class BuildingManager : MonoBehaviour
                     break;
 
                 case 4:
-                    if (GameManager.Instance.stone >= 6 && GameManager.Instance.food >= 7)
+                    if (GameManager.stone >= 6 && GameManager.food >= 7)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
