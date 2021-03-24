@@ -109,7 +109,7 @@ namespace UnityEngine.AI
                             tilemap.CompressBounds();
                         }
 
-                        Debug.Log($"Walkable Bounds [{tilemap.name}]: {tilemap.localBounds}");
+                        //Debug.Log($"Walkable Bounds [{tilemap.name}]: {tilemap.localBounds}");
                         var box = BoxBoundSource(NavMeshSurface2d.GetWorldBounds(tilemap.transform.localToWorldMatrix, tilemap.localBounds));
                         box.area = builder.defaultArea;
                         sources.Add(box);
@@ -141,7 +141,7 @@ namespace UnityEngine.AI
                     }
                 }
             }
-            Debug.Log("Sources " + sources.Count);
+            //Debug.Log("Sources " + sources.Count);
         }
 
         private static void CollectSources(List<NavMeshBuildSource> sources, SpriteRenderer sprite, int area, NavMeshBuilder2dWrapper builder)

@@ -50,6 +50,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.Instance.stone -= 5;
                             GameManager.Instance.food -= 1;
                             thisBuilding.GetComponent<Home>().construction = true;
+                            thisBuilding.tag = GameManager.Buildings.Home.ToString();
                             break;
 
                         case 1:
@@ -57,6 +58,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.Instance.stone -= 6;
                             GameManager.Instance.food -= 7;
                             thisBuilding.GetComponent<School>().construction = true;
+                            thisBuilding.tag = GameManager.Buildings.School.ToString();
                             break;
 
                         case 2:
@@ -64,6 +66,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.Instance.stone -= 6;
                             GameManager.Instance.food -= 7;
                             thisBuilding.GetComponent<Farm>().construction = true;
+                            thisBuilding.tag = GameManager.Buildings.Farm.ToString();
                             break;
 
                         case 3:
@@ -71,6 +74,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.Instance.stone -= 6;
                             GameManager.Instance.food -= 7;
                             thisBuilding.GetComponent<Librairy>().construction = true;
+                            thisBuilding.tag = GameManager.Buildings.Librairy.ToString();
                             break;
 
                         case 4:
@@ -78,6 +82,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.Instance.stone -= 6;
                             GameManager.Instance.food -= 7;
                             thisBuilding.GetComponent<Museum>().construction = true;
+                            thisBuilding.tag = GameManager.Buildings.Museum.ToString();
                             break;
                     }
                 }

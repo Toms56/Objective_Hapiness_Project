@@ -5,6 +5,8 @@ using UnityEngine;
 public class Home : Building
 {
     // Start is called before the first frame update
+
+    public static int nbrplace = 4;
     void Start()
     {
         StartCoroutine(Construct(0.5f));
