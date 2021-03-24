@@ -110,6 +110,8 @@ public class GameManager : MonoBehaviour
         {
             schoolBuilded = true;
         }
+
+        
     }
 
     public void GoToEat()
