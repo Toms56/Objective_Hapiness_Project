@@ -14,6 +14,9 @@ public class Librairy : Building
     // Update is called once per frame
     void Update()
     {
-        
+        if (builded == true)
+        {
+            GameManager.Instance.RebuildSurface();
+        }
     }
 }
