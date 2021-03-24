@@ -31,6 +31,15 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Building" t="Include">
+            <e p="Building.cs" t="Include" />
+            <e p="BuildingManager.cs" t="Include" />
+            <e p="Farm.cs" t="Include" />
+            <e p="Home.cs" t="Include" />
+            <e p="Librairy.cs" t="Include" />
+            <e p="Museum.cs" t="Include" />
+            <e p="School.cs" t="Include" />
+          </e>
           <e p="CameraController.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="PoolManager.cs" t="Include" />
@@ -43,8 +52,6 @@
             <e p="Student.cs" t="Include" />
           </e>
           <e p="TestsScripts" t="Include">
-            <e p="Building.cs" t="Include" />
-            <e p="BuildingManager.cs" t="Include" />
             <e p="TestZoom.cs" t="Include" />
             <e p="TurnCounterSystem.cs" t="Include" />
           </e>

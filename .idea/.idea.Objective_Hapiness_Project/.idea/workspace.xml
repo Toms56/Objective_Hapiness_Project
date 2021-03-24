@@ -2,17 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcb0a876-8e73-45d3-8902-c6a12dbeba00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Objective_Hapiness/.idea/.idea.Objective_Hapiness/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Objective_Hapiness/.idea/.idea.Objective_Hapiness/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Objective_Hapiness/.idea/.idea.Objective_Hapiness/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Objective_Hapiness/.idea/.idea.Objective_Hapiness/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Residents/Builder.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Residents/Builder.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Residents/Harvester.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Residents/Harvester.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Residents/Hobo.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Residents/Hobo.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Residents/Lumberjack.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Residents/Lumberjack.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Residents/Minor.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Residents/Minor.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SandboxScene_Thomas.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SandboxScene_Thomas.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI_Manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI_Manager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Home.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Home.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/School.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/School.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building/Building.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Building/Building.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building/BuildingManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Building/BuildingManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Building/School.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Building/School.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestsScripts/Building.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestsScripts/Building.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestsScripts/BuildingManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestsScripts/BuildingManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestsScripts/School.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestsScripts/School.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +73,10 @@
       <updated>1616488738662</updated>
       <workItem from="1616488766422" duration="107000" />
       <workItem from="1616496276782" duration="15391000" />
+      <workItem from="1616571880055" duration="595000" />
+      <workItem from="1616573637370" duration="2448000" />
+      <workItem from="1616576579910" duration="1500000" />
+      <workItem from="1616581439243" duration="134000" />
     </task>
     <servers />
   </component>

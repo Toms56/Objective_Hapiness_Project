@@ -49,13 +49,35 @@ public class BuildingManager : MonoBehaviour
                             spawned = false;
                             GameManager.Instance.stone -= 5;
                             GameManager.Instance.food -= 1;
-                            thisBuilding.GetComponent<Building>().construction = true;
+                            thisBuilding.GetComponent<Home>().construction = true;
                             break;
+
                         case 1:
                             spawned = false;
                             GameManager.Instance.stone -= 6;
                             GameManager.Instance.food -= 7;
-                            thisBuilding.GetComponent<Building>().construction = true;
+                            thisBuilding.GetComponent<School>().construction = true;
+                            break;
+
+                        case 2:
+                            spawned = false;
+                            GameManager.Instance.stone -= 6;
+                            GameManager.Instance.food -= 7;
+                            thisBuilding.GetComponent<Farm>().construction = true;
+                            break;
+
+                        case 3:
+                            spawned = false;
+                            GameManager.Instance.stone -= 6;
+                            GameManager.Instance.food -= 7;
+                            thisBuilding.GetComponent<Librairy>().construction = true;
+                            break;
+
+                        case 4:
+                            spawned = false;
+                            GameManager.Instance.stone -= 6;
+                            GameManager.Instance.food -= 7;
+                            thisBuilding.GetComponent<Museum>().construction = true;
                             break;
                     }
                 }
@@ -104,9 +126,43 @@ public class BuildingManager : MonoBehaviour
                         Debug.Log("Il vous manque des ressources");
                     }
                     break;
+
+                case 2:
+                    if (GameManager.Instance.stone >= 6 && GameManager.Instance.food >= 7)
+                    {
+                        spawned = true;
+                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
+                    }
+                    else
+                    {
+                        Debug.Log("Il vous manque des ressources");
+                    }
+                    break;
+
+                case 3:
+                    if (GameManager.Instance.stone >= 6 && GameManager.Instance.food >= 7)
+                    {
+                        spawned = true;
+                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
+                    }
+                    else
+                    {
+                        Debug.Log("Il vous manque des ressources");
+                    }
+                    break;
+
+                case 4:
+                    if (GameManager.Instance.stone >= 6 && GameManager.Instance.food >= 7)
+                    {
+                        spawned = true;
+                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
+                    }
+                    else
+                    {
+                        Debug.Log("Il vous manque des ressources");
+                    }
+                    break;
             }
-           /* spawned = true;
-            thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity);*/
         }
 
     }

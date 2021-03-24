@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public int wood;
     public int stone;
 
+    public int nbrFarm = 0;
+
     public NavMeshSurface2d surface2d;
     public GameObject hoboWaypoint1;
     public GameObject hoboWaypoint2;

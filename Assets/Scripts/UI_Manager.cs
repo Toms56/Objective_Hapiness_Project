@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -45,8 +46,7 @@ public class UI_Manager : MonoBehaviour
     public bool fastForward;
     private float advanceTimer;
     public delegate void OnTimeAdvanceHandler();
-
-    //public static event OnTimeAdvanceHandler OnTimeAdvance;
+    
     public static event OnTimeAdvanceHandler OnTimeAdvance;
     
     //ProsperityBar Management
@@ -126,13 +126,6 @@ public class UI_Manager : MonoBehaviour
             {
                 useEventTimer = false;
             }
-            /*if (minutes <= 0 && seconds <= 0)
-            {
-                totalTime = startingTime;
-                Debug.Log("TimerEvent");
-                TimerEvent.Invoke();
-                useEventTimer = false;
-            }*/
         }
         countDownTxt.text = "Studing time : "+ minutes.ToString() + " : " + seconds.ToString();
         #endregion
@@ -168,36 +161,41 @@ public class UI_Manager : MonoBehaviour
                     {
                         print("hobo hit");
                         panelSelectedPnj.SetActive(true);
-                        ageText.text = "Age : " + GetComponent<H_Resident>().age;
-                        jobText.text = " Job : " + GetComponent<H_Resident>().name;
+                        resident = element.collider.gameObject;
+                        ageText.text = "Age : " + resident.GetComponent<H_Resident>().age;
+                        jobText.text = " Job : " + resident.GetComponent<H_Resident>().tag;
                     }
                     else if (element.collider != null && element.collider.CompareTag("Builder"))
                     {
                         print("Builder Hit");
                         panelSelectedPnj.SetActive(true);
-                        ageText.text = "Age : " + GetComponent<H_Resident>().age;
-                        jobText.text = " Job : " + GetComponent<H_Resident>().name;
+                        resident = element.collider.gameObject;
+                        ageText.text = "Age : " + resident.GetComponent<H_Resident>().age;
+                        jobText.text = " Job : " + resident.GetComponent<H_Resident>().tag;
                     }
                     else if (element.collider != null && element.collider.CompareTag("Lumberjack"))
                     {
                         print("Lumberjack hit");
                         panelSelectedPnj.SetActive(true);
-                        ageText.text = "Age : " + GetComponent<H_Resident>().age;
-                        jobText.text = " Job : " + GetComponent<H_Resident>().name;
+                        resident = element.collider.gameObject;
+                        ageText.text = "Age : " + resident.GetComponent<H_Resident>().age;
+                        jobText.text = " Job : " + resident.GetComponent<H_Resident>().tag;
                     }
                     else if (element.collider != null && element.collider.CompareTag("Harvester"))
                     {
                         print("Harvester hit");
                         panelSelectedPnj.SetActive(true);
-                        ageText.text = "Age : " + GetComponent<H_Resident>().age;
-                        jobText.text = " Job : " + GetComponent<H_Resident>().name;
+                        resident = element.collider.gameObject;
+                        ageText.text = "Age : " + resident.GetComponent<H_Resident>().age;
+                        jobText.text = " Job : " + resident.GetComponent<H_Resident>().tag;
                     }
                     else if (element.collider != null && element.collider.CompareTag("Minor"))
                     {
                         print("Minor hit");
                         panelSelectedPnj.SetActive(true);
-                        ageText.text = "Age : " + GetComponent<H_Resident>().age;
-                        jobText.text = " Job : " + GetComponent<H_Resident>().name;
+                        resident = element.collider.gameObject;
+                        ageText.text = "Age : " + resident.GetComponent<H_Resident>().age;
+                        jobText.text = " Job : " + resident.GetComponent<H_Resident>().tag;
                     }
                 }
             }
@@ -208,54 +206,69 @@ public class UI_Manager : MonoBehaviour
     public void OnClickBecomeBuilder()
     {
         panelJobSelection.SetActive(false);
-        totalTime = 5;
-        useEventTimer = true;
-        Debug.Log("He's learning a new job");
-        if (totalTime <= 0)
-        {
-            GameManager.Instance.ChangeWork(resident, GameManager.Works.Builder);
-            Debug.Log("His job has changed");
-        }
+        ActiveCountDown(6);
+        //useEventTimer = true;
+        Debug.Log("He's learning a new job"+ resident.GetComponent<H_Resident>().tag);
+        StartCoroutine(WaitForBecomeBuilder());
     }
     public void OnClickBecomeHarvester()
     {
         panelJobSelection.SetActive(false);
-        //totalTime = 5;
-        useEventTimer = true;
-        Debug.Log("He's learning a new job");
-        if (totalTime <= 0)
-        {
-            GameManager.Instance.ChangeWork(resident, GameManager.Works.Harvester);
-            Debug.Log("His job has changed");
-            //totalTime = 5;
-        }
+        ActiveCountDown(6);
+        //useEventTimer = true;
+        Debug.Log("He's learning a new job"+ resident.GetComponent<H_Resident>().tag);
+        StartCoroutine(WaitForBecomeHarvester());
     }
     public void OnClickBecomeLumberjack()
     {
         panelJobSelection.SetActive(false);
         ActiveCountDown(6);
-        Debug.Log("He's learning a new job");
-        if (totalTime <= 0)
-        {
-            useEventTimer = false;
-            GameManager.Instance.ChangeWork(resident, GameManager.Works.Lumberjack);
-            Debug.Log("His job has changed");
-            //totalTime = 5;
-        }
+        //useEventTimer = true;
+        Debug.Log("He's learning a new job"+ resident.GetComponent<H_Resident>().tag);
+        StartCoroutine(WaitForBecomeLumberjack());
     }
     public void OnClickBecomeMinor()
     {
         panelJobSelection.SetActive(false);
-        totalTime = 5;
-        useEventTimer = true;
-        Debug.Log("He's learning a new job");
-        if (totalTime <= 0)
-        {
-            GameManager.Instance.ChangeWork(resident, GameManager.Works.Minor);
-            Debug.Log("His job has changed");
-        }
+        ActiveCountDown(6);
+        //useEventTimer = true;
+        Debug.Log("He's learning a new job" + resident.GetComponent<H_Resident>().tag);
+        StartCoroutine(WaitForBecomeMinor());
     }
 
+    #region coroutineJob
+    IEnumerator WaitForBecomeBuilder()
+    {
+        yield return new WaitForSeconds(6);
+        useEventTimer = false;
+        GameManager.Instance.ChangeWork(resident, GameManager.Works.Builder);
+        Debug.Log("His job has changed"+ resident.GetComponent<H_Resident>().tag);
+    }
+    IEnumerator WaitForBecomeLumberjack()
+    {
+        yield return new WaitForSeconds(6);
+        useEventTimer = false;
+        GameManager.Instance.ChangeWork(resident, GameManager.Works.Lumberjack);
+        Debug.Log("His job has changed"+ resident.GetComponent<H_Resident>().tag);
+    }
+    
+    IEnumerator WaitForBecomeHarvester()
+    {
+        yield return new WaitForSeconds(6);
+        useEventTimer = false;
+        GameManager.Instance.ChangeWork(resident, GameManager.Works.Harvester);
+        Debug.Log("His job has changed"+ resident.GetComponent<H_Resident>().tag);
+    }
+    IEnumerator WaitForBecomeMinor()
+    {
+        yield return new WaitForSeconds(6);
+        useEventTimer = false;
+        GameManager.Instance.ChangeWork(resident, GameManager.Works.Minor);
+        Debug.Log("His job has changed"+ resident.GetComponent<H_Resident>().tag);
+    }
+    
+    #endregion
+    
     public void Step()
     {
        OnTimeAdvance?.Invoke(); 

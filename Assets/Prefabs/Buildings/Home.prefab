@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 729467786066431387}
   - component: {fileID: 729467786066431380}
-  - component: {fileID: 729467786066431381}
-  - component: {fileID: 6520233073934260196}
-  - component: {fileID: -287894536161319151}
+  - component: {fileID: -5695087514477056656}
+  - component: {fileID: 5734105746495099054}
+  - component: {fileID: -4193163613754363475}
+  - component: {fileID: 8993573477875373233}
   m_Layer: 9
-  m_Name: Tower2
+  m_Name: Home
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729467786066431382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.55, y: 2.08, z: -0.5635975}
   m_LocalScale: {x: 0.31538, y: 0.31538, z: 0.31538}
   m_Children: []
   m_Father: {fileID: 0}
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 19a991bbda38944fe9e46b17c9c7ce70, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dc784d03a5bcb48e79ea5faa09963f99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,17 +85,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &729467786066431381
+--- !u!58 &-5695087514477056656
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729467786066431382}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06317869, y: 0.05946252}
+  serializedVersion: 2
+  m_Radius: 1.3
+--- !u!61 &5734105746495099054
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729467786066431382}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -110,22 +127,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.62, y: 2.67}
   m_EdgeRadius: 0
---- !u!114 &6520233073934260196
-MonoBehaviour:
+--- !u!208 &-4193163613754363475
+NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729467786066431382}
   m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169cbb5d12c64a94eb741699ea656363, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  construction: 0
-  interpol: 0
-  spriteRend: {fileID: 729467786066431380}
---- !u!114 &-287894536161319151
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.3100001, y: 1.335, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &8993573477875373233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,9 +152,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 729467786066431382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9742c5569b5494c9aef54794363ced, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e3a1ae03c2bcdb478bd8355c660dd2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   construction: 0
   interpol: 0
   spriteRend: {fileID: 729467786066431380}
+  navObstacle: {fileID: -4193163613754363475}
