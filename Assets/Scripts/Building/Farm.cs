@@ -14,6 +14,6 @@ public class Farm : Building
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(GameManager.Instance.nbrFarm);
+        //Debug.Log(GameManager.Instance.nbrFarm);
     }
 }
