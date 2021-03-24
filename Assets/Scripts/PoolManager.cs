@@ -38,10 +38,11 @@ public class PoolManager : MonoBehaviour
         {
             foodverification = true;
             Foodverification();
+            SpawnHobo();
         }
         if (!GameManager.Instance.endofday)
         {
-            foodverification = false;
+            foodverification = false;   
         }
     }
 
@@ -87,5 +88,24 @@ public class PoolManager : MonoBehaviour
         activeResidents.Add(Instantiate(harvester, transform));
         activeResidents.Add(Instantiate(lumberjack, transform));
         activeResidents.Add(Instantiate(minor, transform));
+
+        GameObject hoboFirst = Instantiate(hobo, transform);
+        hoboFirst.SetActive(true);
+        activeResidents.Add(hoboFirst);
+    }
+
+    private void SpawnHobo()
+    {
+        if (inactiveResidents.Count <= 2)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                inactiveResidents.Enqueue(Instantiate(hobo, transform));
+            }
+        }
+
+       GameObject activeHobo = inactiveResidents.Dequeue();
+       activeHobo.SetActive(true);
+       activeResidents.Add(activeHobo);
     }
 }
