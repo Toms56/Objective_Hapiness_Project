@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviour
     public GameObject farmWaypoint;
     public GameObject mineWaypoint;
     public GameObject forestWaypoint;
+    public GameObject school;
     
-    //futur list d'objets
     public List<GameObject> homes;
 
-    public GameObject school;
+    
     
     public enum Works
     {
@@ -61,9 +61,7 @@ public class GameManager : MonoBehaviour
         Librairy,
         Museum,
     }
-
-    [SerializeField] GameObject poolManager;
-
+    
     //World settings
     private int timeWorld;
     public bool day;
@@ -88,7 +86,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         day = true;
-        Instantiate(poolManager);
     }
 
     // Update is called once per frame
