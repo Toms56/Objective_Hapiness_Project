@@ -13,6 +13,8 @@ public class UI_Manager : MonoBehaviour
     private float startingTime;
     [SerializeField]private float totalTime;
     public Text countDownTxt;
+    public Text dayCycleText;
+    public Text nightCycleText;
 
     private float minutes;
     private float seconds;
@@ -26,6 +28,7 @@ public class UI_Manager : MonoBehaviour
     public GameObject panelJobSelection;
     public GameObject panelBuildingSelection;
     public GameObject panelSelectedPnj;
+    public GameObject dayCyclePanel;
     public Text foodText;
     public Text woodText;
     public Text stoneText;
@@ -44,7 +47,12 @@ public class UI_Manager : MonoBehaviour
     public float fastForwardMultiplier = 5;
     public bool pause = false;
     public bool fastForward;
-    private float advanceTimer;
+    private float advanceTimer; 
+    private bool play;
+    
+    public float durationDay;
+    public float durationNight;
+    
     public delegate void OnTimeAdvanceHandler();
     
     public static event OnTimeAdvanceHandler OnTimeAdvance;
@@ -73,12 +81,8 @@ public class UI_Manager : MonoBehaviour
         #region timerManagement
         advanceTimer = turnDuration;
         #endregion
-
-        /*#region CountDownJob
-        startingTime = totalTime;
-        #endregion*/
-
-        bool changeWork = GetComponent<GameManager>();
+        
+        DayNightCycle();
     }
 
     // Update is called once per frame
@@ -140,6 +144,31 @@ public class UI_Manager : MonoBehaviour
         totalTime = time;
         useEventTimer = true;
         #endregion
+    }
+
+    public async void DayNightCycle()
+    {
+        int dayNum = 0;
+        int nightNum = 0;
+        while (!play)
+        {
+            dayCycleText.text = $"Day : {dayNum} ";
+            nightCycleText.text = $"Night : {nightNum}";
+            if (GameManager.Instance.day)
+            {
+                Debug.Log("New day");
+                await new WaitForSeconds(durationDay);
+                GameManager.Instance.day = false;
+                dayNum += 1;
+            }
+            else
+            {
+                Debug.Log("New night");
+                await new WaitForSeconds(durationNight);
+                GameManager.Instance.day = true;
+                nightNum += 1;
+            }
+        }
     }
 
     public void SelectResident()
@@ -266,7 +295,6 @@ public class UI_Manager : MonoBehaviour
         GameManager.Instance.ChangeWork(resident, GameManager.Works.Minor);
         Debug.Log("His job has changed"+ resident.GetComponent<H_Resident>().tag);
     }
-    
     #endregion
     
     public void Step()
@@ -275,12 +303,17 @@ public class UI_Manager : MonoBehaviour
     }
     public void Pause()
     {
-        pause = true;
-        fastForward = false;
+        Debug.Log(Time.timeScale);
+        if(!pause)
+        {
+            Time.timeScale = 0;
+            fastForward = false;
+        }
     }
 
     public void Play()
     {
+        Time.timeScale = 1;
         pause = false;
         fastForward = false;
     }

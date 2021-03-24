@@ -26,9 +26,10 @@ public class GameManager : MonoBehaviour
     //Resources management 
     public int food;
     public int wood;
-    public int stone;
+    public int stone = 50;
 
     public int nbrFarm = 0;
+    public int nbrBuilder = 0;
 
     public NavMeshSurface2d surface2d;
     public GameObject hoboWaypoint1;
@@ -52,7 +53,16 @@ public class GameManager : MonoBehaviour
         Hobo
     }
 
-    //[SerializeField] GameObject poolManager;
+    public enum Buildings
+    {
+        Home,
+        School,
+        Farm,
+        Librairy,
+        Museum,
+    }
+
+    [SerializeField] GameObject poolManager;
 
     //World settings
     private int timeWorld;
@@ -77,7 +87,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        day = true;
+        Instantiate(poolManager);
     }
 
     // Update is called once per frame
