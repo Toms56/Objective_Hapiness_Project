@@ -15,6 +15,7 @@ public class UI_Manager : MonoBehaviour
     public Text countDownTxt;
     public Text dayCycleText;
     public Text nightCycleText;
+    public Text countDownDayCycle;
 
     private float minutes;
     private float seconds;
@@ -23,8 +24,6 @@ public class UI_Manager : MonoBehaviour
     public UnityEvent TimerEvent;
     
     //UI Management
-    //public GameObject panelResources;
-    //public GameObject panelResident;
     public GameObject panelJobSelection;
     public GameObject panelBuildingSelection;
     public GameObject panelSelectedPnj;
@@ -50,8 +49,10 @@ public class UI_Manager : MonoBehaviour
     private float advanceTimer; 
     private bool play;
     
+    //DayTimeManagement
     public float durationDay;
     public float durationNight;
+    [SerializeField]private float timeSpent;
     
     public delegate void OnTimeAdvanceHandler();
     
@@ -89,6 +90,32 @@ public class UI_Manager : MonoBehaviour
     void Update()
     {
 
+        #region DayTime
+
+        timeSpent += Time.deltaTime;
+        if (timeSpent > durationDay && GameManager.Instance.day)
+        {
+            GameManager.Instance.day = false;
+            timeSpent = 0;
+        }else if (timeSpent > durationNight && !GameManager.Instance.day)
+        {
+            GameManager.Instance.day = true;
+            timeSpent = 0;
+        }
+
+        if (GameManager.Instance.day)
+        {
+            countDownDayCycle.text = "DayTime : " + (durationDay - timeSpent);   
+        }
+        if (!GameManager.Instance.day)
+        {
+            countDownDayCycle.text = "NightTime : " + (durationNight - timeSpent);
+        }
+        
+        #endregion
+        #region proserity
+        prosperityBar.value = GameManager.Instance.prosperity;
+        #endregion
         #region TimeMAnagement
 
         if (!pause)
@@ -160,6 +187,7 @@ public class UI_Manager : MonoBehaviour
                 await new WaitForSeconds(durationDay);
                 GameManager.Instance.day = false;
                 dayNum += 1;
+                GameManager.Instance.prosperity += 3;
             }
             else
             {
