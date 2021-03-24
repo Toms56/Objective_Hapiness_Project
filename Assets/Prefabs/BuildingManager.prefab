@@ -190,19 +190,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 679380937410364453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bdfce110ffe07143beb26a5bf590dc6, type: 3}
+  m_Script: {fileID: 11500000, guid: 58297562537ca9c41b75212a0e8f2156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefab:
-  - {fileID: 729467786066431382, guid: 04d04ec712cf39a49b77f196240a2216, type: 3}
-  - {fileID: 729467786066431382, guid: 2322f9e14b89ab94aa0372135aed64db, type: 3}
+  - {fileID: 729467786066431382, guid: fadf617969970ed4e82933c506debe57, type: 3}
+  - {fileID: 729467786066431382, guid: 218a5278ab10a3d459efac37f8d4bd9c, type: 3}
   - {fileID: 729467786066431382, guid: ba931fd8b8df1254c8a7e28d7652bb4c, type: 3}
   - {fileID: 729467786066431382, guid: 08f421454e0c96e4a9d86ad0c32e8cb4, type: 3}
   - {fileID: 729467786066431382, guid: df934bf25facbbf49beddd8791371f2f, type: 3}
   mindistance: 0.5
   buildingTransform: {fileID: 679380937410364451}
   dontbuild: {r: 1, g: 0, b: 0, a: 1}
-  build: {r: 0, g: 1, b: 0.047753334, a: 1}
+  build: {r: 0, g: 1, b: 0.047058824, a: 1}
   _mask:
     serializedVersion: 2
     m_Bits: 512
