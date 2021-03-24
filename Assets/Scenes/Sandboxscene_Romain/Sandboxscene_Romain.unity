@@ -461,7 +461,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -633,9 +633,9 @@ MonoBehaviour:
   buildingPrefab:
   - {fileID: 729467786066431382, guid: 04d04ec712cf39a49b77f196240a2216, type: 3}
   - {fileID: 729467786066431382, guid: 2322f9e14b89ab94aa0372135aed64db, type: 3}
-  - {fileID: 729467786066431382, guid: 04d04ec712cf39a49b77f196240a2216, type: 3}
-  - {fileID: 729467786066431382, guid: 04d04ec712cf39a49b77f196240a2216, type: 3}
-  - {fileID: 729467786066431382, guid: 04d04ec712cf39a49b77f196240a2216, type: 3}
+  - {fileID: 729467786066431382, guid: ba931fd8b8df1254c8a7e28d7652bb4c, type: 3}
+  - {fileID: 729467786066431382, guid: 08f421454e0c96e4a9d86ad0c32e8cb4, type: 3}
+  - {fileID: 729467786066431382, guid: df934bf25facbbf49beddd8791371f2f, type: 3}
   mindistance: 0.5
   buildingTransform: {fileID: 458292324}
   dontbuild: {r: 1, g: 0, b: 0, a: 1}
@@ -892,7 +892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1063190916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1002,12 +1002,6 @@ GameObject:
 --- !u!1 &1182476062 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5746284079905268104, guid: 56b3649f788721c42990602af0835ff4,
-    type: 3}
-  m_PrefabInstance: {fileID: 614232784}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1196849476 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3643525614949008098, guid: 56b3649f788721c42990602af0835ff4,
     type: 3}
   m_PrefabInstance: {fileID: 614232784}
   m_PrefabAsset: {fileID: 0}
@@ -1146,6 +1140,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2390486085258571664, guid: 769d3939849cc8542932bf106e0f03a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2390486085258571666, guid: 769d3939849cc8542932bf106e0f03a3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1240,7 +1239,7 @@ PrefabInstance:
         type: 3}
       propertyPath: school
       value: 
-      objectReference: {fileID: 1196849476}
+      objectReference: {fileID: 0}
     - target: {fileID: 2390486085258571667, guid: 769d3939849cc8542932bf106e0f03a3,
         type: 3}
       propertyPath: food
