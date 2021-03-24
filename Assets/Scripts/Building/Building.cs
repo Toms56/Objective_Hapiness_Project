@@ -11,9 +11,6 @@ public class Building : MonoBehaviour
     protected bool builded = false;
     [SerializeField] SpriteRenderer spriteRend;
     [SerializeField] NavMeshObstacle navObstacle;
-    
-
-
 
     public  IEnumerator Construct(float addInterpol)
     {

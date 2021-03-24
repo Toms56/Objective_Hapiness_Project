@@ -14,6 +14,9 @@ public class Museum : Building
     // Update is called once per frame
     void Update()
     {
-        
+        if (builded == true)
+        {
+            GameManager.Instance.RebuildSurface();
+        }
     }
 }

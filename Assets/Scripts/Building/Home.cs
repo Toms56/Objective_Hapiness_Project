@@ -17,6 +17,7 @@ public class Home : Building
         {
             homegood = true;
             GameManager.Instance.homes.Add(gameObject);
+            GameManager.Instance.RebuildSurface();
         }
     }
 }
