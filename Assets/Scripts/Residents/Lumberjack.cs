@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Lumberjack : MonoBehaviour
@@ -29,11 +30,11 @@ public class Lumberjack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.day)
+        if (GameManager.Instance.day && !working)
         {
             resident.agent.SetDestination(forest);
             
-            if (Vector3.Distance(transform.position,forest) <= 0.5f && !working)            
+            if (Vector3.Distance(transform.position,forest) <= 1f && !working)            
             {
                 StartCoroutine(AddWood());
                 working = true;
@@ -45,12 +46,13 @@ public class Lumberjack : MonoBehaviour
             resident.agent.SetDestination(homeLumberjack.transform.position);*/
         }
 
-        if (GameManager.Instance.endofday)
+        if (GameManager.Instance.endofday && working)
         {
             working = false;
             if (GameManager.Instance.homes.Count == 0)
             {
-                resident.Wandering();
+                resident.agent.SetDestination(resident.hobWay1);
+                StartCoroutine(resident.Wandering());
             }
             else
             {
@@ -68,13 +70,14 @@ public class Lumberjack : MonoBehaviour
             GameManager.Instance.wood++;
         }
     }
-    
-    private void OnTriggerEnter(Collider other)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Building"))
+        if (other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
-            /*if (other.GetComponent<Home>().places > 0)
+            if (other.GetComponent<Home>().nbrplace > 0)
             {
+                other.GetComponent<Home>().nbrplace--;
                 Debug.Log("sleep");
             }
             else
@@ -86,9 +89,10 @@ public class Lumberjack : MonoBehaviour
                 }
                 else
                 {
-                    resident.Wandering();
+                    Debug.Log("wandering");
+                    StartCoroutine(resident.Wandering());
                 }
-            }*/
+            }
         }
     }
 }

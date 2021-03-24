@@ -33,7 +33,7 @@ public class Harvester : MonoBehaviour
         {
             resident.agent.SetDestination(farm);
             
-            if (Vector3.Distance(transform.position,farm) <= 0.5f && !working)
+            if (Vector3.Distance(transform.position,farm) <= 1f && !working)
             {
                 StartCoroutine(AddFood());
                 working = true;

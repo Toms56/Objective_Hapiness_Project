@@ -32,7 +32,7 @@ public class Minor : MonoBehaviour
         {
             resident.agent.SetDestination(mine);
             
-            if (Vector3.Distance(transform.position,mine) <= 0.5f && !working)
+            if (Vector3.Distance(transform.position,mine) <= 1f && !working)
             {
                 StartCoroutine(AddStone());
                 working = true;

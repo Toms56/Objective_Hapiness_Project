@@ -27,7 +27,7 @@ public class Student : MonoBehaviour
         {
             resident.agent.SetDestination(school);
             
-            if (Vector3.Distance(transform.position,school) <= 0.5f && !studying)
+            if (Vector3.Distance(transform.position,school) <= 1f && !studying)
             {
                 studying = true;
             }

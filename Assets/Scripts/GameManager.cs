@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        school = new GameObject();
     }
 
     // Start is called before the first frame update
@@ -113,14 +115,7 @@ public class GameManager : MonoBehaviour
             prosperity = 95;
         }
 
-        if (school == null)
-        {
-            schoolBuilded = false;
-        }
-        else
-        {
-            schoolBuilded = true;
-        }
+        
 
         
     }

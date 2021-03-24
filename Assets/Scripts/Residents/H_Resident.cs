@@ -12,8 +12,8 @@ public class H_Resident : MonoBehaviour
     // For deplacement
     [SerializeField] private float speed;
     public NavMeshAgent agent;
-    private Vector3 hobWay1;
-    private Vector3 hobWay2;
+    public Vector3 hobWay1;
+    public Vector3 hobWay2;
     
 
     // For parameters' resident

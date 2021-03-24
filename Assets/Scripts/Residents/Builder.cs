@@ -26,7 +26,7 @@ public class Builder : MonoBehaviour
         {
             resident.agent.SetDestination(build);
             
-            if (Vector3.Distance(transform.position,build) <= 0.5f && !building)
+            if (Vector3.Distance(transform.position,build) <= 1f && !building)
             {
                 building = true;
             }

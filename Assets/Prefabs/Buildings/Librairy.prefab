@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4584178367150132899}
   m_Layer: 9
   m_Name: Librairy
-  m_TagString: Building
+  m_TagString: Librairy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
