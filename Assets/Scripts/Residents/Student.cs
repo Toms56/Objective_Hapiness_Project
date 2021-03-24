@@ -13,11 +13,11 @@ public class Student : MonoBehaviour
     private void Awake()
     {
         school = GameManager.Instance.school.transform.position;
-        homeStudent = GameManager.Instance.home;
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
         }
+        resident.hobo = false;
     }
     
     // Start is called before the first frame update

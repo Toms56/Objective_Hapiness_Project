@@ -19,7 +19,7 @@ public class H_Resident : MonoBehaviour
     // For parameters' resident
     public int age = 20;
     public bool tired;
-    public bool hobo;
+    public bool hobo = true;
     
     #endregion
 
@@ -52,34 +52,16 @@ public class H_Resident : MonoBehaviour
         }
         if (age >= 70)
         {
-            gameObject.SetActive(false);
+            ResetToHobo();
         }
 
         if (!hobo)
         {
             StopCoroutine(Wandering());
         }
-        /*if (hobo)
-        {
-            if (Vector3.Distance(transform.position,hobWay1) < 0.8f)
-            { agent.SetDestination(hobWay2); }
-            if (Vector3.Distance(transform.position,hobWay2) < 0.8f)
-            { agent.SetDestination(hobWay1); }
-        }*/
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Building"))
-        {
-            /*if (other.home.places <= 0)
-            {
-                StartCoroutine(Wandering());
-            }*/
-        }
-    }
-
-    IEnumerator Wandering()
+    public IEnumerator Wandering()
     {
         while (true)
         {
@@ -89,5 +71,34 @@ public class H_Resident : MonoBehaviour
             { agent.SetDestination(hobWay1); }
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    public void ResetToHobo()
+    {
+        switch (gameObject.tag)
+        {
+            case "Builder" :
+                Destroy(gameObject.GetComponent<Builder>());
+                break;
+            case "Harvester":
+                Destroy(gameObject.GetComponent<Harvester>());
+                break;
+            case "Lumberjack":
+                Destroy(gameObject.GetComponent<Lumberjack>());
+                break;
+            case "Minor":
+                Destroy(gameObject.GetComponent<Minor>());
+                break;
+            default:
+                Debug.Log("no tag");
+                break;
+        }
+        age = 20;
+        tired = false;
+        hobo = true;
+        gameObject.name = GameManager.Works.Hobo.ToString();
+        gameObject.tag = GameManager.Works.Hobo.ToString();
+        PoolManager.Instance.inactiveResidents.Enqueue(gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
     public GameObject forestWaypoint;
     
     //futur list d'objets
-    public GameObject home;
+    public List<GameObject> homes;
 
     public GameObject school;
     
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
         Hobo
     }
 
-    [SerializeField] GameObject poolManager;
+    //[SerializeField] GameObject poolManager;
 
     //World settings
     private int timeWorld;
@@ -76,7 +77,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(poolManager);
+        
     }
 
     // Update is called once per frame

@@ -12,11 +12,11 @@ public class Minor : MonoBehaviour
     private void Awake()
     {
         mine = GameManager.Instance.mineWaypoint.transform.position;
-        homeMinor = GameManager.Instance.home;
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
         }
+        resident.hobo = false;
     }
 
     // Start is called before the first frame update

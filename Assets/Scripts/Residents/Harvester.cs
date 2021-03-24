@@ -13,11 +13,11 @@ public class Harvester : MonoBehaviour
     private void Awake()
     {
         farm = GameManager.Instance.farmWaypoint.transform.position;
-        homeHarvester = GameManager.Instance.home;
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
         }
+        resident.hobo = false;
     }
 
     // Start is called before the first frame update
@@ -55,6 +55,5 @@ public class Harvester : MonoBehaviour
             yield return new WaitForSeconds(5);
             GameManager.Instance.food += 1 + GameManager.Instance.nbrFarm;
         }
-        
     }
 }

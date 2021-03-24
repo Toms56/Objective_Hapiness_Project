@@ -12,7 +12,9 @@ public class PoolManager : MonoBehaviour
     [SerializeField] GameObject lumberjack;
     [SerializeField] GameObject minor;
 
-    private List<GameObject> residents = new List<GameObject>();
+    public Queue<GameObject> inactiveResidents = new Queue<GameObject>();
+    public List<GameObject> activeResidents = new List<GameObject>();
+
     private bool foodverification;
     private int foodavailable;
 
@@ -27,7 +29,6 @@ public class PoolManager : MonoBehaviour
     void Start()
     {
         SpawnResidents();
-        StartCoroutine(changework());
     }
 
     // Update is called once per frame
@@ -38,7 +39,6 @@ public class PoolManager : MonoBehaviour
             foodverification = true;
             Foodverification();
         }
-
         if (!GameManager.Instance.endofday)
         {
             foodverification = false;
@@ -47,15 +47,8 @@ public class PoolManager : MonoBehaviour
 
     private void Foodverification()
     {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            if (transform.GetChild(i).gameObject.activeSelf)
-            {
-                residents.Add(transform.GetChild(i).gameObject);
-            }
-        }
-        foodavailable = GameManager.Instance.food - residents.Count;
-        Debug.Log("residents :" + residents.Count);
+        foodavailable = GameManager.Instance.food - activeResidents.Count;
+        Debug.Log("residents :" + activeResidents.Count);
         Debug.Log("food available : " + foodavailable);
         if (foodavailable > 0)
         {
@@ -63,7 +56,7 @@ public class PoolManager : MonoBehaviour
         }
         else
         {
-            if (residents.Count == 0)
+            if (activeResidents.Count == 0)
             {
                 Debug.Log("Game Over");
             }
@@ -72,36 +65,27 @@ public class PoolManager : MonoBehaviour
                 int killresidents = Mathf.Abs(foodavailable);
                 for (int i = 0; i < killresidents; i++)
                 {
-                    int supp = Random.Range(0,residents.Count);
-                    residents[supp].gameObject.SetActive(false);
-                    residents.RemoveAt(supp);
-                    Debug.Log("resident kill");
+                    int supp = Random.Range(0,activeResidents.Count);
+                    activeResidents[supp].GetComponent<H_Resident>().ResetToHobo();
+                    inactiveResidents.Enqueue(activeResidents[supp]);
+                    activeResidents[supp].gameObject.SetActive(false);
+                    activeResidents.RemoveAt(supp);
                 }
                 GameManager.Instance.food = foodavailable;
                 Debug.Log("residents killed : " + killresidents);
             }
         }
-        residents.Clear();
     }
     
     private void SpawnResidents()
     {
         for (int i = 0; i < 10; i++)
         {
-            Instantiate(hobo, transform);
+            inactiveResidents.Enqueue(Instantiate(hobo, transform));
         }
-
-        Instantiate(builder, transform);
-        Instantiate(harvester, transform);
-        Instantiate(lumberjack, transform);
-        Instantiate(minor, transform);
-    }
-
-    IEnumerator changework()
-    {
-        GameObject hobo1 = Instantiate(hobo, transform);
-        hobo1.SetActive(true);
-        yield return new WaitForSeconds(10);
-        GameManager.Instance.ChangeWork(hobo1,GameManager.Works.Builder);
+        activeResidents.Add(Instantiate(builder, transform));
+        activeResidents.Add(Instantiate(harvester, transform));
+        activeResidents.Add(Instantiate(lumberjack, transform));
+        activeResidents.Add(Instantiate(minor, transform));
     }
 }

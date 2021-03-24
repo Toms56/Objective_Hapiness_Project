@@ -7,15 +7,17 @@ public class Lumberjack : MonoBehaviour
     private Vector3 forest;
     private GameObject homeLumberjack;
     private bool working;
+    private int homeindex = 1;
 
     private void Awake()
     {
         forest = GameManager.Instance.forestWaypoint.transform.position;
-        homeLumberjack = GameManager.Instance.home;
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
         }
+
+        resident.hobo = false;
     }
 
     // Start is called before the first frame update
@@ -39,8 +41,22 @@ public class Lumberjack : MonoBehaviour
         }
         else
         {
+            /*working = false;
+            resident.agent.SetDestination(homeLumberjack.transform.position);*/
+        }
+
+        if (GameManager.Instance.endofday)
+        {
             working = false;
-            resident.agent.SetDestination(homeLumberjack.transform.position);
+            if (GameManager.Instance.homes.Count == 0)
+            {
+                resident.Wandering();
+            }
+            else
+            {
+                homeLumberjack = GameManager.Instance.homes[0].gameObject;
+                resident.agent.SetDestination(homeLumberjack.transform.position);
+            }
         }
     }
 
@@ -50,6 +66,29 @@ public class Lumberjack : MonoBehaviour
         {
             yield return new WaitForSeconds(5);
             GameManager.Instance.wood++;
+        }
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Building"))
+        {
+            /*if (other.GetComponent<Home>().places > 0)
+            {
+                Debug.Log("sleep");
+            }
+            else
+            {
+                if (GameManager.Instance.homes.Count > homeindex)
+                {
+                    homeLumberjack = GameManager.Instance.homes[homeindex].gameObject;
+                    resident.agent.SetDestination(homeLumberjack.transform.position);
+                }
+                else
+                {
+                    resident.Wandering();
+                }
+            }*/
         }
     }
 }
