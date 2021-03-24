@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -28,6 +29,7 @@ public class UI_Manager : MonoBehaviour
     public GameObject panelBuildingSelection;
     public GameObject panelSelectedPnj;
     public GameObject dayCyclePanel;
+    public GameObject informationPanel;
     public Text foodText;
     public Text woodText;
     public Text stoneText;
@@ -375,4 +377,5 @@ public class UI_Manager : MonoBehaviour
     {
         panelBuildingSelection.SetActive(false);
     }
+
 }
