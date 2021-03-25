@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Builder : MonoBehaviour
 {
@@ -6,7 +7,9 @@ public class Builder : MonoBehaviour
     private Vector3 build;
     private GameObject homeBuilder;
     private bool building;
+    public static List<Vector3> constructList = new List<Vector3>();
 
+    // Faire une static sur ce script en bool et l'incorporer sur le building
 
     private void Awake()
     {
@@ -40,6 +43,6 @@ public class Builder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("Liste de Transform : " + constructList.Count);
     }
 }
