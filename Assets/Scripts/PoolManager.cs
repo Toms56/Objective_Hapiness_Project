@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
+    #region Variables
     public static PoolManager Instance;
 
     [SerializeField] GameObject hobo;
@@ -17,6 +17,8 @@ public class PoolManager : MonoBehaviour
 
     private bool foodverification;
     private int foodavailable;
+    private bool stopspawn;
+    #endregion
 
     private void Awake()
     { if (Instance == null)
@@ -44,14 +46,18 @@ public class PoolManager : MonoBehaviour
         {
             foodverification = false;   
         }
+        //limits the total number of residents to 100.
+        if (inactiveResidents.Count + activeResidents.Count >= 100 && !stopspawn)
+        {
+            stopspawn = true;
+        }
     }
-
+    //checks if there is enough food for each resident knowing that a resident consumes one food
+    //at the end of each day. if food is lacking, they randomly "die".
     private void Foodverification()
     {
         foodavailable = GameManager.food - activeResidents.Count;
-        //Debug.Log("residents :" + activeResidents.Count);
-        //Debug.Log("food available : " + foodavailable);
-        if (foodavailable > 0)
+        if (foodavailable >= 0)
         {
             GameManager.food = foodavailable;
         }
@@ -59,6 +65,7 @@ public class PoolManager : MonoBehaviour
         {
             if (activeResidents.Count == 0)
             {
+                GameManager.gameOver = true;
                 Debug.Log("Game Over");
             }
             else
@@ -73,11 +80,10 @@ public class PoolManager : MonoBehaviour
                     activeResidents.RemoveAt(supp);
                 }
                 GameManager.food = foodavailable;
-                Debug.Log("residents killed : " + killresidents);
             }
         }
     }
-    
+    //spawns a resident of each profession as well as a hobo at the start of the game.
     private void SpawnResidents()
     {
         for (int i = 0; i < 10; i++)
@@ -93,19 +99,18 @@ public class PoolManager : MonoBehaviour
         hoboFirst.SetActive(true);
         activeResidents.Add(hoboFirst);
     }
-
+    //activates a hobo at the end of each day and respawns 5 if it runs out.
     private void SpawnHobo()
     {
-        if (inactiveResidents.Count <= 2)
+        if (inactiveResidents.Count <= 2 && !stopspawn)
         {
             for (int i = 0; i < 5; i++)
             {
                 inactiveResidents.Enqueue(Instantiate(hobo, transform));
             }
-        }
-
-       GameObject activeHobo = inactiveResidents.Dequeue();
-       activeHobo.SetActive(true);
-       activeResidents.Add(activeHobo);
+        } 
+        GameObject activeHobo = inactiveResidents.Dequeue(); 
+        activeHobo.SetActive(true); 
+        activeResidents.Add(activeHobo);
     }
 }

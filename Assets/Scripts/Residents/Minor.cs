@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class Minor : MonoBehaviour
 {
+    //For deplacement and for working.
+    //This script is commented in detail on Lumberjack.
     [SerializeField] H_Resident resident;
     private Vector3 mine;
     private GameObject homeMinor;
-
     private bool working;
     private int homeindex = 1;
     private Vector3 sleepPos = new Vector3(10, 10, 0);
@@ -15,6 +16,7 @@ public class Minor : MonoBehaviour
     private void Awake()
     {
         mine = GameManager.Instance.mineWaypoint.transform.position;
+        //Avoid errors.
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
@@ -50,22 +52,24 @@ public class Minor : MonoBehaviour
         }
         else if (!GameManager.Instance.day && working)
         {
-            working = false;
-            if (GameManager.Instance.homes.Count == 0)
+            if (!sleep)
             {
-                resident.agent.SetDestination(resident.hobWay1);
-                StartCoroutine(resident.Wandering());
-            }
-            else
-            {
-                homeMinor = GameManager.Instance.homes[0].gameObject;
-                resident.agent.SetDestination(homeMinor.transform.position);
+                working = false;
+                if (GameManager.Instance.homes.Count == 0)
+                {
+                    resident.agent.SetDestination(resident.hobWay1);
+                    StartCoroutine(resident.Wandering());
+                    GameManager.prosperity --;
+                }
+                else
+                {
+                    homeMinor = GameManager.Instance.homes[0].gameObject;
+                    resident.agent.SetDestination(homeMinor.transform.position);
+                }
             }
         }
     }
-
-
-
+    
     IEnumerator AddStone()
     {
         while (true)
@@ -86,7 +90,6 @@ public class Minor : MonoBehaviour
                 sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
-                Debug.Log("sleep");
             }
             else
             {
@@ -97,8 +100,8 @@ public class Minor : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("wandering");
                     StartCoroutine(resident.Wandering());
+                    GameManager.prosperity --;
                 }
             }
         }

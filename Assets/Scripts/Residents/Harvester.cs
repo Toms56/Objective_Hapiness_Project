@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class Harvester : MonoBehaviour
 {
+    //For deplacement and for working.
+    //This script is commented in detail on Lumberjack.
     [SerializeField] H_Resident resident;
     private Vector3 farm;
     private GameObject homeHarvester;
-
     private bool working;
     private int homeindex = 1;
     private Vector3 sleepPos = new Vector3(10, 10, 0);
@@ -15,6 +16,7 @@ public class Harvester : MonoBehaviour
     private void Awake()
     {
         farm = GameManager.Instance.farmWaypoint.transform.position;
+        //Avoid errors.
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
@@ -50,16 +52,20 @@ public class Harvester : MonoBehaviour
         }
         else if (!GameManager.Instance.day && working)
         {
-            working = false;
-            if (GameManager.Instance.homes.Count == 0)
+            if (!sleep)
             {
-                resident.agent.SetDestination(resident.hobWay1);
-                StartCoroutine(resident.Wandering());
-            }
-            else
-            {
-                homeHarvester = GameManager.Instance.homes[0].gameObject;
-                resident.agent.SetDestination(homeHarvester.transform.position);
+                working = false;
+                if (GameManager.Instance.homes.Count == 0)
+                {
+                    resident.agent.SetDestination(resident.hobWay1);
+                    StartCoroutine(resident.Wandering());
+                    GameManager.prosperity --;
+                }
+                else
+                {
+                    homeHarvester = GameManager.Instance.homes[0].gameObject;
+                    resident.agent.SetDestination(homeHarvester.transform.position);
+                }
             }
         }
     }
@@ -84,7 +90,6 @@ public class Harvester : MonoBehaviour
                 sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
-                Debug.Log("sleep");
             }
             else
             {
@@ -95,8 +100,8 @@ public class Harvester : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("wandering");
                     StartCoroutine(resident.Wandering());
+                    GameManager.prosperity --;
                 }
             }
         }

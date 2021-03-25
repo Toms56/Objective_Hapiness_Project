@@ -2,20 +2,22 @@
 
 public class Student : MonoBehaviour
 {
+    //For deplacement and for working.
     [SerializeField] H_Resident resident;
     private Vector3 school;
     private GameObject homeStudent;
     private bool studying;
     public int studyDays;
     public GameManager.Works studywork;
-
     private int homeindex = 1;
     private Vector3 sleepPos = new Vector3(10, 10, 0);
     private bool sleep;
+    private bool boolstud;
 
     private void Awake()
     {
         school = GameManager.Instance.school.transform.position;
+        //Avoid errors.
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
@@ -26,22 +28,6 @@ public class Student : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameManager.Instance.day)
-        {
-            
-            resident.agent.SetDestination(school);
-            
-            if (Vector3.Distance(transform.position,school) <= 1f && !studying)
-            {
-                studying = true;
-            }
-        }
-        else
-        {
-            studying = false;
-            resident.agent.SetDestination(homeStudent.transform.position);
-        }
-
         switch (studywork)
         {
             case GameManager.Works.Builder :
@@ -65,38 +51,54 @@ public class Student : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (studyDays <= 0)
+        if (GameManager.Instance.schoolBuilded)
         {
-            GameManager.Instance.ChangeWork(gameObject,studywork);
-        }
-        if (GameManager.Instance.day && !studying && !resident.tired)
-        {
-            sleep = false;
-            if (transform.position == sleepPos)
+            if (studyDays <= 0)
             {
-                transform.position = homeStudent.transform.position + Vector3.left;
-                resident.agent.enabled = true;
+                GameManager.Instance.ChangeWork(gameObject,studywork);
             }
-            resident.agent.SetDestination(school);
-            
-            if (Vector3.Distance(transform.position,school) <= 1f && !studying)            
+            if (!GameManager.Instance.day && !boolstud)
             {
-                resident.tired = true;
-                studying = true;
+                boolstud = true;
+                studyDays --;
+            } 
+            if (GameManager.Instance.day && boolstud)
+            {
+                boolstud = false;
             }
-        }
-        else if (!GameManager.Instance.day && studying)
-        {
-            studying = false;
-            if (GameManager.Instance.homes.Count == 0)
-            {
-                resident.agent.SetDestination(resident.hobWay1);
-                StartCoroutine(resident.Wandering());
+                    
+            if (GameManager.Instance.day && !studying && !resident.tired)
+            { 
+                sleep = false; 
+                if (transform.position == sleepPos) 
+                { 
+                    transform.position = homeStudent.transform.position + Vector3.left; 
+                    resident.agent.enabled = true;
+                } 
+                resident.agent.SetDestination(school);
+                if (Vector3.Distance(transform.position,school) <= 1f && !studying)            
+                {
+                    resident.tired = true; 
+                    studying = true;
+                }
             }
-            else
+            else if (!GameManager.Instance.day && studying) 
             {
-                homeStudent = GameManager.Instance.homes[0].gameObject;
-                resident.agent.SetDestination(homeStudent.transform.position);
+                if (!sleep)
+                {
+                    studying = false;
+                    if (GameManager.Instance.homes.Count == 0)
+                    {
+                        resident.agent.SetDestination(resident.hobWay1);
+                        StartCoroutine(resident.Wandering());
+                        GameManager.prosperity --;
+                    }
+                    else
+                    {
+                        homeStudent = GameManager.Instance.homes[0].gameObject;
+                        resident.agent.SetDestination(homeStudent.transform.position);
+                    }
+                }
             }
         }
     }
@@ -112,7 +114,6 @@ public class Student : MonoBehaviour
                 sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
-                Debug.Log("sleep");
             }
             else
             {
@@ -123,8 +124,9 @@ public class Student : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("wandering");
+                    resident.agent.SetDestination(resident.hobWay1);
                     StartCoroutine(resident.Wandering());
+                    GameManager.prosperity --;
                 }
             }
         }

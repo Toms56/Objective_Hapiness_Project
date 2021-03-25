@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,6 +17,7 @@ public class H_Resident : MonoBehaviour
     public int age = 20;
     public bool tired;
     public bool hobo = true;
+    private bool getolder;
     
     #endregion
 
@@ -34,6 +34,7 @@ public class H_Resident : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //if the resident is a hobo, he will wander between 2 points.
         if (hobo)
         {
             agent.SetDestination(hobWay1);
@@ -44,15 +45,29 @@ public class H_Resident : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if the resident is too old he is "killed" by being deactivated
+        //and reset to be put in the queue of the pool manager.
         if (age >= 70)
         {
             ResetToHobo();
         }
 
+        #region GetOlder
+        if (!GameManager.Instance.day && !getolder)
+        {
+            getolder = true;
+            age += 5;
+        }
+        if (GameManager.Instance.day && getolder)
+        {
+            getolder = false;
+        }
         if (!hobo)
         {
             StopCoroutine(Wandering());
         }
+        #endregion
+        
     }
 
     public IEnumerator Wandering()

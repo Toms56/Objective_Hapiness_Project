@@ -27,11 +27,6 @@ public class GameManager : MonoBehaviour
     public static int food = 10;
     public static int wood = 10;
     public static int stone = 10;
-    
-    [SerializeField] int readfood;
-    [SerializeField] int readwood;
-    [SerializeField] int readstone;
-
 
     public static int nbrFarm = 0;
     public static int nbrBuilder = 0;
@@ -71,6 +66,8 @@ public class GameManager : MonoBehaviour
     private int timeWorld;
     public bool day;
     public bool schoolBuilded;
+    public static bool gameOver;
+    public static bool victory;
 
     #endregion
     
@@ -98,37 +95,23 @@ public class GameManager : MonoBehaviour
         #region Resources Management
         //prevent the resources number to be less than 0
         if (food <= 0)
-        {
-            food = 0;
-        }
+        { food = 0; }
         if (wood <= 0)
-        {
-            wood = 0;
-        }
+        { wood = 0; }
         if (stone <= 0)
-        {
-            stone = 0;
-        }
-
-        readfood = food;
-        readstone = stone;
-        readwood = wood;
-
+        { stone = 0; }
         #endregion
+        
         //CheatCode
         if (Input.GetKey(KeyCode.Insert))
         {
             prosperity = 95;
         }
 
-        
-
-        
-    }
-
-    public void GoToEat()
-    {
-        
+        if (prosperity >= 100)
+        {
+            victory = true;
+        }
     }
 
     public void RebuildSurface()
@@ -136,6 +119,9 @@ public class GameManager : MonoBehaviour
         surface2d.BuildNavMesh();
     }
     
+    //With ToStudy (), this function manages the automatic change of the resident
+    //to another profession thanks to a switch and this function is only carried out
+    //when a student has learned his profession allowing to be little greedy in resources.
     public void ChangeWork(GameObject resident, Works work)
     {
         switch (work)
@@ -169,11 +155,12 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
+    //allows to transform a resident into a student by deleting his previous trade
+    //and that he learns the new one according to a certain number of days.
     public void ToStudy(GameObject resident, Works work)
     {
         switch (resident.tag)
-        {
+        { 
             case "Builder" :
                 Destroy(resident.GetComponent<Builder>());
                 break;
@@ -188,13 +175,11 @@ public class GameManager : MonoBehaviour
                 break;
             default:
                 Debug.Log("no tag");
-                break;
+                break; 
         }
-        
         resident.name = Works.Student.ToString();
         resident.tag = Works.Student.ToString();
         resident.GetComponent<H_Resident>().hobo = false;
         resident.AddComponent<Student>().studywork = work;
-        
     }
 }
