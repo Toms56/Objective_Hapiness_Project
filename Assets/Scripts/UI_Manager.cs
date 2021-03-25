@@ -91,7 +91,6 @@ public class UI_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         #region DayTime
 
         timeSpent += Time.deltaTime;
@@ -107,11 +106,11 @@ public class UI_Manager : MonoBehaviour
 
         if (GameManager.Instance.day)
         {
-            countDownDayCycle.text = "DayTime : " + (durationDay - timeSpent);   
+            countDownDayCycle.text = "DayTime : " + Mathf.RoundToInt(durationDay - timeSpent);   
         }
         if (!GameManager.Instance.day)
         {
-            countDownDayCycle.text = "NightTime : " + (durationNight - timeSpent);
+            countDownDayCycle.text = "NightTime : " + Mathf.RoundToInt(durationNight - timeSpent);
         }
         
         #endregion
@@ -185,7 +184,6 @@ public class UI_Manager : MonoBehaviour
             nightCycleText.text = $"Night : {nightNum}";
             if (GameManager.Instance.day)
             {
-                Debug.Log("New day");
                 await new WaitForSeconds(durationDay);
                 GameManager.Instance.day = false;
                 dayNum += 1;
@@ -193,7 +191,6 @@ public class UI_Manager : MonoBehaviour
             }
             else
             {
-                Debug.Log("New night");
                 await new WaitForSeconds(durationNight);
                 GameManager.Instance.day = true;
                 nightNum += 1;
@@ -266,32 +263,28 @@ public class UI_Manager : MonoBehaviour
     {
         panelJobSelection.SetActive(false);
         ActiveCountDown(6);
-        //useEventTimer = true;
-        Debug.Log("He's learning a new job"+ resident.GetComponent<H_Resident>().tag);
+        //Debug.Log("He's learning a new job"+ resident.GetComponent<H_Resident>().tag);
         StartCoroutine(WaitForBecomeBuilder());
     }
     public void OnClickBecomeHarvester()
     {
         panelJobSelection.SetActive(false);
         ActiveCountDown(6);
-        //useEventTimer = true;
-        Debug.Log("He's learning a new job"+ resident.GetComponent<H_Resident>().tag);
+        //Debug.Log("He's learning a new job"+ resident.GetComponent<H_Resident>().tag);
         StartCoroutine(WaitForBecomeHarvester());
     }
     public void OnClickBecomeLumberjack()
     {
         panelJobSelection.SetActive(false);
         ActiveCountDown(6);
-        //useEventTimer = true;
-        Debug.Log("He's learning a new job"+ resident.GetComponent<H_Resident>().tag);
+        //Debug.Log("He's learning a new job"+ resident.GetComponent<H_Resident>().tag);
         StartCoroutine(WaitForBecomeLumberjack());
     }
     public void OnClickBecomeMinor()
     {
         panelJobSelection.SetActive(false);
         ActiveCountDown(6);
-        //useEventTimer = true;
-        Debug.Log("He's learning a new job" + resident.GetComponent<H_Resident>().tag);
+        //Debug.Log("He's learning a new job" + resident.GetComponent<H_Resident>().tag);
         StartCoroutine(WaitForBecomeMinor());
     }
 
@@ -301,14 +294,12 @@ public class UI_Manager : MonoBehaviour
         yield return new WaitForSeconds(6);
         useEventTimer = false;
         GameManager.Instance.ChangeWork(resident, GameManager.Works.Builder);
-        Debug.Log("His job has changed"+ resident.GetComponent<H_Resident>().tag);
     }
     IEnumerator WaitForBecomeLumberjack()
     {
         yield return new WaitForSeconds(6);
         useEventTimer = false;
         GameManager.Instance.ChangeWork(resident, GameManager.Works.Lumberjack);
-        Debug.Log("His job has changed"+ resident.GetComponent<H_Resident>().tag);
     }
     
     IEnumerator WaitForBecomeHarvester()
@@ -316,21 +307,16 @@ public class UI_Manager : MonoBehaviour
         yield return new WaitForSeconds(6);
         useEventTimer = false;
         GameManager.Instance.ChangeWork(resident, GameManager.Works.Harvester);
-        Debug.Log("His job has changed"+ resident.GetComponent<H_Resident>().tag);
     }
     IEnumerator WaitForBecomeMinor()
     {
         yield return new WaitForSeconds(6);
         useEventTimer = false;
         GameManager.Instance.ChangeWork(resident, GameManager.Works.Minor);
-        Debug.Log("His job has changed"+ resident.GetComponent<H_Resident>().tag);
     }
     #endregion
     
-    public void Step()
-    {
-       OnTimeAdvance?.Invoke(); 
-    }
+    
     public void Pause()
     {
         Debug.Log(Time.timeScale);
@@ -347,35 +333,16 @@ public class UI_Manager : MonoBehaviour
         pause = false;
         fastForward = false;
     }
-    public void FastForward()
+    public void FastForwardQuickly(float num)
     {
         pause = false;
-        fastForward = true;
+        Time.timeScale = num;
+        timeSpent += Time.timeScale;
     }
-
-    public void OnClickDisplayChangeJob()
+    public void FastForwardSoMuch(float num)
     {
-        panelJobSelection.SetActive(true);
+        pause = false;
+        Time.timeScale = num;
+        timeSpent += Time.timeScale;
     }
-
-    public void OnClickCloseJobPanel()
-    {
-        panelJobSelection.SetActive(false);
-    }
-
-    public void OnClickClosePnjPanel()
-    {
-        panelSelectedPnj.SetActive(false);
-    }
-
-    public void OnClickDisplayBuilding()
-    {
-        panelBuildingSelection.SetActive(true);
-    }
-
-    public void OnClickCloseBuildingPanel()
-    {
-        panelBuildingSelection.SetActive(false);
-    }
-
 }
