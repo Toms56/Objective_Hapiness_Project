@@ -100,6 +100,7 @@ public class Harvester : MonoBehaviour
                 }
                 else
                 {
+                    resident.agent.SetDestination(resident.hobWay1);
                     StartCoroutine(resident.Wandering());
                     GameManager.prosperity --;
                 }

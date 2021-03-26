@@ -105,7 +105,8 @@ public class Lumberjack : MonoBehaviour
                     resident.agent.SetDestination(homeLumberjack.transform.position);
                 }
                 else
-                { resident.agent.SetDestination(resident.hobWay1);
+                { 
+                    resident.agent.SetDestination(resident.hobWay1);
                     StartCoroutine(resident.Wandering());
                     GameManager.prosperity --; 
                 } 

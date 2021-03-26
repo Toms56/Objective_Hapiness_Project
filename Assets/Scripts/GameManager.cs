@@ -45,21 +45,12 @@ public class GameManager : MonoBehaviour
     
     public enum Works
     {
-        Builder,
-        Harvester,
-        Lumberjack,
-        Minor,
-        Student,
-        Hobo
+        Builder, Harvester, Lumberjack, Minor, Student, Hobo
     }
 
     public enum Buildings
     {
-        Home,
-        School,
-        Farm,
-        Librairy,
-        Museum,
+        Home, School, Farm, Librairy, Museum,
     }
     
     //World settings
