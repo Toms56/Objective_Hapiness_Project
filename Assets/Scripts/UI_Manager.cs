@@ -26,6 +26,8 @@ public class UI_Manager : MonoBehaviour
     //UI Management
     public GameObject panelJobSelection;
     public GameObject panelSelectedPnj;
+    public GameObject panelGameOver;
+    public GameObject panelWinGame;
     public Text foodText;
     public Text woodText;
     public Text stoneText;
@@ -132,6 +134,20 @@ public class UI_Manager : MonoBehaviour
         #endregion
         
         SelectResident();
+
+        #region winAndGameOver
+
+        if (GameManager.gameOver)
+        {
+            panelGameOver.SetActive(true);
+        }
+        if (GameManager.victory)
+        {
+            panelGameOver.SetActive(true);
+        }
+
+        #endregion
+        
     }
 
     void ActiveCountDown(int time)
@@ -254,6 +270,7 @@ public class UI_Manager : MonoBehaviour
                 break;
         }  
     }
+
 
     #region coroutineJob
     IEnumerator WaitForBecomeBuilder()
