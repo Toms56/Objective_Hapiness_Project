@@ -156,7 +156,7 @@ public class UI_Manager : MonoBehaviour
         }
         if (GameManager.victory)
         {
-            panelGameOver.SetActive(true);
+            panelWinGame.SetActive(true);
         }
 
         #endregion
