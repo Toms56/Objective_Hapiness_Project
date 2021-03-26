@@ -33,14 +33,15 @@ public class Harvester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sleep = false;
-        if (transform.position == sleepPos)
-        {
-            transform.position = homeHarvester.transform.position + Vector3.left;
-            resident.agent.enabled = true;
-        }
+        
         if (GameManager.Instance.day && !working && !resident.tired)
         {
+            sleep = false;
+            if (transform.position == sleepPos)
+            {
+                transform.position = homeHarvester.transform.position + Vector3.left;
+                resident.agent.enabled = true;
+            }
             resident.agent.SetDestination(farm);
             
             if (Vector3.Distance(transform.position,farm) <= 1f && !working)            

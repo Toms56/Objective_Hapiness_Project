@@ -50,10 +50,6 @@ public class Minor : MonoBehaviour
                 working = true;
             }
         }
-        else if (GameManager.Instance.day && resident.tired)
-        {
-            
-        }
         else if (!GameManager.Instance.day && working)
         {
             if (!sleep)
