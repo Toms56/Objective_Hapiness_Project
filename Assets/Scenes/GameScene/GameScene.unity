@@ -915,6 +915,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 318027945544671778, guid: 5652ca3142ed1da4ea03de54e27a71f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1714853464899491558, guid: 5652ca3142ed1da4ea03de54e27a71f9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1822,6 +1827,16 @@ PrefabInstance:
         type: 3}
       propertyPath: timeDay
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481693459308024350, guid: 771eba7bd6b908f4098276068c3187cd,
+        type: 3}
+      propertyPath: durationDay
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481693459308024350, guid: 771eba7bd6b908f4098276068c3187cd,
+        type: 3}
+      propertyPath: durationNight
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5481693459308024351, guid: 771eba7bd6b908f4098276068c3187cd,
         type: 3}

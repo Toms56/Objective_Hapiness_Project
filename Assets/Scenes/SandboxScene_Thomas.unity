@@ -253,18 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &677302886 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1714853466565723315, guid: 5652ca3142ed1da4ea03de54e27a71f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1714853466156930773}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &704628855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -631,7 +619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59fc8dd366887ad49b6e7bcf651a6706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnDisplay: {fileID: 677302886}
 --- !u!1001 &838452077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1465,6 +1452,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5652ca3142ed1da4ea03de54e27a71f9, type: 3}
+--- !u!114 &1714853466156930774 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 886203362326672478, guid: 5652ca3142ed1da4ea03de54e27a71f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1714853466156930773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5341716258549858457 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 318027945544671778, guid: 5652ca3142ed1da4ea03de54e27a71f9,
@@ -1578,6 +1577,11 @@ PrefabInstance:
       propertyPath: panelWinGame
       value: 
       objectReference: {fileID: 5341716258549858457}
+    - target: {fileID: 5481693459308024350, guid: 771eba7bd6b908f4098276068c3187cd,
+        type: 3}
+      propertyPath: textnews
+      value: 
+      objectReference: {fileID: 1714853466156930774}
     - target: {fileID: 5481693459308024351, guid: 771eba7bd6b908f4098276068c3187cd,
         type: 3}
       propertyPath: m_LocalPosition.x
