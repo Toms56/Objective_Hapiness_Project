@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
@@ -26,6 +27,8 @@ public class UI_Manager : MonoBehaviour
     //UI Management
     public GameObject panelJobSelection;
     public GameObject panelSelectedPnj;
+    public GameObject panelGameOver;
+    public GameObject panelWinGame;
     public Text foodText;
     public Text woodText;
     public Text stoneText;
@@ -132,6 +135,20 @@ public class UI_Manager : MonoBehaviour
         #endregion
         
         SelectResident();
+
+        #region winAndGameOver
+
+        if (GameManager.gameOver)
+        {
+            panelGameOver.SetActive(true);
+        }
+        if (GameManager.victory)
+        {
+            panelGameOver.SetActive(true);
+        }
+
+        #endregion
+        
     }
 
     void ActiveCountDown(int time)
@@ -255,6 +272,7 @@ public class UI_Manager : MonoBehaviour
         }  
     }
 
+
     #region coroutineJob
     IEnumerator WaitForBecomeBuilder()
     {
@@ -284,6 +302,20 @@ public class UI_Manager : MonoBehaviour
         GameManager.Instance.ChangeWork(resident, GameManager.Works.Minor);
     }
     #endregion
+
+    public void OnClickRetry()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void OnClickMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
     
     public void Pause()
     {
