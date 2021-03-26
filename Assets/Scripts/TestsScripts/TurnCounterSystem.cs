@@ -13,12 +13,12 @@ public class TurnCounterSystem : MonoBehaviour
 
     void OnEnable()
     {
-        UI_Manager.OnTimeAdvance += Advance;
+        //UI_Manager.OnTimeAdvance += Advance;
     }
 
     void OnDisable()
     {
-        UI_Manager.OnTimeAdvance -= Advance;
+        //UI_Manager.OnTimeAdvance -= Advance;
 
     }
 

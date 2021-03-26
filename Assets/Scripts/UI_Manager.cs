@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class UI_Manager : MonoBehaviour
 {
     #region variables
-
-    private int turn = 0;
+    
     private GameObject resident;
     //CountDown TimeManagement
     private float startingTime;
@@ -22,14 +21,10 @@ public class UI_Manager : MonoBehaviour
     private float seconds;
 
     public bool useEventTimer = false;
-    public UnityEvent TimerEvent;
     
     //UI Management
     public GameObject panelJobSelection;
-    public GameObject panelBuildingSelection;
     public GameObject panelSelectedPnj;
-    public GameObject dayCyclePanel;
-    public GameObject informationPanel;
     public Text foodText;
     public Text woodText;
     public Text stoneText;
@@ -42,13 +37,6 @@ public class UI_Manager : MonoBehaviour
     
 
     [SerializeField] private Camera cam;
-
-    //TimeScale management
-    public float turnDuration = 1f;
-    public float fastForwardMultiplier = 5;
-    public bool pause = false;
-    public bool fastForward;
-    private float advanceTimer; 
     private bool play;
     
     //DayTimeManagement
@@ -56,9 +44,6 @@ public class UI_Manager : MonoBehaviour
     public float durationNight;
     [SerializeField]private float timeSpent;
     
-    public delegate void OnTimeAdvanceHandler();
-    
-    public static event OnTimeAdvanceHandler OnTimeAdvance;
     
     //ProsperityBar Management
     public Slider prosperityBar;
@@ -80,11 +65,6 @@ public class UI_Manager : MonoBehaviour
         #region proserity
         prosperityBar.value = GameManager.prosperity;
         #endregion
-        
-        #region timerManagement
-        advanceTimer = turnDuration;
-        #endregion
-        
         DayNightCycle();
     }
 
@@ -116,18 +96,6 @@ public class UI_Manager : MonoBehaviour
         #endregion
         #region proserity
         prosperityBar.value = GameManager.prosperity;
-        #endregion
-        #region TimeMAnagement
-
-        if (!pause)
-        {
-            advanceTimer -= Time.deltaTime * (fastForward ? fastForwardMultiplier : 1f);
-            if (advanceTimer <= 0)
-            {
-                advanceTimer += turnDuration;
-                OnTimeAdvance?.Invoke(); //the Event will be Invoked only if it's not null
-            }
-        }
         #endregion
 
         #region RessourcesManagement
@@ -259,33 +227,31 @@ public class UI_Manager : MonoBehaviour
         #endregion
     }
 
-    public void OnClickBecomeBuilder()
+    public void ChangeJob(int n)
     {
-        panelJobSelection.SetActive(false);
-        ActiveCountDown(6);
-        //Debug.Log("He's learning a new job"+ resident.GetComponent<H_Resident>().tag);
-        StartCoroutine(WaitForBecomeBuilder());
-    }
-    public void OnClickBecomeHarvester()
-    {
-        panelJobSelection.SetActive(false);
-        ActiveCountDown(6);
-        //Debug.Log("He's learning a new job"+ resident.GetComponent<H_Resident>().tag);
-        StartCoroutine(WaitForBecomeHarvester());
-    }
-    public void OnClickBecomeLumberjack()
-    {
-        panelJobSelection.SetActive(false);
-        ActiveCountDown(6);
-        //Debug.Log("He's learning a new job"+ resident.GetComponent<H_Resident>().tag);
-        StartCoroutine(WaitForBecomeLumberjack());
-    }
-    public void OnClickBecomeMinor()
-    {
-        panelJobSelection.SetActive(false);
-        ActiveCountDown(6);
-        //Debug.Log("He's learning a new job" + resident.GetComponent<H_Resident>().tag);
-        StartCoroutine(WaitForBecomeMinor());
+        switch (n)
+        {
+            case 0:
+                panelJobSelection.SetActive(false);
+                ActiveCountDown(6);
+                StartCoroutine(WaitForBecomeBuilder());
+                break;
+            case 1:
+                panelJobSelection.SetActive(false);
+                ActiveCountDown(6);
+                StartCoroutine(WaitForBecomeHarvester());
+                break;
+            case 2 :
+                panelJobSelection.SetActive(false);
+                ActiveCountDown(6);
+                StartCoroutine(WaitForBecomeLumberjack());
+                break;
+            case 3 : 
+                panelJobSelection.SetActive(false);
+                ActiveCountDown(6);
+                StartCoroutine(WaitForBecomeMinor());
+                break;
+        }  
     }
 
     #region coroutineJob
@@ -294,14 +260,16 @@ public class UI_Manager : MonoBehaviour
         yield return new WaitForSeconds(6);
         useEventTimer = false;
         GameManager.Instance.ChangeWork(resident, GameManager.Works.Builder);
+        Debug.Log("He's has a new job"+ resident.GetComponent<H_Resident>().tag);
     }
     IEnumerator WaitForBecomeLumberjack()
     {
         yield return new WaitForSeconds(6);
         useEventTimer = false;
         GameManager.Instance.ChangeWork(resident, GameManager.Works.Lumberjack);
+        Debug.Log("He's has a new job"+ resident.GetComponent<H_Resident>().tag);
+
     }
-    
     IEnumerator WaitForBecomeHarvester()
     {
         yield return new WaitForSeconds(6);
@@ -316,32 +284,23 @@ public class UI_Manager : MonoBehaviour
     }
     #endregion
     
-    
     public void Pause()
     {
         Debug.Log(Time.timeScale);
-        if(!pause)
-        {
-            Time.timeScale = 0;
-            fastForward = false;
-        }
+        Time.timeScale = 0;
     }
 
     public void Play()
     {
         Time.timeScale = 1;
-        pause = false;
-        fastForward = false;
     }
     public void FastForwardQuickly(float num)
     {
-        pause = false;
         Time.timeScale = num;
         timeSpent += Time.timeScale;
     }
     public void FastForwardSoMuch(float num)
     {
-        pause = false;
         Time.timeScale = num;
         timeSpent += Time.timeScale;
     }
