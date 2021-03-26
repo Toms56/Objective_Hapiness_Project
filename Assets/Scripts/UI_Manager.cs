@@ -363,7 +363,7 @@ public class UI_Manager : MonoBehaviour
 
     public void NotEnoughRessources()
     {
-        textnews.text = "You don't have the resources";
+        textnews.text = "You don't have the resources or enough builders";
     }
     IEnumerator ResetText()
     {

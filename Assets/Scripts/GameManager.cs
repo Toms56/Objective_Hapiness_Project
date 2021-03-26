@@ -164,6 +164,8 @@ public class GameManager : MonoBehaviour
             case "Minor":
                 Destroy(resident.GetComponent<Minor>());
                 break;
+            case "Hobo":
+                break;
             default:
                 Debug.Log("no tag");
                 break; 
