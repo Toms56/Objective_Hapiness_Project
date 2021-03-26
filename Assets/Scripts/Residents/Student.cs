@@ -112,6 +112,7 @@ public class Student : MonoBehaviour
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
                 sleep = true;
+                GameManager.prosperity++;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
             }

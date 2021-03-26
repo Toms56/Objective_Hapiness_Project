@@ -92,6 +92,7 @@ public class Harvester : MonoBehaviour
                 sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
+                GameManager.prosperity++;
             }
             else
             {

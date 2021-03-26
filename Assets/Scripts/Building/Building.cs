@@ -13,6 +13,7 @@ public class Building : MonoBehaviour
     public  IEnumerator Construct(float addInterpol)
     {
         yield return new WaitUntil(() => construction);
+        Builder.timeToWork = true;
         spriteRend.color = Color.clear;     
         while (spriteRend.color.a < 1)
         {
@@ -22,5 +23,6 @@ public class Building : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         builded = true;
+        Builder.timeToWork = false;
     }
 }
