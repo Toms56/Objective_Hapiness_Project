@@ -1,14 +1,12 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class Building : MonoBehaviour
 {
-    public bool construction = false;
-    public float interpol = 0;
-    protected bool builded = false;
+    public bool construction;
+    public float interpol;
+    protected bool builded;
     [SerializeField] SpriteRenderer spriteRend;
     [SerializeField] NavMeshObstacle navObstacle;
 

@@ -30,6 +30,7 @@ public class UI_Manager : MonoBehaviour
     public GameObject panelGameOver;
     public GameObject panelWinGame;
     [SerializeField] Button jobButton;
+    [SerializeField] Button schoolButton;
     public Text foodText;
     public Text woodText;
     public Text stoneText;
@@ -132,7 +133,7 @@ public class UI_Manager : MonoBehaviour
         {
             SelectResident();
         }
-
+        
         if (GameManager.Instance.schoolBuilded && panelSelectedPnj.activeSelf)
         {
             jobButton.interactable = true;
@@ -140,6 +141,11 @@ public class UI_Manager : MonoBehaviour
         else
         {
             jobButton.interactable = false;
+        }
+
+        if (GameManager.Instance.schoolBuilded)
+        {
+            schoolButton.interactable = false;
         }
 
         #region winAndGameOver

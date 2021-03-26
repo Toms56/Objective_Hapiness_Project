@@ -1,6 +1,4 @@
-﻿
-
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Home : Building
 {
@@ -23,6 +21,11 @@ public class Home : Building
             GameManager.Instance.homes.Add(gameObject);
             GameManager.Instance.RebuildSurface();
             collider2d.enabled = true;
+        }
+
+        if (GameManager.Instance.day)
+        {
+            nbrplace = 4;
         }
     }
 }
