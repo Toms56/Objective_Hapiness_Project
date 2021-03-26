@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
@@ -283,6 +284,20 @@ public class UI_Manager : MonoBehaviour
         GameManager.Instance.ChangeWork(resident, GameManager.Works.Minor);
     }
     #endregion
+
+    public void OnClickRetry()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void OnClickMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
     
     public void Pause()
     {
