@@ -23,8 +23,7 @@ public class H_Resident : MonoBehaviour
 
     void Awake()
     {
-        hobWay1 = GameManager.Instance.hoboWaypoint1.transform.position;
-        hobWay2 = GameManager.Instance.hoboWaypoint2.transform.position;
+
         agent.speed = speed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -34,6 +33,8 @@ public class H_Resident : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hobWay1 = GameManager.Instance.hoboWaypoint1.transform.position;
+        hobWay2 = GameManager.Instance.hoboWaypoint2.transform.position;
         //if the resident is a hobo, he will wander between 2 points.
         if (hobo)
         {
