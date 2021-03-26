@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
+﻿using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] buildingPrefab = new GameObject [5];
     private GameObject thisBuilding;
     [SerializeField] float mindistance = 50f;
-    [SerializeField] private Transform buildingTransform;
     [SerializeField] private Color dontbuild;
     [SerializeField] private Color build;
     [SerializeField] LayerMask _mask;
@@ -32,7 +28,7 @@ public class BuildingManager : MonoBehaviour
         mousepos = _camera.ScreenToWorldPoint(Input.mousePosition);
         mousepos.z = 1;
 
-        if (spawned == true)
+        if (spawned)
         {
             //Debug.Log("CircleTest" + CircleTest());
             //Debug.DrawRay(thisBuilding.transform.position, transform.up * mindistance, Color.red);
@@ -42,7 +38,6 @@ public class BuildingManager : MonoBehaviour
                 thisBuilding.GetComponent<SpriteRenderer>().color = build;
                 if (Input.GetButtonDown("Fire1"))
                 {
-                   
                     switch(builderIndex)
                     {
                         case 0 :
@@ -108,73 +103,57 @@ public class BuildingManager : MonoBehaviour
     public void onClickInstBuild(int index)
     {
         builderIndex = index;
-
         if (!spawned)
         {
             switch (index)
             {
                 case 0: 
-                    if (GameManager.stone >= 5 && GameManager.food >= 1)
+                    if (GameManager.stone >= 5 && GameManager.wood >= 1 && GameManager.nbrBuilder >= 1)
                     {
                         spawned = true;
-                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity,this.gameObject.transform);
-                    }
+                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity,this.gameObject.transform); }
                     else
                     {
-                        Debug.Log("Il vous manque des ressources");
-                    }
+                        UI_Manager.Instance.NotEnoughRessources(); }
                     break;
-
                 case 1:
-                    if (GameManager.stone >= 6 && GameManager.food >= 7)
+                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 1)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity,this.gameObject.transform);
                     }
                     else
                     {
-                        Debug.Log("Il vous manque des ressources");
-                    }
+                        UI_Manager.Instance.NotEnoughRessources(); }
                     break;
-
                 case 2:
-                    if (GameManager.stone >= 6 && GameManager.food >= 7)
+                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 1)
                     {
                         spawned = true;
-                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
-                    }
+                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform); }
                     else
                     {
-                        Debug.Log("Il vous manque des ressources");
-                    }
+                        UI_Manager.Instance.NotEnoughRessources(); }
                     break;
-
                 case 3:
-                    if (GameManager.stone >= 6 && GameManager.food >= 7)
+                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 1)
                     {
                         spawned = true;
-                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
-                    }
+                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform); }
                     else
                     {
-                        Debug.Log("Il vous manque des ressources");
-                    }
+                        UI_Manager.Instance.NotEnoughRessources(); }
                     break;
-
                 case 4:
-                    if (GameManager.stone >= 6 && GameManager.food >= 7)
+                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 1)
                     {
                         spawned = true;
-                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
-                    }
+                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform); }
                     else
-                    {
-                        Debug.Log("Il vous manque des ressources");
-                    }
+                    { UI_Manager.Instance.NotEnoughRessources(); }
                     break;
             }
         }
-
     }
 
     bool CircleTest()
@@ -186,8 +165,8 @@ public class BuildingManager : MonoBehaviour
             if (hit[i].collider != null && hit[i].collider.gameObject != thisBuilding)
             {
                 Debug.Log(hit[i].collider.gameObject);
-                return false;
-            }
+                return false; 
+            } 
         }
         return true;
     }

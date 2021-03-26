@@ -80,6 +80,7 @@ public class PoolManager : MonoBehaviour
                     activeResidents[supp].gameObject.SetActive(false);
                     activeResidents.RemoveAt(supp);
                 }
+                GameManager.prosperity -= killresidents * 2;
                 UI_Manager.Instance.ShowKillResidents(killresidents);
                 GameManager.food = foodavailable;
             }
