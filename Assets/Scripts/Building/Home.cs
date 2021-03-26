@@ -1,9 +1,13 @@
 ﻿
 
+using UnityEngine;
+
 public class Home : Building
 {
     public int nbrplace = 4;
     private bool homegood;
+
+    [SerializeField] private BoxCollider2D collider2d;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +22,7 @@ public class Home : Building
             homegood = true;
             GameManager.Instance.homes.Add(gameObject);
             GameManager.Instance.RebuildSurface();
+            collider2d.enabled = true;
         }
     }
 }
