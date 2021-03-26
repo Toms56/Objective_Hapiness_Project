@@ -6,6 +6,7 @@ public class Harvester : MonoBehaviour
     //For deplacement and for working.
     //This script is commented in detail on Lumberjack.
     [SerializeField] H_Resident resident;
+    [SerializeField] Collider2D coll2d;
     private Vector3 farm;
     private GameObject homeHarvester;
     private bool working;
@@ -20,6 +21,10 @@ public class Harvester : MonoBehaviour
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
+        }
+        if (coll2d == null)
+        {
+            coll2d = gameObject.GetComponent<Collider2D>();
         }
         resident.hobo = false;
     }
@@ -39,7 +44,8 @@ public class Harvester : MonoBehaviour
             sleep = false;
             if (transform.position == sleepPos)
             {
-                transform.position = homeHarvester.transform.position + Vector3.left;
+                coll2d.enabled = false;
+                transform.position = homeHarvester.transform.position;
                 resident.agent.enabled = true;
             }
             resident.agent.SetDestination(farm);
@@ -51,11 +57,12 @@ public class Harvester : MonoBehaviour
                 working = true;
             }
         }
-        else if (!GameManager.Instance.day && working)
+        else if (!GameManager.Instance.day)
         {
             if (!sleep)
             {
                 working = false;
+                coll2d.enabled = true;
                 StopAllCoroutines();
                 if (GameManager.Instance.homes.Count == 0)
                 {
@@ -83,29 +90,32 @@ public class Harvester : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(GameManager.Buildings.Home.ToString()))
+        if (!working)
         {
-            if (other.GetComponent<Home>().nbrplace > 0)
+            if (other.CompareTag(GameManager.Buildings.Home.ToString()))
             {
-                other.GetComponent<Home>().nbrplace--;
-                resident.tired = false;
-                sleep = true;
-                resident.agent.enabled = false;
-                transform.position = sleepPos;
-                GameManager.prosperity++;
-            }
-            else
-            {
-                if (GameManager.Instance.homes.Count > homeindex)
+                if (other.GetComponent<Home>().nbrplace > 0)
                 {
-                    homeHarvester = GameManager.Instance.homes[homeindex].gameObject;
-                    resident.agent.SetDestination(homeHarvester.transform.position);
+                    other.GetComponent<Home>().nbrplace--;
+                    resident.tired = false;
+                    sleep = true;
+                    resident.agent.enabled = false;
+                    transform.position = sleepPos;
+                    GameManager.prosperity++;
                 }
                 else
                 {
-                    resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
-                    GameManager.prosperity --;
+                    if (GameManager.Instance.homes.Count > homeindex)
+                    {
+                        homeHarvester = GameManager.Instance.homes[homeindex].gameObject;
+                        resident.agent.SetDestination(homeHarvester.transform.position);
+                    }
+                    else
+                    {
+                        resident.agent.SetDestination(resident.hobWay1);
+                        StartCoroutine(resident.Wandering());
+                        GameManager.prosperity --;
+                    }
                 }
             }
         }

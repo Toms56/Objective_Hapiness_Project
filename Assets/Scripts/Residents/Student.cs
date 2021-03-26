@@ -4,6 +4,7 @@ public class Student : MonoBehaviour
 {
     //For deplacement and for working.
     [SerializeField] H_Resident resident;
+    [SerializeField] Collider2D coll2d;
     private Vector3 school;
     private GameObject homeStudent;
     private bool studying;
@@ -21,6 +22,10 @@ public class Student : MonoBehaviour
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
+        }
+        if (coll2d == null)
+        {
+            coll2d = gameObject.GetComponent<Collider2D>();
         }
         resident.hobo = false;
     }
@@ -68,11 +73,13 @@ public class Student : MonoBehaviour
             }
                     
             if (GameManager.Instance.day && !studying && !resident.tired)
-            { 
+            {
+                school = GameManager.Instance.school.transform.position;
                 sleep = false; 
                 if (transform.position == sleepPos) 
                 { 
-                    transform.position = homeStudent.transform.position + Vector3.left; 
+                    coll2d.enabled = false;
+                    transform.position = homeStudent.transform.position; 
                     resident.agent.enabled = true;
                 } 
                 resident.agent.SetDestination(school);
@@ -82,11 +89,12 @@ public class Student : MonoBehaviour
                     studying = true;
                 }
             }
-            else if (!GameManager.Instance.day && studying) 
+            else if (!GameManager.Instance.day) 
             {
                 if (!sleep)
                 {
                     studying = false;
+                    coll2d.enabled = true;
                     if (GameManager.Instance.homes.Count == 0)
                     {
                         resident.agent.SetDestination(resident.hobWay1);
@@ -105,29 +113,32 @@ public class Student : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(GameManager.Buildings.Home.ToString()))
+        if (!studying)
         {
-            if (other.GetComponent<Home>().nbrplace > 0)
+            if (other.CompareTag(GameManager.Buildings.Home.ToString()))
             {
-                other.GetComponent<Home>().nbrplace--;
-                resident.tired = false;
-                sleep = true;
-                GameManager.prosperity++;
-                resident.agent.enabled = false;
-                transform.position = sleepPos;
-            }
-            else
-            {
-                if (GameManager.Instance.homes.Count > homeindex)
+                if (other.GetComponent<Home>().nbrplace > 0)
                 {
-                    homeStudent = GameManager.Instance.homes[homeindex].gameObject;
-                    resident.agent.SetDestination(homeStudent.transform.position);
+                    other.GetComponent<Home>().nbrplace--;
+                    resident.tired = false;
+                    sleep = true;
+                    GameManager.prosperity++;
+                    resident.agent.enabled = false;
+                    transform.position = sleepPos;
                 }
                 else
                 {
-                    resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
-                    GameManager.prosperity --;
+                    if (GameManager.Instance.homes.Count > homeindex)
+                    {
+                        homeStudent = GameManager.Instance.homes[homeindex].gameObject;
+                        resident.agent.SetDestination(homeStudent.transform.position);
+                    }
+                    else
+                    {
+                        resident.agent.SetDestination(resident.hobWay1);
+                        StartCoroutine(resident.Wandering());
+                        GameManager.prosperity--;
+                    }
                 }
             }
         }

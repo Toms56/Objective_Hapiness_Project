@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 729467786066431387}
   - component: {fileID: 729467786066431380}
-  - component: {fileID: 729467786066431381}
   - component: {fileID: 381327957204982183}
   - component: {fileID: 1149453684738536735}
   m_Layer: 9
@@ -84,32 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &729467786066431381
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 729467786066431382}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.62, y: 2.67}
-    newSize: {x: 2.62, y: 2.67}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.62, y: 2.67}
-  m_EdgeRadius: 0
 --- !u!208 &381327957204982183
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -119,8 +92,8 @@ NavMeshObstacle:
   m_GameObject: {fileID: 729467786066431382}
   m_Enabled: 0
   serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1.3100001, y: 1.335, z: 0.1}
+  m_Shape: 0
+  m_Extents: {x: 1.3100001, y: 1.335, z: 1.3100001}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1

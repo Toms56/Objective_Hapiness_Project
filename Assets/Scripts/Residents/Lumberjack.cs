@@ -6,6 +6,7 @@ public class Lumberjack : MonoBehaviour
     //For deplacement and for working.
     //This script is commented in detail and is valid for Minor and Harvester.
     [SerializeField] H_Resident resident;
+    [SerializeField] Collider2D coll2d;
     private Vector3 forest;
     private GameObject homeLumberjack;
     private bool working;
@@ -16,10 +17,14 @@ public class Lumberjack : MonoBehaviour
     private void Awake()
     {
         forest = GameManager.Instance.forestWaypoint.transform.position;
-        //Avoid errors.
+        //Avoid errors
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
+        }
+        if (coll2d == null)
+        {
+            coll2d = gameObject.GetComponent<Collider2D>();
         }
         resident.hobo = false;
     }
@@ -37,9 +42,11 @@ public class Lumberjack : MonoBehaviour
         {
             //wakes up the resident and orders him to go to work.
             sleep = false;
+            
             if (transform.position == sleepPos)
             {
-                transform.position = homeLumberjack.transform.position + Vector3.left;
+                coll2d.enabled = false;
+                transform.position = homeLumberjack.transform.position;
                 resident.agent.enabled = true;
             }
             resident.agent.SetDestination(forest);
@@ -51,11 +58,12 @@ public class Lumberjack : MonoBehaviour
                 working = true;
             }
         }
-        else if (!GameManager.Instance.day && working)
+        else if (!GameManager.Instance.day)
         {
             if (!sleep)
             {
                 working = false;
+                coll2d.enabled = true;
                 StopAllCoroutines();
                 //if no house is built, the resident wanders.
                 if (GameManager.Instance.homes.Count == 0)
@@ -85,34 +93,37 @@ public class Lumberjack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(GameManager.Buildings.Home.ToString()))
+        if (!working)
         {
-            //allows the resident to "sleep" by sending him off the map and removing his tiredness.
-            if (other.GetComponent<Home>().nbrplace > 0)
+            if (other.CompareTag(GameManager.Buildings.Home.ToString()))
             {
-                other.GetComponent<Home>().nbrplace--;
-                resident.tired = false;
-                sleep = true;
-                resident.agent.enabled = false;
-                transform.position = sleepPos;
-                GameManager.prosperity++;
-            }
-            else
-            {
-                //if the first house is full he goes to the 2nd until time to find space or
-                //he ends up wandering if no house is free.
-                if (GameManager.Instance.homes.Count > homeindex)
+                //allows the resident to "sleep" by sending him off the map and removing his tiredness.
+                if (other.GetComponent<Home>().nbrplace > 0)
                 {
-                    homeLumberjack = GameManager.Instance.homes[homeindex].gameObject;
-                    resident.agent.SetDestination(homeLumberjack.transform.position);
+                    other.GetComponent<Home>().nbrplace--;
+                    resident.tired = false;
+                    sleep = true;
+                    resident.agent.enabled = false;
+                    transform.position = sleepPos;
+                    GameManager.prosperity++;
                 }
                 else
-                { 
-                    resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
-                    GameManager.prosperity --; 
+                {
+                    //if the first house is full he goes to the 2nd until time to find space or
+                    //he ends up wandering if no house is free.
+                    if (GameManager.Instance.homes.Count > homeindex)
+                    {
+                        homeLumberjack = GameManager.Instance.homes[homeindex].gameObject;
+                        resident.agent.SetDestination(homeLumberjack.transform.position);
+                    }
+                    else
+                    { 
+                        resident.agent.SetDestination(resident.hobWay1);
+                        StartCoroutine(resident.Wandering());
+                        GameManager.prosperity --; 
+                    } 
                 } 
             } 
-        } 
+        }
     }
 }

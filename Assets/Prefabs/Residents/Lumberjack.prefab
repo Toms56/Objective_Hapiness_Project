@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2933890355924347679}
   - component: {fileID: 2588500112552146146}
   - component: {fileID: -1183606910545846039}
-  - component: {fileID: 6454659626854828770}
   - component: {fileID: 1687295381424100396}
-  m_Layer: 0
+  - component: {fileID: 5204838175484464621}
+  m_Layer: 8
   m_Name: Lumberjack
   m_TagString: Lumberjack
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4340765236735073031}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.19
+  m_Radius: 0.12
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -105,7 +105,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.43
-  m_BaseOffset: 0
+  m_BaseOffset: 0.2
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &2588500112552146146
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resident: {fileID: -1183606910545846039}
+  coll2d: {fileID: 5204838175484464621}
 --- !u!114 &-1183606910545846039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,32 +141,6 @@ MonoBehaviour:
   age: 20
   tired: 0
   hobo: 0
---- !u!61 &6454659626854828770
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4340765236735073031}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.64}
-    newSize: {x: 0.32, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.64}
-  m_EdgeRadius: 0
 --- !u!50 &1687295381424100396
 Rigidbody2D:
   serializedVersion: 4
@@ -187,3 +162,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &5204838175484464621
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4340765236735073031}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.009098187, y: 0.00758186}
+  m_Size: {x: 0.22901806, y: 0.44287246}
+  m_Direction: 0

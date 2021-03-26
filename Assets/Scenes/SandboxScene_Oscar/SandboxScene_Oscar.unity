@@ -715,8 +715,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 61703a2f9c9b0a94082f889546127277,
+      objectReference: {fileID: 23800000, guid: 45714ac2bf500a54ea319f03a6a226b6,
         type: 2}
+    - target: {fileID: 4938326771414887295, guid: 7a488d72188a720469a0170cf9e97872,
+        type: 3}
+      propertyPath: m_VoxelSize
+      value: 0.016666668
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a488d72188a720469a0170cf9e97872, type: 3}
 --- !u!114 &938687750 stripped
