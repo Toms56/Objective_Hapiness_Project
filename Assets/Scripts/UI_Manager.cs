@@ -16,6 +16,7 @@ public class UI_Manager : MonoBehaviour
     public Text dayCycleText;
     public Text nightCycleText;
     public Text countDownDayCycle;
+    [SerializeField] Text textnews;
 
     private float minutes;
     private float seconds;
@@ -303,5 +304,23 @@ public class UI_Manager : MonoBehaviour
     {
         Time.timeScale = num;
         timeSpent += Time.timeScale;
+    }
+
+    public void EnoughFood()
+    {
+        textnews.text = "All residents were able to eat";
+        StartCoroutine(ResetText());
+    }
+
+    public void ShowKillResidents(int kresidents)
+    {
+        textnews.text = $"you don't have enough food, {kresidents} residents are dead";
+        StartCoroutine(ResetText());
+    }
+
+    IEnumerator ResetText()
+    {
+        yield return new WaitForSeconds(3);
+        textnews.text = "News : ";
     }
 }

@@ -60,6 +60,7 @@ public class PoolManager : MonoBehaviour
         if (foodavailable >= 0)
         {
             GameManager.food = foodavailable;
+            UI_Manager.Instance.EnoughFood();
         }
         else
         {
@@ -79,6 +80,7 @@ public class PoolManager : MonoBehaviour
                     activeResidents[supp].gameObject.SetActive(false);
                     activeResidents.RemoveAt(supp);
                 }
+                UI_Manager.Instance.ShowKillResidents(killresidents);
                 GameManager.food = foodavailable;
             }
         }
