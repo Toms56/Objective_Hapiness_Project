@@ -1089,6 +1089,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1714853465082546450, guid: 5652ca3142ed1da4ea03de54e27a71f9,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Studying Time : '
+      objectReference: {fileID: 0}
     - target: {fileID: 1714853465268397282, guid: 5652ca3142ed1da4ea03de54e27a71f9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1117,7 +1122,7 @@ PrefabInstance:
     - target: {fileID: 1714853466233619219, guid: 5652ca3142ed1da4ea03de54e27a71f9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1714853466469371074, guid: 5652ca3142ed1da4ea03de54e27a71f9,
         type: 3}

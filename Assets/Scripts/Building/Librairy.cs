@@ -1,7 +1,8 @@
 ﻿
-
 public class Librairy : Building
 {
+    private bool good;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -12,8 +13,9 @@ public class Librairy : Building
     // Update is called once per frame
     void Update()
     {
-        if (builded)
+        if (builded && !good)
         {
+            good = true;
             GameManager.Instance.RebuildSurface();
         }
     }

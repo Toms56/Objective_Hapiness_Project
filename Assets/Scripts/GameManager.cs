@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
             case "Hobo":
                 break;
             default:
-                Debug.Log("no tag");
+                Debug.LogError("no tag");
                 break; 
         }
         resident.name = Works.Student.ToString();

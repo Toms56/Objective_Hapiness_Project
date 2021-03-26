@@ -205,6 +205,7 @@ public class UI_Manager : MonoBehaviour
         {
             for (int i = 0; i < arraycast.Length; i++)
             {
+                countDownTxt.text = "";
                 RaycastHit2D element = arraycast[i];
                 if (element.collider != null && element.collider.CompareTag("Hobo"))
                 { 
