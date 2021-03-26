@@ -185,7 +185,6 @@ public class UI_Manager : MonoBehaviour
                 await new WaitForSeconds(durationDay);
                 GameManager.Instance.day = false;
                 dayNum += 1;
-                GameManager.prosperity += 3;
             }
             else
             {

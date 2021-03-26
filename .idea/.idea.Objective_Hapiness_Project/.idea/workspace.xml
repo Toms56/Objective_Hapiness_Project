@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bcb0a876-8e73-45d3-8902-c6a12dbeba00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/PanelMissingResources.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/PanelMissingResources.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SandboxScene_Thomas.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SandboxScene_Thomas.unity" afterDir="false" />
-    </list>
+    <list default="true" id="bcb0a876-8e73-45d3-8902-c6a12dbeba00" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,9 +14,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Building/Farm.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TestsScripts/TurnCounterSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI_Manager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       </list>
     </option>
   </component>
@@ -83,6 +76,7 @@
       <workItem from="1616760831202" duration="3133000" />
       <workItem from="1616764260561" duration="246000" />
       <workItem from="1616764990080" duration="8000" />
+      <workItem from="1616768872135" duration="1729000" />
     </task>
     <servers />
   </component>
