@@ -59,6 +59,7 @@ public class Minor : MonoBehaviour
             if (!sleep)
             {
                 working = false;
+                StopCoroutine(AddStone());
                 if (GameManager.Instance.homes.Count == 0)
                 {
                     resident.agent.SetDestination(resident.hobWay1);

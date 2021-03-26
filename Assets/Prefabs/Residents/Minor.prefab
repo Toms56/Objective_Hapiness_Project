@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4973158725675215189}
   - component: {fileID: 6544509953099817222}
   - component: {fileID: 1099315761797123157}
+  - component: {fileID: 3416741759411068574}
   m_Layer: 0
   m_Name: Minor
   m_TagString: Minor
@@ -134,6 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.5
   agent: {fileID: -109662672595692627}
+  hobWay1: {x: 0, y: 0, z: 0}
+  hobWay2: {x: 0, y: 0, z: 0}
   age: 20
   tired: 0
   hobo: 0
@@ -163,3 +166,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.64}
   m_EdgeRadius: 0
+--- !u!50 &3416741759411068574
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5883390484425948758}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

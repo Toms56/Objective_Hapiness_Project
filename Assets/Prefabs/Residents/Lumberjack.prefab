@@ -135,6 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.5
   agent: {fileID: 2933890355924347679}
+  hobWay1: {x: 0, y: 0, z: 0}
+  hobWay2: {x: 0, y: 0, z: 0}
   age: 20
   tired: 0
   hobo: 0
@@ -184,4 +186,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

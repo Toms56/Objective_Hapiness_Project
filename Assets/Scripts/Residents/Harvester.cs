@@ -55,6 +55,7 @@ public class Harvester : MonoBehaviour
             if (!sleep)
             {
                 working = false;
+                StopCoroutine(AddFood());
                 if (GameManager.Instance.homes.Count == 0)
                 {
                     resident.agent.SetDestination(resident.hobWay1);
