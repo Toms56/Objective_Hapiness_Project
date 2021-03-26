@@ -4,10 +4,9 @@ using UnityEngine;
 public class Builder : MonoBehaviour
 {
     [SerializeField] H_Resident resident;
-    public static Vector3 building;
+    private Vector3 building;
     private GameObject homeBuilder;
     private bool working;
-    public static bool timeToWork;
     private int homeindex = 1;
     private Vector3 sleepPos = new Vector3(10, 10, 0);
     private bool sleep;
@@ -47,7 +46,7 @@ public class Builder : MonoBehaviour
     void Update()
     {
 
-        if (GameManager.Instance.day && !working && !resident.tired && timeToWork)
+        if (GameManager.Instance.day && !working && !resident.tired)
         {
             //wakes up the resident and orders him to go to work.
             sleep = false;
@@ -56,6 +55,19 @@ public class Builder : MonoBehaviour
                 transform.position = homeBuilder.transform.position + Vector3.left;
                 resident.agent.enabled = true;
             }
+            if (BuildingManager.dictoConstructions.Count > 0)
+            {
+                foreach(Vector3 buildpose in BuildingManager.dictoConstructions.Keys)
+                {
+                    //Debug.Log("Buildpose1 : " + BuildingManager.dictoConstructions[buildpose]);
+                    if (BuildingManager.dictoConstructions[buildpose] > 0)
+                    {
+                        building = buildpose;
+                        //Debug.Log("Buildpose1 : " + BuildingManager.dictoConstructions[buildpose]);
+                    }
+                }
+            }
+            
             resident.agent.SetDestination(building);
             //Once at the workplace, he adds his resource via a coroutine and becomes tired.
             if (Vector3.Distance(transform.position, building) <= 1f && !working)

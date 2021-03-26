@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class BuildingManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class BuildingManager : MonoBehaviour
     private bool spawned = false;
 
     public int builderIndex;
+
+    //public static List<Vector3> listConstructions = new List<Vector3>();
+    public static Dictionary<Vector3, int> dictoConstructions = new Dictionary<Vector3, int>();
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +49,6 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 5;
                             GameManager.food -= 1;
                             thisBuilding.GetComponent<Home>().construction = true;
-                            Builder.building = thisBuilding.transform.position;
                             thisBuilding.tag = GameManager.Buildings.Home.ToString();
                             break;
 
@@ -54,7 +57,6 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<School>().construction = true;
-                            Builder.building = thisBuilding.transform.position;
                             thisBuilding.tag = GameManager.Buildings.School.ToString();
                             break;
 
@@ -63,7 +65,6 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Farm>().construction = true;
-                            Builder.building = thisBuilding.transform.position;
                             thisBuilding.tag = GameManager.Buildings.Farm.ToString();
                             break;
 
@@ -73,7 +74,6 @@ public class BuildingManager : MonoBehaviour
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Librairy>().construction = true;
                             thisBuilding.tag = GameManager.Buildings.Librairy.ToString();
-                            Builder.building = thisBuilding.transform.position;
                             break;
 
                         case 4:
@@ -82,7 +82,6 @@ public class BuildingManager : MonoBehaviour
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Museum>().construction = true;
                             thisBuilding.tag = GameManager.Buildings.Museum.ToString();
-                            Builder.building = thisBuilding.transform.position;
                             break;
                     }
                 }
@@ -164,7 +163,7 @@ public class BuildingManager : MonoBehaviour
         {
             if (hit[i].collider != null && hit[i].collider.gameObject != thisBuilding)
             {
-                Debug.Log(hit[i].collider.gameObject);
+                //Debug.Log(hit[i].collider.gameObject);
                 return false; 
             } 
         }
