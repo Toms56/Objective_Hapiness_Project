@@ -45,7 +45,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 5;
                             GameManager.food -= 1;
                             thisBuilding.GetComponent<Home>().construction = true;
-                            Builder.constructList.Add(thisBuilding.transform.position);
+                            Builder.building = thisBuilding.transform.position;
                             thisBuilding.tag = GameManager.Buildings.Home.ToString();
                             break;
 
@@ -54,7 +54,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<School>().construction = true;
-                            Builder.constructList.Add(thisBuilding.transform.position);
+                            Builder.building = thisBuilding.transform.position;
                             thisBuilding.tag = GameManager.Buildings.School.ToString();
                             break;
 
@@ -63,7 +63,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Farm>().construction = true;
-                            Builder.constructList.Add(thisBuilding.transform.position);
+                            Builder.building = thisBuilding.transform.position;
                             thisBuilding.tag = GameManager.Buildings.Farm.ToString();
                             break;
 
@@ -73,7 +73,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Librairy>().construction = true;
                             thisBuilding.tag = GameManager.Buildings.Librairy.ToString();
-                            Builder.constructList.Add(thisBuilding.transform.position);
+                            Builder.building = thisBuilding.transform.position;
                             break;
 
                         case 4:
@@ -82,7 +82,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Museum>().construction = true;
                             thisBuilding.tag = GameManager.Buildings.Museum.ToString();
-                            Builder.constructList.Add(thisBuilding.transform.position);
+                            Builder.building = thisBuilding.transform.position;
                             break;
                     }
                 }
