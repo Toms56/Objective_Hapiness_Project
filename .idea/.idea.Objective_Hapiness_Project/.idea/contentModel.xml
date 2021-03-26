@@ -75,10 +75,6 @@
             <e p="Minor.cs" t="Include" />
             <e p="Student.cs" t="Include" />
           </e>
-          <e p="TestsScripts" t="Include">
-            <e p="TestZoom.cs" t="Include" />
-            <e p="TurnCounterSystem.cs" t="Include" />
-          </e>
           <e p="UI_Manager.cs" t="Include" />
         </e>
       </e>
