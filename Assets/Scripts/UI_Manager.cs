@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,50 +7,48 @@ public class UI_Manager : MonoBehaviour
 {
     #region variables
     
+    public static UI_Manager Instance;
+    
     private GameObject resident;
     //CountDown TimeManagement
     private float startingTime;
-    [SerializeField]private float totalTime;
-    public Text countDownTxt;
-    public Text dayCycleText;
-    public Text nightCycleText;
-    public Text countDownDayCycle;
+    //[SerializeField]private float totalTime;
+    
+    [SerializeField] private Camera cam;
+    //UI Management
+    [SerializeField] GameObject panelJobSelection;
+    [SerializeField] GameObject panelSelectedPnj;
+    [SerializeField] GameObject panelGameOver;
+    [SerializeField] GameObject panelWinGame;
+    [SerializeField] Button jobButton;
+    [SerializeField] Button schoolButton;
+    [SerializeField] Text foodText;
+    [SerializeField] Text woodText;
+    [SerializeField] Text stoneText;
+    [SerializeField] Text ageText;
+    [SerializeField] Text jobText;
+    [SerializeField] Text countDownTxt;
+    [SerializeField] Text dayCycleText;
+    [SerializeField] Text nightCycleText;
+    [SerializeField] Text countDownDayCycle;
     [SerializeField] Text textnews;
+    //ProsperityBar Management
+    [SerializeField] Slider prosperityBar;
 
     private float minutes;
     private float seconds;
 
-    public bool useEventTimer = false;
-    
-    //UI Management
-    public GameObject panelJobSelection;
-    public GameObject panelSelectedPnj;
-    public GameObject panelGameOver;
-    public GameObject panelWinGame;
-    [SerializeField] Button jobButton;
-    [SerializeField] Button schoolButton;
-    public Text foodText;
-    public Text woodText;
-    public Text stoneText;
-    
-    public Text ageText;
-    public Text jobText;
+    //public bool useEventTimer;
 
     private GameObject selectedResident;
-    public static UI_Manager Instance;
-    
 
-    [SerializeField] private Camera cam;
     private bool play;
     
     //DayTimeManagement
     public float durationDay;
     public float durationNight;
-    [SerializeField]private float timeSpent;
+    [SerializeField] float timeSpent;
     
-    
-    //ProsperityBar Management
-    public Slider prosperityBar;
     #endregion
     private void Awake()
     {
@@ -80,22 +76,22 @@ public class UI_Manager : MonoBehaviour
         #region DayTime
 
         timeSpent += Time.deltaTime;
-        if (timeSpent > durationDay && GameManager.Instance.day)
+        if (timeSpent > durationDay && GameManager.day)
         {
-            GameManager.Instance.day = false;
+            GameManager.day = false;
             timeSpent = 0;
         }
-        else if (timeSpent > durationNight && !GameManager.Instance.day)
+        else if (timeSpent > durationNight && !GameManager.day)
         {
-            GameManager.Instance.day = true;
+            GameManager.day = true;
             timeSpent = 0;
         }
 
-        if (GameManager.Instance.day)
+        if (GameManager.day)
         {
             countDownDayCycle.text = "DayTime : " + Mathf.RoundToInt(durationDay - timeSpent);   
         }
-        if (!GameManager.Instance.day)
+        if (!GameManager.day)
         {
             countDownDayCycle.text = "NightTime : " + Mathf.RoundToInt(durationNight - timeSpent);
         }
@@ -134,7 +130,7 @@ public class UI_Manager : MonoBehaviour
             SelectResident();
         }
         
-        if (GameManager.Instance.schoolBuilded && panelSelectedPnj.activeSelf)
+        if (GameManager.schoolBuilded && panelSelectedPnj.activeSelf)
         {
             jobButton.interactable = true;
         }
@@ -143,7 +139,7 @@ public class UI_Manager : MonoBehaviour
             jobButton.interactable = false;
         }
 
-        if (GameManager.Instance.schoolBuilded)
+        if (GameManager.schoolBuilded)
         {
             schoolButton.interactable = false;
         }
@@ -163,14 +159,14 @@ public class UI_Manager : MonoBehaviour
         
     }
 
-    void ActiveCountDown(int time)
+    /*void ActiveCountDown(int time)
     {
         #region CountDownJob
         //startingTime = totalTime;
         totalTime = time;
         useEventTimer = true;
         #endregion
-    }
+    }*/
 
     public async void DayNightCycle()
     {
@@ -180,16 +176,16 @@ public class UI_Manager : MonoBehaviour
         {
             dayCycleText.text = $"Day : {dayNum} ";
             nightCycleText.text = $"Night : {nightNum}";
-            if (GameManager.Instance.day)
+            if (GameManager.day)
             {
                 await new WaitForSeconds(durationDay);
-                GameManager.Instance.day = false;
+                GameManager.day = false;
                 dayNum += 1;
             }
             else
             {
                 await new WaitForSeconds(durationNight);
-                GameManager.Instance.day = true;
+                GameManager.day = true;
                 nightNum += 1;
             }
         }
@@ -286,7 +282,7 @@ public class UI_Manager : MonoBehaviour
 
 
     #region coroutineJob
-    IEnumerator WaitForBecomeBuilder()
+    /*IEnumerator WaitForBecomeBuilder()
     {
         yield return new WaitForSeconds(6);
         useEventTimer = false;
@@ -312,7 +308,7 @@ public class UI_Manager : MonoBehaviour
         yield return new WaitForSeconds(6);
         useEventTimer = false;
         GameManager.Instance.ChangeWork(resident, GameManager.Works.Minor);
-    }
+    }*/
     #endregion
 
     public void OnClickRetry()

@@ -54,12 +54,12 @@ public class H_Resident : MonoBehaviour
         }
 
         #region GetOlder
-        if (!GameManager.Instance.day && !getolder)
+        if (!GameManager.day && !getolder)
         {
             getolder = true;
             age += 5;
         }
-        if (GameManager.Instance.day && getolder)
+        if (GameManager.day && getolder)
         {
             getolder = false;
         }
@@ -110,7 +110,7 @@ public class H_Resident : MonoBehaviour
         hobo = true;
         gameObject.name = GameManager.Works.Hobo.ToString();
         gameObject.tag = GameManager.Works.Hobo.ToString();
-        PoolManager.Instance.inactiveResidents.Enqueue(gameObject);
+        PoolManager.inactiveResidents.Enqueue(gameObject);
         gameObject.SetActive(false);
     }
 }

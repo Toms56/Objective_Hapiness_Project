@@ -55,8 +55,8 @@ public class GameManager : MonoBehaviour
     
     //World settings
     private int timeWorld;
-    public bool day;
-    public bool schoolBuilded;
+    public static bool day;
+    public static bool schoolBuilded;
     public static bool gameOver;
     public static bool victory;
 

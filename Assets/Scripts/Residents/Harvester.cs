@@ -39,7 +39,7 @@ public class Harvester : MonoBehaviour
     void Update()
     {
         
-        if (GameManager.Instance.day && !working && !resident.tired)
+        if (GameManager.day && !working && !resident.tired)
         {
             sleep = false;
             if (transform.position == sleepPos)
@@ -57,7 +57,7 @@ public class Harvester : MonoBehaviour
                 working = true;
             }
         }
-        else if (!GameManager.Instance.day)
+        else if (!GameManager.day)
         {
             if (!sleep)
             {

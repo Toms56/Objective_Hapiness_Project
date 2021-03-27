@@ -23,7 +23,7 @@ public class Home : Building
             this.tag = GameManager.Buildings.Home.ToString();
         }
 
-        if (GameManager.Instance.day)
+        if (GameManager.day)
         {
             nbrplace = 4;
         }

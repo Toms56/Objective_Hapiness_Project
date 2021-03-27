@@ -3,21 +3,20 @@ using System.Collections.Generic;
 
 public class BuildingManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] buildingPrefab = new GameObject [5];
+    [SerializeField] GameObject[] buildingPrefab = new GameObject [5];
     private GameObject thisBuilding;
     [SerializeField] float mindistance = 50f;
-    [SerializeField] private Color dontbuild;
-    [SerializeField] private Color build;
+    [SerializeField] Color dontbuild;
+    [SerializeField] Color build;
     [SerializeField] LayerMask _mask;
 
-    [SerializeField] private Camera _camera;
+    [SerializeField] Camera _camera;
     private Vector3 mousepos;
 
-    private bool spawned = false;
+    private bool spawned;
 
-    public int builderIndex;
+    private int builderIndex;
 
-    //public static List<Vector3> listConstructions = new List<Vector3>();
     public static Dictionary<Vector3, int> dictoConstructions = new Dictionary<Vector3, int>();
 
     // Start is called before the first frame update

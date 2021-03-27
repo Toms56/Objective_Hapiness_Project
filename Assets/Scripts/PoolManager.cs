@@ -12,8 +12,8 @@ public class PoolManager : MonoBehaviour
     [SerializeField] GameObject lumberjack;
     [SerializeField] GameObject minor;
 
-    public Queue<GameObject> inactiveResidents = new Queue<GameObject>();
-    public List<GameObject> activeResidents = new List<GameObject>();
+    public static Queue<GameObject> inactiveResidents = new Queue<GameObject>();
+    public static List<GameObject> activeResidents = new List<GameObject>();
 
     private bool foodverification;
     private int foodavailable;
@@ -36,13 +36,13 @@ public class PoolManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.Instance.day && !foodverification)
+        if (!GameManager.day && !foodverification)
         {
             foodverification = true;
             Foodverification();
             SpawnHobo();
         }
-        if (GameManager.Instance.day)
+        if (GameManager.day)
         {
             foodverification = false;   
         }

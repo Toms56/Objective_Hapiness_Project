@@ -15,7 +15,7 @@ public class School : Building
         {
             good = true;
             GameManager.Instance.school = gameObject;
-            GameManager.Instance.schoolBuilded = true;
+            GameManager.schoolBuilded = true;
             GameManager.Instance.RebuildSurface();
             this.tag = GameManager.Buildings.School.ToString();
         }

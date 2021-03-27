@@ -38,7 +38,7 @@ public class Minor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.day && !working && !resident.tired)
+        if (GameManager.day && !working && !resident.tired)
         {
             sleep = false;
             if (transform.position == sleepPos)
@@ -56,7 +56,7 @@ public class Minor : MonoBehaviour
                 working = true;
             }
         }
-        else if (!GameManager.Instance.day)
+        else if (!GameManager.day)
         {
             if (!sleep)
             {

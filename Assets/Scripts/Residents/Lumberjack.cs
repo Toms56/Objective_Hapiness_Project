@@ -38,7 +38,7 @@ public class Lumberjack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.day && !working && !resident.tired)
+        if (GameManager.day && !working && !resident.tired)
         {
             //wakes up the resident and orders him to go to work.
             sleep = false;
@@ -58,7 +58,7 @@ public class Lumberjack : MonoBehaviour
                 working = true;
             }
         }
-        else if (!GameManager.Instance.day)
+        else if (!GameManager.day)
         {
             if (!sleep)
             {

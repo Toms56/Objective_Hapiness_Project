@@ -56,23 +56,23 @@ public class Student : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.schoolBuilded)
+        if (GameManager.schoolBuilded)
         {
             if (studyDays <= 0)
             {
                 GameManager.Instance.ChangeWork(gameObject,studywork);
             }
-            if (!GameManager.Instance.day && !boolstud)
+            if (!GameManager.day && !boolstud)
             {
                 boolstud = true;
                 studyDays --;
             } 
-            if (GameManager.Instance.day && boolstud)
+            if (GameManager.day && boolstud)
             {
                 boolstud = false;
             }
                     
-            if (GameManager.Instance.day && !studying && !resident.tired)
+            if (GameManager.day && !studying && !resident.tired)
             {
                 school = GameManager.Instance.school.transform.position;
                 sleep = false; 
@@ -89,7 +89,7 @@ public class Student : MonoBehaviour
                     studying = true;
                 }
             }
-            else if (!GameManager.Instance.day) 
+            else if (!GameManager.day) 
             {
                 if (!sleep)
                 {

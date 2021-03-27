@@ -34,7 +34,7 @@ public class Builder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         if (GameManager.Instance.day && !working && !resident.tired)
+         if (GameManager.day && !working && !resident.tired)
          {
              //wakes up the resident and orders him to go to work.
              sleep = false;
@@ -42,7 +42,7 @@ public class Builder : MonoBehaviour
             //GameManager.nbrBuilder++; à déplacer ailleurs
             if (transform.position == sleepPos)
              {
-                 transform.position = homeBuilder.transform.position + Vector3.left;
+                 transform.position = homeBuilder.transform.position;
                  resident.agent.enabled = true;
              }
              if (BuildingManager.dictoConstructions.Count > 0)
@@ -59,7 +59,7 @@ public class Builder : MonoBehaviour
                  }
              }
          }
-         else if (!GameManager.Instance.day && working)
+         else if (!GameManager.day && working)
          {
              if (!sleep)
              {
@@ -80,7 +80,7 @@ public class Builder : MonoBehaviour
              }
          }
 
-         else if (GameManager.Instance.day && working && !resident.tired)
+         else if (GameManager.day && working && !resident.tired)
         {
             if (construcSprite.color.a >= 1)
             {
