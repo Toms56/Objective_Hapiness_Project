@@ -15,6 +15,7 @@ TagManager:
   - Farm
   - Librairy
   - Museum
+  - Construction
   layers:
   - Default
   - TransparentFX

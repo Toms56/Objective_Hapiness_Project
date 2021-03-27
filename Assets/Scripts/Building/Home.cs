@@ -20,6 +20,7 @@ public class Home : Building
             homegood = true;
             GameManager.Instance.homes.Add(gameObject);
             GameManager.Instance.RebuildSurface();
+            this.tag = GameManager.Buildings.Home.ToString();
         }
 
         if (GameManager.Instance.day)

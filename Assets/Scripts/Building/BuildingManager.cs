@@ -49,7 +49,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 5;
                             GameManager.food -= 1;
                             thisBuilding.GetComponent<Home>().construction = true;
-                            thisBuilding.tag = GameManager.Buildings.Home.ToString();
+                            thisBuilding.tag = GameManager.Buildings.Construction.ToString();
                             break;
 
                         case 1:
@@ -57,7 +57,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<School>().construction = true;
-                            thisBuilding.tag = GameManager.Buildings.School.ToString();
+                            thisBuilding.tag = GameManager.Buildings.Construction.ToString();
                             break;
 
                         case 2:
@@ -65,7 +65,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Farm>().construction = true;
-                            thisBuilding.tag = GameManager.Buildings.Farm.ToString();
+                            thisBuilding.tag = GameManager.Buildings.Construction.ToString();
                             break;
 
                         case 3:
@@ -73,7 +73,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Librairy>().construction = true;
-                            thisBuilding.tag = GameManager.Buildings.Librairy.ToString();
+                            thisBuilding.tag = GameManager.Buildings.Construction.ToString();
                             break;
 
                         case 4:
@@ -81,7 +81,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Museum>().construction = true;
-                            thisBuilding.tag = GameManager.Buildings.Museum.ToString();
+                            thisBuilding.tag = GameManager.Buildings.Construction.ToString();
                             break;
                     }
                 }

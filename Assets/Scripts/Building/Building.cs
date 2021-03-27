@@ -16,13 +16,13 @@ public class Building : MonoBehaviour
         yield return new WaitUntil(() => construction);
         //BuildingManager.listConstructions.Add(gameObject.transform.position);
         BuildingManager.dictoConstructions.Add(gameObject.transform.position, buildersNeed);
-        Debug.Log("BuilderPresent1 : " + BuildingManager.dictoConstructions.Count);
+        Debug.Log("BuildingPresent1 : " + BuildingManager.dictoConstructions.Count);
         spriteRend.color = Color.clear;     
         while (spriteRend.color.a < 1)
         {
             spriteRend.color = Vector4.Lerp(Color.clear, Color.magenta, interpol);
             interpol += addInterpol * Time.deltaTime;
-            Debug.Log("BuilderPresent2 : " + BuildingManager.dictoConstructions.Count);
+            Debug.Log("BuildingPresent2 : " + BuildingManager.dictoConstructions.Count);
             navObstacle.enabled = true;
             yield return new WaitForFixedUpdate();
         }
@@ -37,6 +37,7 @@ public class Building : MonoBehaviour
         {
             buildersNeed--;
             Debug.Log("builder need : " + buildersNeed);
+            
         }
     }
 }

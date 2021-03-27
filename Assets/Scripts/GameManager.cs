@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     public enum Buildings
     {
-        Home, School, Farm, Librairy, Museum,
+        Home, School, Farm, Librairy, Museum, Construction
     }
     
     //World settings
