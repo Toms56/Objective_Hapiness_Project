@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4153525323866292195}
   m_Layer: 9
   m_Name: School
-  m_TagString: School
+  m_TagString: Construction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,6 +116,8 @@ MonoBehaviour:
   interpol: 0
   spriteRend: {fileID: 729467786066431380}
   navObstacle: {fileID: 381327957204982183}
+  col2d: {fileID: 4153525323866292195}
+  buildersNeed: 0
 --- !u!58 &4153525323866292195
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -123,7 +125,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729467786066431382}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

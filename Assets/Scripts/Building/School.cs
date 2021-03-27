@@ -5,7 +5,8 @@ public class School : Building
 
     private void Start()
     {
-        StartCoroutine(Construct(0.5f));
+        buildersNeed = 1;
+        StartCoroutine(Construct(0.1f));
     }
     // Update is called once per frame
     void Update()
@@ -16,6 +17,7 @@ public class School : Building
             GameManager.Instance.school = gameObject;
             GameManager.Instance.schoolBuilded = true;
             GameManager.Instance.RebuildSurface();
+            this.tag = GameManager.Buildings.School.ToString();
         }
     }
 }

@@ -8,7 +8,7 @@ public class Home : Building
     // Start is called before the first frame update
     void Start()
     {
-        buildersNeed = 4;
+        buildersNeed = 1;
         StartCoroutine(Construct(0.1f));
     }
 

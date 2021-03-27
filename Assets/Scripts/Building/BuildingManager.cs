@@ -49,7 +49,6 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 5;
                             GameManager.food -= 1;
                             thisBuilding.GetComponent<Home>().construction = true;
-                            thisBuilding.tag = GameManager.Buildings.Construction.ToString();
                             break;
 
                         case 1:
@@ -57,7 +56,6 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<School>().construction = true;
-                            thisBuilding.tag = GameManager.Buildings.Construction.ToString();
                             break;
 
                         case 2:
@@ -65,7 +63,6 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Farm>().construction = true;
-                            thisBuilding.tag = GameManager.Buildings.Construction.ToString();
                             break;
 
                         case 3:
@@ -73,7 +70,6 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Librairy>().construction = true;
-                            thisBuilding.tag = GameManager.Buildings.Construction.ToString();
                             break;
 
                         case 4:
@@ -81,7 +77,6 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Museum>().construction = true;
-                            thisBuilding.tag = GameManager.Buildings.Construction.ToString();
                             break;
                     }
                 }
@@ -110,7 +105,8 @@ public class BuildingManager : MonoBehaviour
                     if (GameManager.stone >= 5 && GameManager.wood >= 1 && GameManager.nbrBuilder >= 1)
                     {
                         spawned = true;
-                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity,this.gameObject.transform); }
+                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity,this.gameObject.transform);
+                    }
                     else
                     {
                         UI_Manager.Instance.NotEnoughRessources(); }
@@ -126,25 +122,27 @@ public class BuildingManager : MonoBehaviour
                         UI_Manager.Instance.NotEnoughRessources(); }
                     break;
                 case 2:
-                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 1)
+                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 4)
                     {
                         spawned = true;
-                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform); }
+                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
+                    }
                     else
                     {
                         UI_Manager.Instance.NotEnoughRessources(); }
                     break;
                 case 3:
-                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 1)
+                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 4)
                     {
                         spawned = true;
-                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform); }
+                        thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
+                    }
                     else
                     {
                         UI_Manager.Instance.NotEnoughRessources(); }
                     break;
                 case 4:
-                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 1)
+                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 4)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform); }
@@ -161,7 +159,7 @@ public class BuildingManager : MonoBehaviour
 
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].collider != null && hit[i].collider.gameObject != thisBuilding)
+            if (hit[i].collider != null /*&& hit[i].collider.gameObject != thisBuilding*/)
             {
                 //Debug.Log(hit[i].collider.gameObject);
                 return false; 

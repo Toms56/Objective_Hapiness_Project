@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         if (stone <= 0)
         { stone = 0; }
         #endregion
-        
+        Debug.Log("Nombre de Builders : " + nbrBuilder);
         //CheatCode
         if (Input.GetKey(KeyCode.Insert))
         {

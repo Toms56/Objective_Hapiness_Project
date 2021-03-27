@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 729467786066431380}
   - component: {fileID: 381327957204982183}
   - component: {fileID: 1149453684738536735}
+  - component: {fileID: -809284805329871397}
   m_Layer: 9
   m_Name: Farm
-  m_TagString: Farm
+  m_TagString: Construction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,3 +116,21 @@ MonoBehaviour:
   interpol: 0
   spriteRend: {fileID: 729467786066431380}
   navObstacle: {fileID: 381327957204982183}
+  col2d: {fileID: -809284805329871397}
+  buildersNeed: 0
+--- !u!58 &-809284805329871397
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729467786066431382}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.335

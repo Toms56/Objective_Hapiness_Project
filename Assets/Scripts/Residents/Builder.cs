@@ -8,10 +8,11 @@ public class Builder : MonoBehaviour
     private GameObject homeBuilder;
     private bool working;
     private int homeindex = 1;
+    private int constructionIndex = 1;
     private Vector3 sleepPos = new Vector3(10, 10, 0);
     private bool sleep;
-
-    // Faire une static sur ce script en bool et l'incorporer sur le building
+    private Vector3 positionConstruction;
+    SpriteRenderer construcSprite; 
 
     private void Awake()
     {
@@ -27,31 +28,19 @@ public class Builder : MonoBehaviour
     void Start()
     {
         GameManager.nbrBuilder++;
-        /*if (GameManager.Instance.day)
-        {
-            resident.agent.SetDestination(build);
-            
-            if (Vector3.Distance(transform.position,build) <= 1f && !building)
-            {
-                building = true;
-            }
-        }
-        else
-        {
-            building = false;
-            resident.agent.SetDestination(homeBuilder.transform.position);
-        }*/
+        resident.agent.speed = Random.Range(1f, 3f);
     }
+
     // Update is called once per frame
     void Update()
     {
-        resident.agent.SetDestination(building);
-
          if (GameManager.Instance.day && !working && !resident.tired)
          {
              //wakes up the resident and orders him to go to work.
              sleep = false;
-             if (transform.position == sleepPos)
+
+            //GameManager.nbrBuilder++; à déplacer ailleurs
+            if (transform.position == sleepPos)
              {
                  transform.position = homeBuilder.transform.position + Vector3.left;
                  resident.agent.enabled = true;
@@ -63,58 +52,100 @@ public class Builder : MonoBehaviour
                      //Debug.Log("Buildpose1 : " + BuildingManager.dictoConstructions[buildpose]);
                      if (BuildingManager.dictoConstructions[buildpose] > 0)
                      {
-                         building = buildpose;
-                         //Debug.Log("Buildpose1 : " + BuildingManager.dictoConstructions[buildpose]);
-                     }
+                        building = buildpose;
+                        resident.agent.SetDestination(building);
+                        //Debug.Log("Buildpose1 : " + BuildingManager.dictoConstructions[buildpose]);
+                    }
                  }
-             }
-
-             resident.agent.SetDestination(building);
-             //Once at the workplace, he adds his resource via a coroutine and becomes tired.
-             if (Vector3.Distance(transform.position, building) <= 1f && !working)
-             {
-                 resident.tired = true;
-                 working = true;
              }
          }
          else if (!GameManager.Instance.day && working)
          {
              if (!sleep)
              {
-                 working = false;
-                 //if no house is built, the resident wanders.
-                 if (GameManager.Instance.homes.Count == 0)
-                 {
-                     resident.agent.SetDestination(resident.hobWay1);
-                     StartCoroutine(resident.Wandering());
-                     GameManager.prosperity--;
-                 }
-                 //otherwise he goes to the first house he finds.
-                 else
-                 {
-                     homeBuilder = GameManager.Instance.homes[0].gameObject;
-                     resident.agent.SetDestination(homeBuilder.transform.position);
-                 }
+                working = false;
+                //if no house is built, the resident wanders.
+                if (GameManager.Instance.homes.Count == 0)
+                {
+                    resident.agent.SetDestination(resident.hobWay1);
+                    StartCoroutine(resident.Wandering());
+                    GameManager.prosperity--;
+                }
+                //otherwise he goes to the first house he finds.
+                else
+                {
+                    homeBuilder = GameManager.Instance.homes[0].gameObject;
+                    resident.agent.SetDestination(homeBuilder.transform.position);
+                }
              }
          }
+
+         else if (GameManager.Instance.day && working && !resident.tired)
+        {
+            if (construcSprite.color.a >= 1)
+            {
+                resident.tired = true;
+                transform.position = positionConstruction;
+                resident.agent.enabled = true;
+                resident.agent.SetDestination(resident.hobWay1);
+                StartCoroutine(resident.Wandering());
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(GameManager.Buildings.Construction.ToString()))
         {
-
-            BuildingManager.dictoConstructions[other.transform.position]--;
-            resident.agent.enabled = false;
+            if (BuildingManager.dictoConstructions.ContainsKey(other.transform.position))
+            {
+                if (BuildingManager.dictoConstructions[other.transform.position] > 0)
+                {
+                    BuildingManager.dictoConstructions[other.transform.position]--;
+                    resident.agent.enabled = false;
+                    transform.position = sleepPos;
+                    working = true;
+                    GameManager.nbrBuilder--;
+                    construcSprite = other.gameObject.GetComponent<SpriteRenderer>();
+                    positionConstruction = other.transform.position;
+                }
+                else
+                {
+                    resident.agent.SetDestination(resident.hobWay1);
+                    StartCoroutine(resident.Wandering());
+                }
+            }
+        }
+        else
+        {
+            if (BuildingManager.dictoConstructions.Count > constructionIndex)
+            {
+                foreach (Vector3 buildpose in BuildingManager.dictoConstructions.Keys)
+                {
+                    if (BuildingManager.dictoConstructions[buildpose] > 0)
+                    {
+                        building = buildpose;
+                        resident.agent.SetDestination(resident.hobWay1);
+                        resident.agent.SetDestination(building);
+                    }
+                }
+            }
+            else
+            {
+                resident.agent.SetDestination(resident.hobWay1);
+                StartCoroutine(resident.Wandering());
+            }
+           
         }
 
-        /*if (other.CompareTag(GameManager.Buildings.Home.ToString()))
+        if (other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
             //allows the resident to "sleep" by sending him off the map and removing his tiredness.
             if (other.GetComponent<Home>().nbrplace > 0)
             {
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
+                GameManager.nbrBuilder++;
                 sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
@@ -135,6 +166,6 @@ public class Builder : MonoBehaviour
                     GameManager.prosperity--;
                 }
             }
-        }*/
+        }
     }
 }

@@ -6,7 +6,8 @@ public class Museum : Building
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Construct(0.5f));
+        buildersNeed = 8;
+        StartCoroutine(Construct(0.1f));
         GameManager.prosperity += 10;
     }
 
@@ -17,6 +18,7 @@ public class Museum : Building
         {
             good = true;
             GameManager.Instance.RebuildSurface();
+            this.tag = GameManager.Buildings.Museum.ToString();
         }
     }
 }

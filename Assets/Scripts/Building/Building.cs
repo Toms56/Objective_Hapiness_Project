@@ -9,12 +9,13 @@ public class Building : MonoBehaviour
     protected bool builded;
     [SerializeField] SpriteRenderer spriteRend;
     [SerializeField] NavMeshObstacle navObstacle;
+    [SerializeField] Collider2D col2d;
     public int buildersNeed;
 
     public  IEnumerator Construct(float addInterpol)
     {
         yield return new WaitUntil(() => construction);
-        //BuildingManager.listConstructions.Add(gameObject.transform.position);
+        col2d.enabled = true;
         BuildingManager.dictoConstructions.Add(gameObject.transform.position, buildersNeed);
         Debug.Log("BuildingPresent1 : " + BuildingManager.dictoConstructions.Count);
         spriteRend.color = Color.clear;     
@@ -29,15 +30,5 @@ public class Building : MonoBehaviour
         builded = true;
         //BuildingManager.listConstructions.Remove(gameObject.transform.position);
         BuildingManager.dictoConstructions.Remove(gameObject.transform.position);
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Builder"))
-        {
-            buildersNeed--;
-            Debug.Log("builder need : " + buildersNeed);
-            
-        }
     }
 }

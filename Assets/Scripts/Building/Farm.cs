@@ -6,7 +6,8 @@ public class Farm : Building
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Construct(0.5f));
+        buildersNeed = 4;
+        StartCoroutine(Construct(0.1f));
         GameManager.nbrFarm++;
     }
 
@@ -17,6 +18,7 @@ public class Farm : Building
         {
             good = true;
             GameManager.Instance.RebuildSurface();
+            this.tag = GameManager.Buildings.Farm.ToString();
         }
     }
 }
