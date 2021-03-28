@@ -28,6 +28,7 @@ public class Builder : MonoBehaviour
     void Start()
     {
         resident.agent.speed = Random.Range(1f, 3f);
+        GameManager.nbrBuilder++;
     }
 
     // Update is called once per frame
@@ -37,9 +38,7 @@ public class Builder : MonoBehaviour
         {
             //wakes up the resident and orders him to go to work.
             sleep = false;
-            working = true;
 
-            GameManager.nbrBuilder++; //à tester
             if (transform.position == sleepPos)
             {
                 transform.position = homeBuilder.transform.position;
@@ -48,6 +47,8 @@ public class Builder : MonoBehaviour
 
             if (BuildingManager.dictoConstructions.Count > 0)
             {
+                working = true;
+                //GameManager.nbrBuilder++;
                 foreach (Vector3 buildpose in BuildingManager.dictoConstructions.Keys)
                 {
                     //Debug.Log("Buildpose1 : " + BuildingManager.dictoConstructions[buildpose]);
