@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-
+﻿
 public class Home : Building
 {
     public int nbrplace = 4;

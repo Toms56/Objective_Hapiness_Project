@@ -21,7 +21,7 @@ public class Building : MonoBehaviour
         spriteRend.color = Color.clear;     
         while (spriteRend.color.a < 1)
         {
-            spriteRend.color = Vector4.Lerp(Color.clear, Color.magenta, interpol);
+            spriteRend.color = Vector4.Lerp(Color.clear, Color.green, interpol);
             interpol += addInterpol * Time.deltaTime;
             Debug.Log("BuildingPresent2 : " + BuildingManager.dictoConstructions.Count);
             navObstacle.enabled = true;
