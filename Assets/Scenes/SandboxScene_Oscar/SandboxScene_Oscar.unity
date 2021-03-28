@@ -868,6 +868,11 @@ PrefabInstance:
       propertyPath: schoolButton
       value: 
       objectReference: {fileID: 2118067287}
+    - target: {fileID: 5481693459308024350, guid: 771eba7bd6b908f4098276068c3187cd,
+        type: 3}
+      propertyPath: constructionButton
+      value: 
+      objectReference: {fileID: 1751186211}
     - target: {fileID: 5481693459308024351, guid: 771eba7bd6b908f4098276068c3187cd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1234,6 +1239,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1751186192}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1751186211 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1714853466784966982, guid: 5652ca3142ed1da4ea03de54e27a71f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1751186192}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2056629810
 PrefabInstance:
   m_ObjectHideFlags: 0

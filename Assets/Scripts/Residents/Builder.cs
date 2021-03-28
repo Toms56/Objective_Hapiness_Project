@@ -27,7 +27,6 @@ public class Builder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.nbrBuilder++;
         resident.agent.speed = Random.Range(1f, 3f);
     }
 
@@ -89,7 +88,7 @@ public class Builder : MonoBehaviour
         }
         else if (GameManager.day && working && !resident.tired)
         {
-            if (construcSprite.color.a >= 1)
+            if (construcSprite !=null && construcSprite.color.a >= 1)
             {
                 resident.tired = true;
                 transform.position = positionConstruction;

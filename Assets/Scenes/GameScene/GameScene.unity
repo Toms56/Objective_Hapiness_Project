@@ -1029,6 +1029,11 @@ PrefabInstance:
       propertyPath: schoolButton
       value: 
       objectReference: {fileID: 2101235583}
+    - target: {fileID: 5481693459308024350, guid: 771eba7bd6b908f4098276068c3187cd,
+        type: 3}
+      propertyPath: constructionButton
+      value: 
+      objectReference: {fileID: 1842591311}
     - target: {fileID: 5481693459308024351, guid: 771eba7bd6b908f4098276068c3187cd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1265,6 +1270,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1dceb8fbefd69b4da48c277fe3e14c6, type: 3}
+--- !u!114 &1842591311 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1714853466784966982, guid: 5652ca3142ed1da4ea03de54e27a71f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 775683201}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1985922536 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1714853466361551370, guid: 5652ca3142ed1da4ea03de54e27a71f9,
@@ -1354,7 +1371,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 61703a2f9c9b0a94082f889546127277,
+      objectReference: {fileID: 23800000, guid: ececd85899664824d8bca66dd07b361e,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a488d72188a720469a0170cf9e97872, type: 3}

@@ -22,6 +22,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] GameObject panelWinGame;
     [SerializeField] Button jobButton;
     [SerializeField] Button schoolButton;
+    [SerializeField] Button constructionButton;
     [SerializeField] Text foodText;
     [SerializeField] Text woodText;
     [SerializeField] Text stoneText;
@@ -85,15 +86,19 @@ public class UI_Manager : MonoBehaviour
         {
             GameManager.day = true;
             timeSpent = 0;
+            constructionButton.interactable = true;
         }
-
         if (GameManager.day)
         {
             countDownDayCycle.text = "DayTime : " + Mathf.RoundToInt(durationDay - timeSpent);   
         }
-        if (!GameManager.day)
+        else if (!GameManager.day)
         {
             countDownDayCycle.text = "NightTime : " + Mathf.RoundToInt(durationNight - timeSpent);
+        }
+        if (GameManager.day && Mathf.RoundToInt(durationDay - timeSpent) -10 <= 0)
+        {
+            constructionButton.interactable = false;
         }
         #endregion
         //actualization of prosperity
@@ -352,17 +357,18 @@ public class UI_Manager : MonoBehaviour
 
     public void ShowKillResidents(int kresidents)
     {
-        textnews.text = $"You don't have enough food,\n {kresidents} residents are dead";
+        textnews.text = $"You don't have enough food,\n{kresidents} residents are dead";
         StartCoroutine(ResetText());
     }
 
     public void NotEnoughRessources()
     {
-        textnews.text = "You don't have the resources\n or enough builders";
+        textnews.text = "You don't have the resources\nor enough builders";
+        StartCoroutine(ResetText());
     }
     IEnumerator ResetText()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         textnews.text = "News : ";
     }
 }
