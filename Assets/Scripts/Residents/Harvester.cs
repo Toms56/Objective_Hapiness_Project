@@ -44,7 +44,7 @@ public class Harvester : MonoBehaviour
             sleep = false;
             if (transform.position == sleepPos)
             {
-                coll2d.enabled = false;
+                //coll2d.enabled = false;
                 transform.position = homeHarvester.transform.position;
                 resident.agent.enabled = true;
             }
@@ -57,26 +57,23 @@ public class Harvester : MonoBehaviour
                 working = true;
             }
         }
-        else if (!GameManager.day)
+        else if (!GameManager.day && working && !sleep && resident.tired)
         {
-            if (!sleep)
+            working = false;
+            //coll2d.enabled = true;
+            StopAllCoroutines();
+            if (GameManager.Instance.homes.Count == 0)
             {
-                working = false;
-                coll2d.enabled = true;
-                StopAllCoroutines();
-                if (GameManager.Instance.homes.Count == 0)
-                {
-                    resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
-                    GameManager.prosperity --;
-                }
-                else
-                {
-                    homeHarvester = GameManager.Instance.homes[0].gameObject;
-                    resident.agent.SetDestination(homeHarvester.transform.position);
-                }
+                resident.agent.SetDestination(resident.hobWay1);
+                StartCoroutine(resident.Wandering());
+                GameManager.prosperity --;
             }
-        }
+            else
+            {
+                homeHarvester = GameManager.Instance.homes[0].gameObject;
+                resident.agent.SetDestination(homeHarvester.transform.position);
+            }
+    }
     }
     
     IEnumerator AddFood()
@@ -90,7 +87,7 @@ public class Harvester : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!working)
+        if (!working && !sleep)
         {
             if (other.CompareTag(GameManager.Buildings.Home.ToString()))
             {
@@ -109,6 +106,7 @@ public class Harvester : MonoBehaviour
                     {
                         homeHarvester = GameManager.Instance.homes[homeindex].gameObject;
                         resident.agent.SetDestination(homeHarvester.transform.position);
+                        homeindex++;
                     }
                     else
                     {

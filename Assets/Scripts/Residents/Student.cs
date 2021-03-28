@@ -33,6 +33,8 @@ public class Student : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //allows you to configure the number of days that the student
+        //will take to learn depending on the job.
         switch (studywork)
         {
             case GameManager.Works.Builder :
@@ -78,7 +80,7 @@ public class Student : MonoBehaviour
                 sleep = false; 
                 if (transform.position == sleepPos) 
                 { 
-                    coll2d.enabled = false;
+                    //coll2d.enabled = false;
                     transform.position = homeStudent.transform.position; 
                     resident.agent.enabled = true;
                 } 
@@ -89,23 +91,21 @@ public class Student : MonoBehaviour
                     studying = true;
                 }
             }
-            else if (!GameManager.day) 
+            else if (!GameManager.day && studying && !sleep && resident.tired) 
             {
-                if (!sleep)
+                studying = false;
+                //coll2d.enabled = true;
+                if (GameManager.Instance.homes.Count == 0)
                 {
-                    studying = false;
-                    coll2d.enabled = true;
-                    if (GameManager.Instance.homes.Count == 0)
-                    {
-                        resident.agent.SetDestination(resident.hobWay1);
-                        StartCoroutine(resident.Wandering());
-                        GameManager.prosperity --;
-                    }
-                    else
-                    {
-                        homeStudent = GameManager.Instance.homes[0].gameObject;
-                        resident.agent.SetDestination(homeStudent.transform.position);
-                    }
+                    resident.agent.SetDestination(resident.hobWay1);
+                    StartCoroutine(resident.Wandering());
+                    GameManager.prosperity --;
+                }
+                else
+                {
+                    homeindex = 1;
+                    homeStudent = GameManager.Instance.homes[0].gameObject;
+                    resident.agent.SetDestination(homeStudent.transform.position);
                 }
             }
         }
@@ -113,7 +113,7 @@ public class Student : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!studying)
+        if (!studying && !sleep)
         {
             if (other.CompareTag(GameManager.Buildings.Home.ToString()))
             {
@@ -132,6 +132,7 @@ public class Student : MonoBehaviour
                     {
                         homeStudent = GameManager.Instance.homes[homeindex].gameObject;
                         resident.agent.SetDestination(homeStudent.transform.position);
+                        homeindex++;
                     }
                     else
                     {

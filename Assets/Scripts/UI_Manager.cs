@@ -95,11 +95,9 @@ public class UI_Manager : MonoBehaviour
         {
             countDownDayCycle.text = "NightTime : " + Mathf.RoundToInt(durationNight - timeSpent);
         }
-        
         #endregion
-        #region proserity
+        //actualization of prosperity
         prosperityBar.value = GameManager.prosperity;
-        #endregion
 
         #region RessourcesManagement
         foodText.text = " " + GameManager.food;
@@ -174,8 +172,8 @@ public class UI_Manager : MonoBehaviour
         int nightNum = 0;
         while (!play)
         {
-            dayCycleText.text = $"Day : {dayNum} ";
-            nightCycleText.text = $"Night : {nightNum}";
+            dayCycleText.text = $"Days : {dayNum} ";
+            nightCycleText.text = $"Nights : {nightNum}";
             if (GameManager.day)
             {
                 await new WaitForSeconds(durationDay);
@@ -354,13 +352,13 @@ public class UI_Manager : MonoBehaviour
 
     public void ShowKillResidents(int kresidents)
     {
-        textnews.text = $"You don't have enough food, {kresidents} residents are dead";
+        textnews.text = $"You don't have enough food,\n {kresidents} residents are dead";
         StartCoroutine(ResetText());
     }
 
     public void NotEnoughRessources()
     {
-        textnews.text = "You don't have the resources or enough builders";
+        textnews.text = "You don't have the resources\n or enough builders";
     }
     IEnumerator ResetText()
     {

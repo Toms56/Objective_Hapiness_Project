@@ -85,19 +85,20 @@ public class H_Resident : MonoBehaviour
 
     public void ResetToHobo()
     {
-        switch (gameObject.tag)
+        GameObject gmobj = gameObject;
+        switch (gmobj.tag)
         {
             case "Builder" :
-                Destroy(gameObject.GetComponent<Builder>());
+                Destroy(gmobj.GetComponent<Builder>());
                 break;
             case "Harvester":
-                Destroy(gameObject.GetComponent<Harvester>());
+                Destroy(gmobj.GetComponent<Harvester>());
                 break;
             case "Lumberjack":
-                Destroy(gameObject.GetComponent<Lumberjack>());
+                Destroy(gmobj.GetComponent<Lumberjack>());
                 break;
             case "Minor":
-                Destroy(gameObject.GetComponent<Minor>());
+                Destroy(gmobj.GetComponent<Minor>());
                 break;
             case "Hobo":
                 break;
@@ -108,9 +109,9 @@ public class H_Resident : MonoBehaviour
         age = 20;
         tired = false;
         hobo = true;
-        gameObject.name = GameManager.Works.Hobo.ToString();
-        gameObject.tag = GameManager.Works.Hobo.ToString();
-        PoolManager.inactiveResidents.Enqueue(gameObject);
-        gameObject.SetActive(false);
+        gmobj.name = GameManager.Works.Hobo.ToString();
+        gmobj.tag = GameManager.Works.Hobo.ToString();
+        PoolManager.inactiveResidents.Enqueue(gmobj);
+        gmobj.SetActive(false);
     }
 }

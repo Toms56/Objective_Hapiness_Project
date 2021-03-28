@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class Lumberjack : MonoBehaviour
 {
+    //This script is commented in detail and is valid for Minor, Builder,
+    //Student and Harvester with rare exceptions.
+    
     //For deplacement and for working.
-    //This script is commented in detail and is valid for Minor and Harvester.
     [SerializeField] H_Resident resident;
     [SerializeField] Collider2D coll2d;
     private Vector3 forest;
@@ -45,7 +47,7 @@ public class Lumberjack : MonoBehaviour
             
             if (transform.position == sleepPos)
             {
-                coll2d.enabled = false;
+                //coll2d.enabled = false;
                 transform.position = homeLumberjack.transform.position;
                 resident.agent.enabled = true;
             }
@@ -58,26 +60,23 @@ public class Lumberjack : MonoBehaviour
                 working = true;
             }
         }
-        else if (!GameManager.day)
+        else if (!GameManager.day && working && !sleep && resident.tired)
         {
-            if (!sleep)
+            working = false;
+            //coll2d.enabled = true;
+            StopAllCoroutines();
+            //if no house is built, the resident wanders.
+            if (GameManager.Instance.homes.Count == 0)
             {
-                working = false;
-                coll2d.enabled = true;
-                StopAllCoroutines();
-                //if no house is built, the resident wanders.
-                if (GameManager.Instance.homes.Count == 0)
-                {
-                    resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
-                    GameManager.prosperity --;
-                }
-                //otherwise he goes to the first house he finds.
-                else
-                {
-                    homeLumberjack = GameManager.Instance.homes[0].gameObject;
-                    resident.agent.SetDestination(homeLumberjack.transform.position);
-                }
+                resident.agent.SetDestination(resident.hobWay1);
+                StartCoroutine(resident.Wandering());
+                GameManager.prosperity --;
+            }
+            //otherwise he goes to the first house he finds.
+            else
+            {
+                homeLumberjack = GameManager.Instance.homes[0].gameObject;
+                resident.agent.SetDestination(homeLumberjack.transform.position);
             }
         }
     }
@@ -93,7 +92,7 @@ public class Lumberjack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!working)
+        if (!working && !sleep)
         {
             if (other.CompareTag(GameManager.Buildings.Home.ToString()))
             {
@@ -115,6 +114,7 @@ public class Lumberjack : MonoBehaviour
                     {
                         homeLumberjack = GameManager.Instance.homes[homeindex].gameObject;
                         resident.agent.SetDestination(homeLumberjack.transform.position);
+                        homeindex ++;
                     }
                     else
                     { 
