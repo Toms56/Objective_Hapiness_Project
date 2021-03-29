@@ -6,17 +6,15 @@ public class School : Building
     private void Start()
     {
         buildersNeed = 1;
-        StartCoroutine(Construct(0.1f));
     }
     // Update is called once per frame
     protected override void Update()
     {
-        if (builded && ! good)
+        base.Update();
+        if (builded)
         {
-            good = true;
             GameManager.Instance.school = gameObject;
             GameManager.schoolBuilded = true;
-            GameManager.Instance.RebuildSurface();
             this.tag = GameManager.Buildings.School.ToString();
         }
     }

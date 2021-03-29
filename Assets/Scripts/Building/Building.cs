@@ -11,6 +11,7 @@ public class Building : MonoBehaviour
     [SerializeField] NavMeshObstacle navObstacle;
     public Collider2D col2d;
     public int buildersNeed;
+    public bool navGood;
 
     public IEnumerator Construct(float addInterpol)
     {
@@ -43,8 +44,10 @@ public class Building : MonoBehaviour
             col2d.enabled = true;
         }
 
-        if (builded)
+        if (builded && !navGood)
         {
+            navGood = true;
+            GameManager.Instance.RebuildSurface();
             BuildingManager.dictoConstructions.Remove(gameObject.transform.position);
         }
     }

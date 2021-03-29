@@ -15,12 +15,10 @@ public class Home : Building
     protected override void Update()
     {
         base.Update();
-        Debug.Log(construction);
         if (builded && !homegood)
         {
             homegood = true;
             GameManager.Instance.homes.Add(gameObject);
-            GameManager.Instance.RebuildSurface();
             this.tag = GameManager.Buildings.Home.ToString();
         }
 
