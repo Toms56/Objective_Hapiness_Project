@@ -6,7 +6,6 @@ public class Harvester : MonoBehaviour
     //For deplacement and for working.
     //This script is commented in detail on Lumberjack.
     [SerializeField] H_Resident resident;
-    [SerializeField] Collider2D coll2d;
     private Vector3 farm;
     private GameObject homeHarvester;
     private bool working;
@@ -22,17 +21,13 @@ public class Harvester : MonoBehaviour
         {
             resident = gameObject.GetComponent<H_Resident>();
         }
-        if (coll2d == null)
-        {
-            coll2d = gameObject.GetComponent<Collider2D>();
-        }
         resident.hobo = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        resident.agent.SetDestination(farm);
+
     }
 
     // Update is called once per frame
@@ -43,13 +38,12 @@ public class Harvester : MonoBehaviour
             sleep = false;
             if (transform.position == sleepPos)
             {
-                //coll2d.enabled = false;
                 transform.position = homeHarvester.transform.position;
                 resident.agent.enabled = true;
             }
             resident.agent.SetDestination(farm);
             
-            if (Vector3.Distance(transform.position,farm) <= 1f && !working)            
+            if (Vector3.Distance(transform.position,farm) <= 2f && !working)            
             {
                 working = true;
                 StartCoroutine(AddFood());
@@ -59,7 +53,6 @@ public class Harvester : MonoBehaviour
         else if (!GameManager.day && working && !sleep && resident.tired)
         {
             working = false;
-            //coll2d.enabled = true;
             StopAllCoroutines();
             if (GameManager.Instance.homes.Count == 0)
             {
@@ -102,6 +95,7 @@ public class Harvester : MonoBehaviour
             {
                 if (GameManager.Instance.homes.Count > homeindex)
                 {
+                    resident.agent.enabled = true;
                     homeHarvester = GameManager.Instance.homes[homeindex].gameObject;
                     resident.agent.SetDestination(homeHarvester.transform.position);
                     homeindex++;

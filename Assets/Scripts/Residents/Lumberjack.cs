@@ -8,7 +8,6 @@ public class Lumberjack : MonoBehaviour
     
     //For deplacement and for working.
     [SerializeField] H_Resident resident;
-    [SerializeField] Collider2D coll2d;
     private Vector3 forest;
     private GameObject homeLumberjack;
     private bool working;
@@ -23,10 +22,6 @@ public class Lumberjack : MonoBehaviour
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
-        }
-        if (coll2d == null)
-        {
-            coll2d = gameObject.GetComponent<Collider2D>();
         }
         resident.hobo = false;
     }
@@ -47,13 +42,12 @@ public class Lumberjack : MonoBehaviour
             
             if (transform.position == sleepPos)
             {
-                //coll2d.enabled = false;
                 transform.position = homeLumberjack.transform.position;
                 resident.agent.enabled = true;
             }
             resident.agent.SetDestination(forest);
             //Once at the workplace, he adds his resource via a coroutine and becomes tired.
-            if (Vector3.Distance(transform.position,forest) <= 1f && !working)            
+            if (Vector3.Distance(transform.position,forest) <= 2f && !working)            
             {
                 working = true;
                 StartCoroutine(AddWood());
@@ -63,7 +57,6 @@ public class Lumberjack : MonoBehaviour
         else if (!GameManager.day && working && !sleep && resident.tired)
         {
             working = false;
-            //coll2d.enabled = true;
             StopAllCoroutines();
             //if no house is built, the resident wanders.
             if (GameManager.Instance.homes.Count == 0)
@@ -93,7 +86,7 @@ public class Lumberjack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!GameManager.day && !working && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
+        if (other.CompareTag(GameManager.Buildings.Home.ToString()) && !GameManager.day && !working && !sleep)
         {
             //allows the resident to "sleep" by sending him off the map and removing his tiredness.
             if (other.GetComponent<Home>().nbrplace > 0)

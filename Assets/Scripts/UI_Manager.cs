@@ -110,24 +110,6 @@ public class UI_Manager : MonoBehaviour
         woodText.text = " " + GameManager.wood;
         stoneText.text = " " + GameManager.stone;
         #endregion
-        
-
-        #region JobCountDownDisplay
-        /*
-        minutes = (int) (totalTime / 60);
-        seconds = (int) (totalTime % 60);
-
-        if (useEventTimer)
-        {
-            totalTime -= Time.deltaTime;
-            if (totalTime <= 0)
-            {
-                useEventTimer = false;
-            }
-        }
-        countDownTxt.text = "Studing time : "+ minutes.ToString() + " : " + seconds.ToString();
-        */
-        #endregion
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -149,7 +131,6 @@ public class UI_Manager : MonoBehaviour
         }
 
         #region winAndGameOver
-
         if (GameManager.gameOver)
         {
             panelGameOver.SetActive(true);
@@ -158,19 +139,8 @@ public class UI_Manager : MonoBehaviour
         {
             panelWinGame.SetActive(true);
         }
-
         #endregion
-        
     }
-
-    /*void ActiveCountDown(int time)
-    {
-        #region CountDownJob
-        //startingTime = totalTime;
-        totalTime = time;
-        useEventTimer = true;
-        #endregion
-    }*/
 
     public async void DayNightCycle()
     {
@@ -183,13 +153,13 @@ public class UI_Manager : MonoBehaviour
             if (GameManager.day)
             {
                 await new WaitForSeconds(durationDay);
-                GameManager.day = false;
+                //GameManager.day = false;
                 dayNum += 1;
             }
             else
             {
                 await new WaitForSeconds(durationNight);
-                GameManager.day = true;
+                //GameManager.day = true;
                 nightNum += 1;
             }
         }
@@ -260,60 +230,21 @@ public class UI_Manager : MonoBehaviour
             case 0:
                 panelJobSelection.SetActive(false);
                 GameManager.Instance.ToStudy(resident,GameManager.Works.Builder);
-                //ActiveCountDown(6);
-                //StartCoroutine(WaitForBecomeBuilder());
                 break;
             case 1:
                 panelJobSelection.SetActive(false);
                 GameManager.Instance.ToStudy(resident,GameManager.Works.Harvester);
-                //ActiveCountDown(6);
-                //StartCoroutine(WaitForBecomeHarvester());
                 break;
             case 2 :
                 panelJobSelection.SetActive(false);
                 GameManager.Instance.ToStudy(resident,GameManager.Works.Harvester);
-                //ActiveCountDown(6);
-                //StartCoroutine(WaitForBecomeLumberjack());
                 break;
             case 3 : 
                 panelJobSelection.SetActive(false);
                 GameManager.Instance.ToStudy(resident,GameManager.Works.Harvester);
-                //ActiveCountDown(6);
-                //StartCoroutine(WaitForBecomeMinor());
                 break;
         }  
     }
-
-
-    #region coroutineJob
-    /*IEnumerator WaitForBecomeBuilder()
-    {
-        yield return new WaitForSeconds(6);
-        useEventTimer = false;
-        GameManager.Instance.ChangeWork(resident, GameManager.Works.Builder);
-        Debug.Log("He's has a new job"+ resident.GetComponent<H_Resident>().tag);
-    }
-    IEnumerator WaitForBecomeLumberjack()
-    {
-        yield return new WaitForSeconds(6);
-        useEventTimer = false;
-        GameManager.Instance.ChangeWork(resident, GameManager.Works.Lumberjack);
-        Debug.Log("He's has a new job"+ resident.GetComponent<H_Resident>().tag);
-
-    }
-    IEnumerator WaitForBecomeHarvester()
-    {
-        yield return new WaitForSeconds(6);
-        useEventTimer = false;
-        GameManager.Instance.ChangeWork(resident, GameManager.Works.Harvester);
-    }
-    IEnumerator WaitForBecomeMinor()
-    {
-        yield return new WaitForSeconds(6);
-        useEventTimer = false;
-        GameManager.Instance.ChangeWork(resident, GameManager.Works.Minor);
-    }*/
-    #endregion
 
     public void OnClickRetry()
     {
@@ -336,7 +267,6 @@ public class UI_Manager : MonoBehaviour
     
     public void Pause()
     {
-        Debug.Log(Time.timeScale);
         Time.timeScale = 0;
     }
 
@@ -360,7 +290,7 @@ public class UI_Manager : MonoBehaviour
         textnews.text = "All residents were able to eat";
         StartCoroutine(ResetText());
     }
-
+    
     public void ShowKillResidents(int kresidents)
     {
         textnews.text = $"You don't have enough food,\n{kresidents} residents are dead";

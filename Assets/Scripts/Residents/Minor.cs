@@ -6,7 +6,6 @@ public class Minor : MonoBehaviour
     //For deplacement and for working.
     //This script is commented in detail on Lumberjack.
     [SerializeField] H_Resident resident;
-    [SerializeField] Collider2D coll2d;
     private Vector3 mine;
     private GameObject homeMinor;
     private bool working;
@@ -22,17 +21,13 @@ public class Minor : MonoBehaviour
         {
             resident = gameObject.GetComponent<H_Resident>();
         }
-        if (coll2d == null)
-        {
-            coll2d = gameObject.GetComponent<Collider2D>();
-        }
         resident.hobo = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        resident.agent.SetDestination(mine);
+        
     }
 
     // Update is called once per frame
@@ -43,13 +38,12 @@ public class Minor : MonoBehaviour
             sleep = false;
             if (transform.position == sleepPos)
             {
-                //coll2d.enabled = false;
                 transform.position = homeMinor.transform.position;
                 resident.agent.enabled = true;
             }
             resident.agent.SetDestination(mine);
             
-            if (Vector3.Distance(transform.position,mine) <= 1f && !working)            
+            if (Vector3.Distance(transform.position,mine) <= 2f && !working)            
             {
                 working = true;
                 StartCoroutine(AddStone());
@@ -59,7 +53,6 @@ public class Minor : MonoBehaviour
         else if (!GameManager.day && working && !sleep && resident.tired)
         {
             working = false;
-            //coll2d.enabled = true;
             StopAllCoroutines();
             if (GameManager.Instance.homes.Count == 0)
             {

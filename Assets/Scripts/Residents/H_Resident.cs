@@ -23,7 +23,10 @@ public class H_Resident : MonoBehaviour
 
     void Awake()
     {
-
+        if (agent == null)
+        {
+            agent = gameObject.GetComponent<NavMeshAgent>();
+        }
         agent.speed = speed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;

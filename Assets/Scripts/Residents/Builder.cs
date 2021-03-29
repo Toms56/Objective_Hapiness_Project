@@ -153,7 +153,7 @@ public class Builder : MonoBehaviour
             }
         }
         
-        if (!GameManager.day && !working && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
+        if (other.CompareTag(GameManager.Buildings.Home.ToString()) && !GameManager.day && resident.tired  && !working && !sleep)
         {
             if (other.GetComponent<Home>().nbrplace > 0)
             {
@@ -162,6 +162,7 @@ public class Builder : MonoBehaviour
                 sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
+                wandering = false;
             }
             else
             {
