@@ -51,9 +51,9 @@ public class Minor : MonoBehaviour
             
             if (Vector3.Distance(transform.position,mine) <= 1f && !working)            
             {
+                working = true;
                 StartCoroutine(AddStone());
                 resident.tired = true;
-                working = true;
             }
         }
         else if (!GameManager.day && working && !sleep && resident.tired)
@@ -87,33 +87,30 @@ public class Minor : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!working && !sleep)
+        if (!GameManager.day && !working && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
-            if (other.CompareTag(GameManager.Buildings.Home.ToString()))
+            if (other.GetComponent<Home>().nbrplace > 0)
             {
-                if (other.GetComponent<Home>().nbrplace > 0)
+                other.GetComponent<Home>().nbrplace--;
+                resident.tired = false;
+                sleep = true;
+                resident.agent.enabled = false;
+                transform.position = sleepPos;
+                GameManager.prosperity++;
+            }
+            else
+            {
+                if (GameManager.Instance.homes.Count > homeindex)
                 {
-                    other.GetComponent<Home>().nbrplace--;
-                    resident.tired = false;
-                    sleep = true;
-                    resident.agent.enabled = false;
-                    transform.position = sleepPos;
-                    GameManager.prosperity++;
+                    homeMinor = GameManager.Instance.homes[homeindex].gameObject;
+                    resident.agent.SetDestination(homeMinor.transform.position);
+                    homeindex++;
                 }
                 else
                 {
-                    if (GameManager.Instance.homes.Count > homeindex)
-                    {
-                        homeMinor = GameManager.Instance.homes[homeindex].gameObject;
-                        resident.agent.SetDestination(homeMinor.transform.position);
-                        homeindex ++;
-                    }
-                    else
-                    {
-                        resident.agent.SetDestination(resident.hobWay1);
-                        StartCoroutine(resident.Wandering());
-                        GameManager.prosperity --;
-                    }
+                    resident.agent.SetDestination(resident.hobWay1);
+                    StartCoroutine(resident.Wandering());
+                    GameManager.prosperity--;
                 }
             }
         }

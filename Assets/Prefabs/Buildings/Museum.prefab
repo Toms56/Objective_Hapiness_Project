@@ -94,11 +94,11 @@ NavMeshObstacle:
   m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 1.3100001, y: 1.335, z: 1.3100001}
+  m_Extents: {x: 1.24, y: 0.905, z: 1.24}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.06, y: 0.05, z: 0}
   m_TimeToStationary: 0.5
 --- !u!114 &992175488237797765
 MonoBehaviour:
@@ -131,6 +131,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.067461655, y: 0.08730328}
   serializedVersion: 2
-  m_Radius: 1.335
+  m_Radius: 1.1802353

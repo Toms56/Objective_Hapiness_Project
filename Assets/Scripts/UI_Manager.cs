@@ -98,7 +98,7 @@ public class UI_Manager : MonoBehaviour
         {
             countDownDayCycle.text = "NightTime : " + Mathf.RoundToInt(durationNight - timeSpent);
         }
-        if (GameManager.day && Mathf.RoundToInt(durationDay - timeSpent) -10 <= 0)
+        if (GameManager.day && Mathf.RoundToInt(durationDay - timeSpent) -12 <= 0)
         {
             constructionButton.interactable = false;
         }

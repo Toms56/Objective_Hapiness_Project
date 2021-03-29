@@ -113,33 +113,30 @@ public class Student : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!studying && !sleep)
+        if (!GameManager.day && !studying && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
-            if (other.CompareTag(GameManager.Buildings.Home.ToString()))
+            if (other.GetComponent<Home>().nbrplace > 0)
             {
-                if (other.GetComponent<Home>().nbrplace > 0)
+                other.GetComponent<Home>().nbrplace--;
+                resident.tired = false;
+                sleep = true;
+                GameManager.prosperity++;
+                resident.agent.enabled = false;
+                transform.position = sleepPos;
+            }
+            else
+            {
+                if (GameManager.Instance.homes.Count > homeindex)
                 {
-                    other.GetComponent<Home>().nbrplace--;
-                    resident.tired = false;
-                    sleep = true;
-                    GameManager.prosperity++;
-                    resident.agent.enabled = false;
-                    transform.position = sleepPos;
+                    homeStudent = GameManager.Instance.homes[homeindex].gameObject;
+                    resident.agent.SetDestination(homeStudent.transform.position);
+                    homeindex++;
                 }
                 else
                 {
-                    if (GameManager.Instance.homes.Count > homeindex)
-                    {
-                        homeStudent = GameManager.Instance.homes[homeindex].gameObject;
-                        resident.agent.SetDestination(homeStudent.transform.position);
-                        homeindex++;
-                    }
-                    else
-                    {
-                        resident.agent.SetDestination(resident.hobWay1);
-                        StartCoroutine(resident.Wandering());
-                        GameManager.prosperity--;
-                    }
+                    resident.agent.SetDestination(resident.hobWay1);
+                    StartCoroutine(resident.Wandering());
+                    GameManager.prosperity--;
                 }
             }
         }

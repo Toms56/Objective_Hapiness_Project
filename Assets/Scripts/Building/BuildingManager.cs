@@ -30,7 +30,7 @@ public class BuildingManager : MonoBehaviour
     {
         mousepos = _camera.ScreenToWorldPoint(Input.mousePosition);
         mousepos.z = 1;
-
+        
         if (spawned)
         {
             //Debug.Log("CircleTest" + CircleTest());

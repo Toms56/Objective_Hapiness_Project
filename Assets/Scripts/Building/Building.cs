@@ -12,7 +12,7 @@ public class Building : MonoBehaviour
     [SerializeField] Collider2D col2d;
     public int buildersNeed;
 
-    public  IEnumerator Construct(float addInterpol)
+    public IEnumerator Construct(float addInterpol)
     {
         yield return new WaitUntil(() => construction);
         col2d.enabled = true;

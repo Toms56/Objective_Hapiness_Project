@@ -4,6 +4,7 @@ public class Builder : MonoBehaviour
 {
     //This script is commented in detail on Lumberjack.
     [SerializeField] H_Resident resident;
+    private SpriteRenderer spriteresident;
     private Vector3 building;
     private GameObject homeBuilder;
     private bool working;
@@ -12,7 +13,8 @@ public class Builder : MonoBehaviour
     private Vector3 sleepPos = new Vector3(10, 10, 0);
     private bool sleep;
     private Vector3 positionConstruction;
-    SpriteRenderer construcSprite; 
+    SpriteRenderer construcSprite;
+    private bool wandering;
 
     private void Awake()
     {
@@ -20,6 +22,12 @@ public class Builder : MonoBehaviour
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
+        }
+
+        if (spriteresident == null)
+        {
+            spriteresident = gameObject.GetComponent<SpriteRenderer>();
+            spriteresident.color = Color.gray;
         }
         resident.hobo = false;
     }
@@ -36,7 +44,6 @@ public class Builder : MonoBehaviour
     {
         if (GameManager.day && !working && !resident.tired)
         {
-            //wakes up the resident and orders him to go to work.
             sleep = false;
 
             if (transform.position == sleepPos)
@@ -48,28 +55,16 @@ public class Builder : MonoBehaviour
 
             if (BuildingManager.dictoConstructions.Count > 0)
             {
-                //GameManager.nbrBuilder++;
-                foreach (Vector3 buildpose in BuildingManager.dictoConstructions.Keys)
-                {
-                    //Debug.Log("Buildpose1 : " + BuildingManager.dictoConstructions[buildpose]);
-                    if (BuildingManager.dictoConstructions[buildpose] > 0)
-                    {
-                        working = true;
-                        building = buildpose;
-                        resident.agent.SetDestination(building);
-                        //Debug.Log("Buildpose1 : " + BuildingManager.dictoConstructions[buildpose]);
-                    }
-                    else
-                    {
-                        resident.agent.SetDestination(resident.hobWay1);
-                        StartCoroutine(resident.Wandering());
-                    }
-                }
+                SearchConstruction();
             }
             else
             {
-                resident.agent.SetDestination(resident.hobWay1);
-                StartCoroutine(resident.Wandering());
+                if (!wandering)
+                {
+                    wandering = true;
+                    resident.agent.SetDestination(resident.hobWay1);
+                    StartCoroutine(resident.Wandering());
+                }
             }
         }
         else if (!GameManager.day && working && !sleep && resident.tired)
@@ -101,6 +96,39 @@ public class Builder : MonoBehaviour
         }
     }
 
+    private void SearchConstruction()
+    {
+        foreach (Vector3 buildpose in BuildingManager.dictoConstructions.Keys)
+        {
+            if (BuildingManager.dictoConstructions[buildpose] > 0)
+            {
+                constructionIndex = 1;
+                building = buildpose;
+                resident.agent.SetDestination(building);
+            }
+            else
+            {
+                if (BuildingManager.dictoConstructions.Count > constructionIndex)
+                {
+                    foreach (Vector3 buildpose2 in BuildingManager.dictoConstructions.Keys)
+                    {
+                        if (BuildingManager.dictoConstructions[buildpose2] > 0)
+                        {
+                            building = buildpose2;
+                            resident.agent.SetDestination(building);
+                            constructionIndex++;
+                        }
+                    }
+                }
+                else
+                {
+                    resident.agent.SetDestination(resident.hobWay1);
+                    StartCoroutine(resident.Wandering());
+                }
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(GameManager.Buildings.Construction.ToString()))
@@ -111,6 +139,7 @@ public class Builder : MonoBehaviour
                 {
                     BuildingManager.dictoConstructions[other.transform.position]--;
                     resident.agent.enabled = false;
+                    working = true;
                     transform.position = sleepPos;
                     GameManager.nbrBuilder--;
                     construcSprite = other.gameObject.GetComponent<SpriteRenderer>();
@@ -123,33 +152,13 @@ public class Builder : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            if (BuildingManager.dictoConstructions.Count > constructionIndex)
-            {
-                foreach (Vector3 buildpose in BuildingManager.dictoConstructions.Keys)
-                {
-                    if (BuildingManager.dictoConstructions[buildpose] > 0)
-                    {
-                        building = buildpose;
-                        resident.agent.SetDestination(resident.hobWay1);
-                        resident.agent.SetDestination(building);
-                    }
-                }
-            }
-            else
-            {
-                resident.agent.SetDestination(resident.hobWay1);
-                StartCoroutine(resident.Wandering());
-            }
-        }
-        if (!working && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
+        
+        if (!GameManager.day && !working && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
             if (other.GetComponent<Home>().nbrplace > 0)
             {
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
-                GameManager.nbrBuilder++;
                 sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;

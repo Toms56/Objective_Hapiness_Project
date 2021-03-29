@@ -38,7 +38,6 @@ public class Harvester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (GameManager.day && !working && !resident.tired)
         {
             sleep = false;
@@ -52,9 +51,9 @@ public class Harvester : MonoBehaviour
             
             if (Vector3.Distance(transform.position,farm) <= 1f && !working)            
             {
+                working = true;
                 StartCoroutine(AddFood());
                 resident.tired = true;
-                working = true;
             }
         }
         else if (!GameManager.day && working && !sleep && resident.tired)
@@ -70,6 +69,7 @@ public class Harvester : MonoBehaviour
             }
             else
             {
+                homeindex = 1;
                 homeHarvester = GameManager.Instance.homes[0].gameObject;
                 resident.agent.SetDestination(homeHarvester.transform.position);
             }
@@ -87,33 +87,30 @@ public class Harvester : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!working && !sleep)
+        if (!GameManager.day && !working && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
-            if (other.CompareTag(GameManager.Buildings.Home.ToString()))
+            if (other.GetComponent<Home>().nbrplace > 0)
             {
-                if (other.GetComponent<Home>().nbrplace > 0)
+                other.GetComponent<Home>().nbrplace--;
+                resident.tired = false;
+                sleep = true;
+                resident.agent.enabled = false;
+                transform.position = sleepPos;
+                GameManager.prosperity++;
+            }
+            else
+            {
+                if (GameManager.Instance.homes.Count > homeindex)
                 {
-                    other.GetComponent<Home>().nbrplace--;
-                    resident.tired = false;
-                    sleep = true;
-                    resident.agent.enabled = false;
-                    transform.position = sleepPos;
-                    GameManager.prosperity++;
+                    homeHarvester = GameManager.Instance.homes[homeindex].gameObject;
+                    resident.agent.SetDestination(homeHarvester.transform.position);
+                    homeindex++;
                 }
                 else
                 {
-                    if (GameManager.Instance.homes.Count > homeindex)
-                    {
-                        homeHarvester = GameManager.Instance.homes[homeindex].gameObject;
-                        resident.agent.SetDestination(homeHarvester.transform.position);
-                        homeindex++;
-                    }
-                    else
-                    {
-                        resident.agent.SetDestination(resident.hobWay1);
-                        StartCoroutine(resident.Wandering());
-                        GameManager.prosperity --;
-                    }
+                    resident.agent.SetDestination(resident.hobWay1);
+                    StartCoroutine(resident.Wandering());
+                    GameManager.prosperity --;
                 }
             }
         }

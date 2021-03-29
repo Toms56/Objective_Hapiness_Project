@@ -55,9 +55,9 @@ public class Lumberjack : MonoBehaviour
             //Once at the workplace, he adds his resource via a coroutine and becomes tired.
             if (Vector3.Distance(transform.position,forest) <= 1f && !working)            
             {
+                working = true;
                 StartCoroutine(AddWood());
                 resident.tired = true;
-                working = true;
             }
         }
         else if (!GameManager.day && working && !sleep && resident.tired)
@@ -75,6 +75,7 @@ public class Lumberjack : MonoBehaviour
             //otherwise he goes to the first house he finds.
             else
             {
+                homeindex = 1;
                 homeLumberjack = GameManager.Instance.homes[0].gameObject;
                 resident.agent.SetDestination(homeLumberjack.transform.position);
             }
@@ -92,38 +93,35 @@ public class Lumberjack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!working && !sleep)
+        if (!GameManager.day && !working && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
-            if (other.CompareTag(GameManager.Buildings.Home.ToString()))
+            //allows the resident to "sleep" by sending him off the map and removing his tiredness.
+            if (other.GetComponent<Home>().nbrplace > 0)
             {
-                //allows the resident to "sleep" by sending him off the map and removing his tiredness.
-                if (other.GetComponent<Home>().nbrplace > 0)
+                other.GetComponent<Home>().nbrplace--;
+                resident.tired = false;
+                sleep = true;
+                resident.agent.enabled = false;
+                transform.position = sleepPos;
+                GameManager.prosperity++;
+            }
+            else
+            {
+                //if the first house is full he goes to the 2nd until time to find space or
+                //he ends up wandering if no house is free.
+                if (GameManager.Instance.homes.Count > homeindex)
                 {
-                    other.GetComponent<Home>().nbrplace--;
-                    resident.tired = false;
-                    sleep = true;
-                    resident.agent.enabled = false;
-                    transform.position = sleepPos;
-                    GameManager.prosperity++;
+                    homeLumberjack = GameManager.Instance.homes[homeindex].gameObject;
+                    resident.agent.SetDestination(homeLumberjack.transform.position);
+                    homeindex++;
                 }
                 else
                 {
-                    //if the first house is full he goes to the 2nd until time to find space or
-                    //he ends up wandering if no house is free.
-                    if (GameManager.Instance.homes.Count > homeindex)
-                    {
-                        homeLumberjack = GameManager.Instance.homes[homeindex].gameObject;
-                        resident.agent.SetDestination(homeLumberjack.transform.position);
-                        homeindex ++;
-                    }
-                    else
-                    { 
-                        resident.agent.SetDestination(resident.hobWay1);
-                        StartCoroutine(resident.Wandering());
-                        GameManager.prosperity --; 
-                    } 
-                } 
-            } 
+                    resident.agent.SetDestination(resident.hobWay1);
+                    StartCoroutine(resident.Wandering());
+                    GameManager.prosperity--;
+                }
+            }
         }
     }
 }
