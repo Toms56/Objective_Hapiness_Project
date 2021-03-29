@@ -27,7 +27,8 @@ public class Minor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        resident.agent.SetDestination(resident.hobWay1);
+        StartCoroutine(resident.Wandering());
     }
 
     // Update is called once per frame

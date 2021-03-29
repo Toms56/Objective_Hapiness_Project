@@ -28,7 +28,11 @@ public class Lumberjack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (resident.tired)
+        {
+            resident.agent.SetDestination(resident.hobWay1);
+            StartCoroutine(resident.Wandering());
+        }
     }
 
     // Update is called once per frame

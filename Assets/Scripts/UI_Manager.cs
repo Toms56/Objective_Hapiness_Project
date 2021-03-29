@@ -275,15 +275,15 @@ public class UI_Manager : MonoBehaviour
     {
         Time.timeScale = 1;
     }
-    public void FastForwardQuickly(float num)
+    public void FastForwardQuickly()
     {
-        Time.timeScale = num;
-        timeSpent += Time.timeScale;
+        Time.timeScale = 2;
+        //timeSpent += Time.timeScale;
     }
-    public void FastForwardSoMuch(float num)
+    public void FastForwardSoMuch()
     {
-        Time.timeScale = num;
-        timeSpent += Time.timeScale;
+        Time.timeScale = 3;
+        //timeSpent += Time.timeScale;
     }
 
     public void EnoughFood()
