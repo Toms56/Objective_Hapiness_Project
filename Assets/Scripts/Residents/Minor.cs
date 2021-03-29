@@ -40,6 +40,7 @@ public class Minor : MonoBehaviour
             {
                 transform.position = homeMinor.transform.position;
                 resident.agent.enabled = true;
+                homeindex = 1;
             }
             resident.agent.SetDestination(mine);
             
@@ -60,7 +61,6 @@ public class Minor : MonoBehaviour
             }
             else
             {
-                homeindex = 1;
                 homeMinor = GameManager.Instance.homes[0].gameObject;
                 resident.agent.SetDestination(homeMinor.transform.position);
             }

@@ -32,6 +32,7 @@ public class Harvester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(resident.agent.destination);
         if (GameManager.day && !resident.tired)
         {
             sleep = false;
@@ -39,10 +40,11 @@ public class Harvester : MonoBehaviour
             {
                 transform.position = homeHarvester.transform.position;
                 resident.agent.enabled = true;
+                homeindex = 1;
             }
             resident.agent.SetDestination(farm);
-            
-            if (Vector3.Distance(transform.position,farm) <= 2f)            
+
+            if (Vector3.Distance(transform.position, farm) <= 2f)
             {
                 StartCoroutine(AddFood());
                 resident.tired = true;
@@ -55,17 +57,16 @@ public class Harvester : MonoBehaviour
             {
                 resident.agent.SetDestination(resident.hobWay1);
                 StartCoroutine(resident.Wandering());
-                GameManager.prosperity --;
+                GameManager.prosperity--;
             }
             else
             {
-                homeindex = 1;
                 homeHarvester = GameManager.Instance.homes[0].gameObject;
                 resident.agent.SetDestination(homeHarvester.transform.position);
             }
+        }
     }
-    }
-    
+
     IEnumerator AddFood()
     {
         while (true)
@@ -99,6 +100,7 @@ public class Harvester : MonoBehaviour
                 }
                 else
                 {
+                    resident.agent.Warp(transform.position);
                     resident.agent.SetDestination(resident.hobWay1);
                     StartCoroutine(resident.Wandering());
                     GameManager.prosperity --;
