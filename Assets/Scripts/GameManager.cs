@@ -103,7 +103,6 @@ public class GameManager : MonoBehaviour
         {
             victory = true;
         }
-        Debug.Log(nbrBuilder);
     }
 
     public void RebuildSurface()

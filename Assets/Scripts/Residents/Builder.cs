@@ -40,6 +40,11 @@ public class Builder : MonoBehaviour
         {
             GameManager.nbrBuilder++;
         }
+        else
+        {
+            resident.agent.SetDestination(resident.hobWay1);
+            StartCoroutine(resident.Wandering());
+        }
     }
 
     // Update is called once per frame
