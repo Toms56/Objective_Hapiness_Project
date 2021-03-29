@@ -116,6 +116,7 @@ public class UI_Manager : MonoBehaviour
             SelectResident();
         }
         
+        //Player doesn't change resident's job if a school is not builded before
         if (GameManager.schoolBuilded && panelSelectedPnj.activeSelf)
         {
             jobButton.interactable = true;
