@@ -20,7 +20,6 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] GameObject panelSelectedPnj;
     [SerializeField] GameObject panelGameOver;
     [SerializeField] GameObject panelWinGame;
-    [SerializeField] GameObject panelPause;
     [SerializeField] Button jobButton;
     [SerializeField] Button schoolButton;
     [SerializeField] Button constructionButton;
@@ -129,12 +128,6 @@ public class UI_Manager : MonoBehaviour
         countDownTxt.text = "Studing time : "+ minutes.ToString() + " : " + seconds.ToString();
         */
         #endregion
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            panelPause.SetActive(true);
-            Time.timeScale = 0;
-        }
 
         if (Input.GetButtonDown("Fire1"))
         {

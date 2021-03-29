@@ -167,6 +167,7 @@ public class Builder : MonoBehaviour
             {
                 if (GameManager.Instance.homes.Count > homeindex)
                 {
+                    resident.agent.enabled = true;
                     homeBuilder = GameManager.Instance.homes[homeindex].gameObject;
                     resident.agent.SetDestination(homeBuilder.transform.position);
                     homeindex++;
