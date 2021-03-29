@@ -11,6 +11,7 @@ public class Student : MonoBehaviour
     public GameManager.Works studywork;
     private int homeindex = 1;
     private Vector3 sleepPos = new Vector3(10, 10, 0);
+    private Vector3 studPos = new Vector3(11, 11, 0);
     private bool sleep;
     private bool boolstud;
 
@@ -78,24 +79,19 @@ public class Student : MonoBehaviour
                 }
 
                 resident.agent.SetDestination(school);
-
-                if (Vector3.Distance(transform.position,school) <= 1.5f)            
-                {
-                    resident.tired = true; 
-                    studyDays --;
-                }
             }
 
             else if (!GameManager.day && !sleep && resident.tired) 
             {
                 sleep = true;
+                transform.position = school;
+                resident.agent.enabled = true;
                 if (GameManager.Instance.homes.Count == 0)
                 {
                     resident.agent.SetDestination(resident.hobWay1);
                     StartCoroutine(resident.Wandering());
                     GameManager.prosperity --;
                 }
-
                 else
                 {
                     homeindex = 1;
@@ -108,13 +104,19 @@ public class Student : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (GameManager.day && !resident.tired && other.CompareTag(GameManager.Buildings.School.ToString()))
+        {
+            resident.tired = true;
+            resident.agent.enabled = false;
+            transform.position = studPos;
+            studyDays--;
+        }
         if (!GameManager.day && resident.tired && other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
             if (other.GetComponent<Home>().nbrplace > 0)
             {
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
-                //sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
                 GameManager.prosperity++;
