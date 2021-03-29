@@ -46,7 +46,7 @@ public class BuildingManager : MonoBehaviour
                         case 0 :
                             spawned = false;
                             GameManager.stone -= 5;
-                            GameManager.food -= 1;
+                            GameManager.wood -= 1;
                             thisBuilding.GetComponent<Home>().construction = true;
                             thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
                             break;
@@ -54,7 +54,7 @@ public class BuildingManager : MonoBehaviour
                         case 1:
                             spawned = false;
                             GameManager.stone -= 6;
-                            GameManager.food -= 7;
+                            GameManager.wood -= 7;
                             thisBuilding.GetComponent<School>().construction = true;
                             thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
                             break;
@@ -62,7 +62,7 @@ public class BuildingManager : MonoBehaviour
                         case 2:
                             spawned = false;
                             GameManager.stone -= 6;
-                            GameManager.food -= 7;
+                            GameManager.wood -= 7;
                             thisBuilding.GetComponent<Farm>().construction = true;
                             thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
                             break;
@@ -70,7 +70,7 @@ public class BuildingManager : MonoBehaviour
                         case 3:
                             spawned = false;
                             GameManager.stone -= 6;
-                            GameManager.food -= 7;
+                            GameManager.wood -= 7;
                             thisBuilding.GetComponent<Librairy>().construction = true;
                             thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
                             break;
@@ -78,7 +78,7 @@ public class BuildingManager : MonoBehaviour
                         case 4:
                             spawned = false;
                             GameManager.stone -= 6;
-                            GameManager.food -= 7;
+                            GameManager.wood -= 7;
                             thisBuilding.GetComponent<Museum>().construction = true;
                             thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
                             break;

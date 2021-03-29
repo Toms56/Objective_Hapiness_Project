@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     // to exist only once in the scene and remain unique.
     public static GameManager Instance;
     
-    public static float prosperity;
+    public static float prosperity = 0;
     
     //PNJ Comportment Management 
     /*

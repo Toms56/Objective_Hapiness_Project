@@ -23,7 +23,8 @@ public class Building : MonoBehaviour
             spriteRend.color = Vector4.Lerp(Color.clear, new Vector4(1,1,1,1), interpol);
             interpol += addInterpol * Time.deltaTime;
             navObstacle.enabled = true;
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForUpdate();
+            //yield return new WaitForFixedUpdate();
         }
         construction = false;
         builded = true;

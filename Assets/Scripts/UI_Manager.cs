@@ -260,11 +260,6 @@ public class UI_Manager : MonoBehaviour
     {
         Application.Quit();
     }
-
-    public void OnClickResume()
-    {
-        Time.timeScale = 1;
-    }
     
     public void Pause()
     {
