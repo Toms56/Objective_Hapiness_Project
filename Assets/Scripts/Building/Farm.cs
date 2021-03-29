@@ -7,17 +7,15 @@ public class Farm : Building
     void Start()
     {
         buildersNeed = 4;
-        StartCoroutine(Construct(0.1f));
         GameManager.nbrFarm++;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        if (builded && !good)
+        base.Update();
+        if (builded)
         {
-            good = true;
-            GameManager.Instance.RebuildSurface();
             this.tag = GameManager.Buildings.Farm.ToString();
         }
     }

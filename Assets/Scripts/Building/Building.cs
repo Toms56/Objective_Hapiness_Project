@@ -7,26 +7,48 @@ public class Building : MonoBehaviour
     public bool construction;
     public float interpol;
     protected bool builded;
-    [SerializeField] SpriteRenderer spriteRend;
+    public SpriteRenderer spriteRend;
     [SerializeField] NavMeshObstacle navObstacle;
-    [SerializeField] Collider2D col2d;
+    public Collider2D col2d;
     public int buildersNeed;
+    public bool navGood;
 
     public IEnumerator Construct(float addInterpol)
     {
         yield return new WaitUntil(() => construction);
-        col2d.enabled = true;
-        BuildingManager.dictoConstructions.Add(gameObject.transform.position, buildersNeed);
-        spriteRend.color = Color.clear;     
+        spriteRend.color = Color.clear;
         while (spriteRend.color.a < 1)
         {
-            spriteRend.color = Vector4.Lerp(Color.clear, Color.green, interpol);
+            Debug.Log("Dedans");
+            spriteRend.color = Vector4.Lerp(Color.clear, new Vector4(1,1,1,1), interpol);
             interpol += addInterpol * Time.deltaTime;
             navObstacle.enabled = true;
             yield return new WaitForFixedUpdate();
+            builded = true;
         }
-        builded = true;
-        //BuildingManager.listConstructions.Remove(gameObject.transform.position);
-        BuildingManager.dictoConstructions.Remove(gameObject.transform.position);
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(GameManager.Works.Builder.ToString()))
+        {
+            StartCoroutine(Construct(0.1f));
+        }
+    }
+
+   protected virtual void Update()
+    {
+        if (construction == true && !BuildingManager.dictoConstructions.ContainsKey(gameObject.transform.position))
+        {
+            BuildingManager.dictoConstructions.Add(gameObject.transform.position, buildersNeed);
+            col2d.enabled = true;
+        }
+
+        if (builded && !navGood)
+        {
+            navGood = true;
+            GameManager.Instance.RebuildSurface();
+            BuildingManager.dictoConstructions.Remove(gameObject.transform.position);
+        }
     }
 }

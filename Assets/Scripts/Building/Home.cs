@@ -1,4 +1,5 @@
-﻿
+﻿using UnityEngine;
+
 public class Home : Building
 {
     public int nbrplace = 4;
@@ -8,17 +9,16 @@ public class Home : Building
     void Start()
     {
         buildersNeed = 1;
-        StartCoroutine(Construct(0.1f));
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         if (builded && !homegood)
         {
             homegood = true;
             GameManager.Instance.homes.Add(gameObject);
-            GameManager.Instance.RebuildSurface();
             this.tag = GameManager.Buildings.Home.ToString();
         }
 
