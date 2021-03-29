@@ -77,7 +77,7 @@ public class Builder : MonoBehaviour
         else if (!GameManager.day && !sleep && resident.tired)
         {
             sleep = true;
-            Debug.Log("sleep");
+            Debug.Log("go to sleep");
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);
@@ -86,6 +86,7 @@ public class Builder : MonoBehaviour
             }
             else
             {
+                Debug.Log("go home");
                 homeBuilder = GameManager.Instance.homes[0].gameObject;
                 resident.agent.SetDestination(homeBuilder.transform.position);
             }
