@@ -61,10 +61,6 @@ public class Student : MonoBehaviour
     {
         if (GameManager.schoolBuilded)
         {
-            if (studyDays <= 0)
-            {
-                GameManager.Instance.ChangeWork(gameObject,studywork);
-            }
             if (GameManager.day)
             {
                 sleep = false;
@@ -80,12 +76,12 @@ public class Student : MonoBehaviour
 
                 resident.agent.SetDestination(school);
             }
-
             else if (!GameManager.day && !sleep && resident.tired) 
             {
                 sleep = true;
                 transform.position = school;
                 resident.agent.enabled = true;
+                resident.agent.Warp(transform.position);
                 if (GameManager.Instance.homes.Count == 0)
                 {
                     resident.agent.SetDestination(resident.hobWay1);
@@ -98,6 +94,13 @@ public class Student : MonoBehaviour
                     homeStudent = GameManager.Instance.homes[0].gameObject;
                     resident.agent.SetDestination(homeStudent.transform.position);
                 }
+            }
+            if (studyDays <= 0)
+            {
+                transform.position = school;
+                resident.agent.enabled = true;
+                resident.agent.Warp(transform.position);
+                GameManager.Instance.ChangeWork(gameObject,studywork);
             }
         }
     }

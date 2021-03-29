@@ -18,29 +18,31 @@ public class Builder : MonoBehaviour
 
     private void Awake()
     {
-        //build = GameManager.Instance.school.transform.position;
-        if (resident == null)
-        {
-            resident = gameObject.GetComponent<H_Resident>();
-        }
-
         if (spriteresident == null)
         {
             spriteresident = gameObject.GetComponent<SpriteRenderer>();
             spriteresident.color = Color.yellow;
         }
-        resident.hobo = false;
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        if (resident == null)
+        {
+            resident = gameObject.GetComponent<H_Resident>();
+        }
+        resident.hobo = false;
         if (!resident.tired)
         {
             GameManager.nbrBuilder++;
+            resident.agent.SetDestination(resident.hobWay1);
+            StartCoroutine(resident.Wandering());
         }
         else
         {
+            resident.agent.enabled = true;
             resident.agent.SetDestination(resident.hobWay1);
             StartCoroutine(resident.Wandering());
         }
@@ -95,6 +97,7 @@ public class Builder : MonoBehaviour
             {
                 //Debug.Log("go home");
                 homeBuilder = GameManager.Instance.homes[0].gameObject;
+                resident.agent.enabled = true;
                 resident.agent.SetDestination(homeBuilder.transform.position);
             }
         }
