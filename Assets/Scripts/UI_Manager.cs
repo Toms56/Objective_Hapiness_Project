@@ -20,6 +20,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] GameObject panelSelectedPnj;
     [SerializeField] GameObject panelGameOver;
     [SerializeField] GameObject panelWinGame;
+    [SerializeField] GameObject panelPause;
     [SerializeField] Button jobButton;
     [SerializeField] Button schoolButton;
     [SerializeField] Button constructionButton;
@@ -65,6 +66,7 @@ public class UI_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         #region proserity
         prosperityBar.value = GameManager.prosperity;
         #endregion
@@ -127,6 +129,12 @@ public class UI_Manager : MonoBehaviour
         countDownTxt.text = "Studing time : "+ minutes.ToString() + " : " + seconds.ToString();
         */
         #endregion
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            panelPause.SetActive(true);
+            Time.timeScale = 0;
+        }
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -326,6 +334,11 @@ public class UI_Manager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void OnClickResume()
+    {
+        Time.timeScale = 1;
     }
     
     public void Pause()
