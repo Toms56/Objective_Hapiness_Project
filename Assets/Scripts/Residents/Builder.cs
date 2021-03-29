@@ -36,7 +36,10 @@ public class Builder : MonoBehaviour
     void Start()
     {
         resident.agent.speed = Random.Range(1f, 3f);
-        GameManager.nbrBuilder++;
+        if (!resident.tired)
+        {
+            GameManager.nbrBuilder++;
+        }
     }
 
     // Update is called once per frame
@@ -66,7 +69,7 @@ public class Builder : MonoBehaviour
             {
                 if (!wandering)
                 {
-                    Debug.Log("wandering 1");
+                    //Debug.Log("wandering 1");
                     wandering = true;
                     resident.agent.Warp(transform.position);
                     resident.agent.SetDestination(resident.hobWay1);
@@ -77,7 +80,7 @@ public class Builder : MonoBehaviour
         else if (!GameManager.day && !sleep && resident.tired)
         {
             sleep = true;
-            Debug.Log("go to sleep");
+            //Debug.Log("go to sleep");
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);
@@ -86,7 +89,7 @@ public class Builder : MonoBehaviour
             }
             else
             {
-                Debug.Log("go home");
+                //Debug.Log("go home");
                 homeBuilder = GameManager.Instance.homes[0].gameObject;
                 resident.agent.SetDestination(homeBuilder.transform.position);
             }
@@ -96,7 +99,7 @@ public class Builder : MonoBehaviour
             resident.tired = true;
             transform.position = construcSprite.transform.position;
             resident.agent.enabled = true;
-            Debug.Log("wandering after sprite");
+            //Debug.Log("wandering after sprite");
             resident.agent.SetDestination(resident.hobWay1);
             StartCoroutine(resident.Wandering());
             construcSprite = null;
@@ -133,7 +136,6 @@ public class Builder : MonoBehaviour
                 {
                     if (!wandering)
                     {
-                        Debug.Log("wandering 2");
                         wandering = true;
                         resident.agent.SetDestination(resident.hobWay1);
                         StartCoroutine(resident.Wandering());

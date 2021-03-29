@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
         {
             victory = true;
         }
+        Debug.Log(nbrBuilder);
     }
 
     public void RebuildSurface()
@@ -115,6 +116,7 @@ public class GameManager : MonoBehaviour
     //when a student has learned his profession allowing to be little greedy in resources.
     public void ChangeWork(GameObject resident, Works work)
     {
+        Destroy(resident.GetComponent<Student>());
         switch (work)
         {
             case Works.Builder :
