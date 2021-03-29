@@ -7,7 +7,6 @@ public class Builder : MonoBehaviour
     private SpriteRenderer spriteresident;
     private Vector3 building;
     private GameObject homeBuilder;
-    private bool working;
     private int homeindex = 1;
     private int constructionIndex = 1;
     private Vector3 sleepPos = new Vector3(10, 10, 0);
@@ -41,7 +40,7 @@ public class Builder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.day && !working && !resident.tired)
+        if (GameManager.day && !resident.tired)
         {
             sleep = false;
 
@@ -66,9 +65,8 @@ public class Builder : MonoBehaviour
                 }
             }
         }
-        else if (!GameManager.day && working && !sleep && resident.tired)
+        else if (!GameManager.day && !sleep && resident.tired)
         {
-            working = false;
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);
@@ -82,7 +80,7 @@ public class Builder : MonoBehaviour
                 resident.agent.SetDestination(homeBuilder.transform.position);
             }
         }
-        else if (GameManager.day && working && !resident.tired)
+        else if (GameManager.day && !resident.tired)
         {
             if (construcSprite !=null && construcSprite.color.a >= 1)
             {
@@ -138,7 +136,6 @@ public class Builder : MonoBehaviour
                 {
                     BuildingManager.dictoConstructions[other.transform.position]--;
                     resident.agent.enabled = false;
-                    working = true;
                     transform.position = sleepPos;
                     GameManager.nbrBuilder--;
                     construcSprite = other.gameObject.GetComponent<SpriteRenderer>();
@@ -151,7 +148,7 @@ public class Builder : MonoBehaviour
             }
         }
         
-        if (other.CompareTag(GameManager.Buildings.Home.ToString()) && !GameManager.day && resident.tired  && !working && !sleep)
+        if (other.CompareTag(GameManager.Buildings.Home.ToString()) && !GameManager.day && resident.tired && !sleep)
         {
             if (other.GetComponent<Home>().nbrplace > 0)
             {

@@ -10,7 +10,6 @@ public class Lumberjack : MonoBehaviour
     [SerializeField] H_Resident resident;
     private Vector3 forest;
     private GameObject homeLumberjack;
-    private bool working;
     private int homeindex = 1;
     private Vector3 sleepPos = new Vector3(10, 10, 0);
     private bool sleep;
@@ -35,7 +34,7 @@ public class Lumberjack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.day && !working && !resident.tired)
+        if (GameManager.day && !resident.tired)
         {
             //wakes up the resident and orders him to go to work.
             sleep = false;
@@ -47,16 +46,14 @@ public class Lumberjack : MonoBehaviour
             }
             resident.agent.SetDestination(forest);
             //Once at the workplace, he adds his resource via a coroutine and becomes tired.
-            if (Vector3.Distance(transform.position,forest) <= 2f && !working)            
+            if (Vector3.Distance(transform.position,forest) <= 2f)       
             {
-                working = true;
                 StartCoroutine(AddWood());
                 resident.tired = true;
             }
         }
-        else if (!GameManager.day && working && !sleep && resident.tired)
+        else if (!GameManager.day && !sleep && resident.tired)
         {
-            working = false;
             StopAllCoroutines();
             //if no house is built, the resident wanders.
             if (GameManager.Instance.homes.Count == 0)
@@ -86,7 +83,7 @@ public class Lumberjack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(GameManager.Buildings.Home.ToString()) && !GameManager.day && !working && !sleep)
+        if (other.CompareTag(GameManager.Buildings.Home.ToString()) && !GameManager.day && !sleep)
         {
             //allows the resident to "sleep" by sending him off the map and removing his tiredness.
             if (other.GetComponent<Home>().nbrplace > 0)

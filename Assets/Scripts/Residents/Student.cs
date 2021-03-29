@@ -6,7 +6,6 @@ public class Student : MonoBehaviour
     [SerializeField] H_Resident resident;
     private Vector3 school;
     private GameObject homeStudent;
-    private bool studying;
     public int studyDays;
     public GameManager.Works studywork;
     private int homeindex = 1;
@@ -59,7 +58,7 @@ public class Student : MonoBehaviour
             {
                 GameManager.Instance.ChangeWork(gameObject,studywork);
             }
-            if (GameManager.day && !studying && !resident.tired)
+            if (GameManager.day && !resident.tired)
             {
                 school = GameManager.Instance.school.transform.position;
                 sleep = false; 
@@ -72,13 +71,11 @@ public class Student : MonoBehaviour
                 if (Vector3.Distance(transform.position,school) <= 1.5f)            
                 {
                     resident.tired = true; 
-                    studying = true;
                     studyDays --;
                 }
             }
-            else if (!GameManager.day && studying && !sleep && resident.tired) 
+            else if (!GameManager.day && !sleep && resident.tired) 
             {
-                studying = false;
                 if (GameManager.Instance.homes.Count == 0)
                 {
                     resident.agent.SetDestination(resident.hobWay1);
@@ -97,7 +94,7 @@ public class Student : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!GameManager.day && !studying && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
+        if (!GameManager.day && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
             if (other.GetComponent<Home>().nbrplace > 0)
             {

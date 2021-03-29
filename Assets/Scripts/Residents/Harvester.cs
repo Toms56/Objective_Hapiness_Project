@@ -8,7 +8,6 @@ public class Harvester : MonoBehaviour
     [SerializeField] H_Resident resident;
     private Vector3 farm;
     private GameObject homeHarvester;
-    private bool working;
     private int homeindex = 1;
     private Vector3 sleepPos = new Vector3(10, 10, 0);
     private bool sleep;
@@ -33,7 +32,7 @@ public class Harvester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.day && !working && !resident.tired)
+        if (GameManager.day && !resident.tired)
         {
             sleep = false;
             if (transform.position == sleepPos)
@@ -43,16 +42,14 @@ public class Harvester : MonoBehaviour
             }
             resident.agent.SetDestination(farm);
             
-            if (Vector3.Distance(transform.position,farm) <= 2f && !working)            
+            if (Vector3.Distance(transform.position,farm) <= 2f)            
             {
-                working = true;
                 StartCoroutine(AddFood());
                 resident.tired = true;
             }
         }
-        else if (!GameManager.day && working && !sleep && resident.tired)
+        else if (!GameManager.day && !sleep && resident.tired)
         {
-            working = false;
             StopAllCoroutines();
             if (GameManager.Instance.homes.Count == 0)
             {
@@ -80,7 +77,7 @@ public class Harvester : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!GameManager.day && !working && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
+        if (!GameManager.day && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
             if (other.GetComponent<Home>().nbrplace > 0)
             {
