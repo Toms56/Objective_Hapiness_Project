@@ -6,6 +6,7 @@ public class Minor : MonoBehaviour
     //For deplacement and for working.
     //This script is commented in detail on Lumberjack.
     [SerializeField] H_Resident resident;
+    private SpriteRenderer spriteresident;
     private Vector3 mine;
     private GameObject homeMinor;
     //private bool working;
@@ -20,6 +21,11 @@ public class Minor : MonoBehaviour
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
+        }
+        if (spriteresident == null)
+        {
+            spriteresident = gameObject.GetComponent<SpriteRenderer>();
+            spriteresident.color = Color.gray;
         }
         resident.hobo = false;
     }

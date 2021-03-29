@@ -67,7 +67,6 @@ public class PoolManager : MonoBehaviour
             if (activeResidents.Count == 0)
             {
                 GameManager.gameOver = true;
-                Debug.Log("Game Over");
             }
             else
             {
@@ -82,6 +81,7 @@ public class PoolManager : MonoBehaviour
                 }
                 GameManager.prosperity -= killresidents * 2;
                 UI_Manager.Instance.ShowKillResidents(killresidents);
+                
                 GameManager.food = foodavailable;
             }
         }

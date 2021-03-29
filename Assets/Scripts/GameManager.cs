@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     // to exist only once in the scene and remain unique.
     public static GameManager Instance;
     
-    public static float prosperity = 0;
+    public static float prosperity;
     
     //PNJ Comportment Management 
     /*
@@ -24,12 +24,12 @@ public class GameManager : MonoBehaviour
      */
     
     //Resources management 
-    public static int food = 50;
-    public static int wood = 50;
-    public static int stone = 50;
+    public static int food;
+    public static int wood;
+    public static int stone;
 
-    public static int nbrFarm = 0;
-    public static int nbrBuilder = 0;
+    public static int nbrFarm;
+    public static int nbrBuilder;
 
     public NavMeshSurface2d surface2d;
     public GameObject hoboWaypoint1;
@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
     }
     
     //World settings
-    private int timeWorld;
     public static bool day;
     public static bool schoolBuilded;
     public static bool gameOver;
@@ -77,7 +76,18 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Avoid errors.
+        schoolBuilded = false;
         day = true;
+        gameOver = false;
+        victory = false;
+        prosperity = 0;
+        food = 50;
+        wood = 50;
+        stone = 50;
+        nbrBuilder = 0;
+        nbrFarm = 0;
+        homes = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -166,7 +176,6 @@ public class GameManager : MonoBehaviour
                 Destroy(resident.GetComponent<Minor>());
                 break;
             case "Hobo":
-                PoolManager.activeResidents.Add(resident);
                 break;
             default:
                 Debug.LogError("no tag");

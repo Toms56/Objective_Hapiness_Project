@@ -4,6 +4,7 @@ public class Student : MonoBehaviour
 {
     //For deplacement and for working.
     [SerializeField] H_Resident resident;
+    private SpriteRenderer spriteresident;
     private Vector3 school;
     private GameObject homeStudent;
     public int studyDays;
@@ -20,6 +21,11 @@ public class Student : MonoBehaviour
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
+        }
+        if (spriteresident == null)
+        {
+            spriteresident = gameObject.GetComponent<SpriteRenderer>();
+            spriteresident.color = Color.white;
         }
         resident.hobo = false;
     }

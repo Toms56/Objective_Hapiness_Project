@@ -6,6 +6,7 @@ public class Harvester : MonoBehaviour
     //For deplacement and for working.
     //This script is commented in detail on Lumberjack.
     [SerializeField] H_Resident resident;
+    private SpriteRenderer spriteresident;
     private Vector3 farm;
     private GameObject homeHarvester;
     private int homeindex = 1;
@@ -19,6 +20,11 @@ public class Harvester : MonoBehaviour
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
+        }
+        if (spriteresident == null)
+        {
+            spriteresident = gameObject.GetComponent<SpriteRenderer>();
+            spriteresident.color = Color.green;
         }
         resident.hobo = false;
     }

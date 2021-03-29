@@ -8,6 +8,7 @@ public class Lumberjack : MonoBehaviour
     
     //For deplacement and for working.
     [SerializeField] H_Resident resident;
+    private SpriteRenderer spriteresident;
     private Vector3 forest;
     private GameObject homeLumberjack;
     private int homeindex = 1;
@@ -21,6 +22,11 @@ public class Lumberjack : MonoBehaviour
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
+        }
+        if (spriteresident == null)
+        {
+            spriteresident = gameObject.GetComponent<SpriteRenderer>();
+            spriteresident.color = new Color(0.4f,0.2f,0f);
         }
         resident.hobo = false;
     }

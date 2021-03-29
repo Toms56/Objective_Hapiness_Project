@@ -27,7 +27,7 @@ public class Builder : MonoBehaviour
         if (spriteresident == null)
         {
             spriteresident = gameObject.GetComponent<SpriteRenderer>();
-            spriteresident.color = Color.gray;
+            spriteresident.color = Color.yellow;
         }
         resident.hobo = false;
     }
@@ -35,7 +35,6 @@ public class Builder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        resident.agent.speed = Random.Range(1f, 3f);
         if (!resident.tired)
         {
             GameManager.nbrBuilder++;
@@ -174,13 +173,12 @@ public class Builder : MonoBehaviour
             }
         }
         
-        if (other.CompareTag(GameManager.Buildings.Home.ToString()) && !GameManager.day && resident.tired)
+        if (other.CompareTag(GameManager.Buildings.Home.ToString()) && !GameManager.day && resident.tired && sleep)
         {
             if (other.GetComponent<Home>().nbrplace > 0)
             {
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
-                //sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
                 wandering = false;
