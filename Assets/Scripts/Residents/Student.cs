@@ -58,6 +58,7 @@ public class Student : MonoBehaviour
             {
                 GameManager.Instance.ChangeWork(gameObject,studywork);
             }
+
             if (GameManager.day && !resident.tired)
             {
                 school = GameManager.Instance.school.transform.position;
@@ -66,14 +67,17 @@ public class Student : MonoBehaviour
                 { 
                     transform.position = homeStudent.transform.position; 
                     resident.agent.enabled = true;
-                } 
+                }
+
                 resident.agent.SetDestination(school);
+
                 if (Vector3.Distance(transform.position,school) <= 1.5f)            
                 {
                     resident.tired = true; 
                     studyDays --;
                 }
             }
+
             else if (!GameManager.day && !sleep && resident.tired) 
             {
                 if (GameManager.Instance.homes.Count == 0)
@@ -82,6 +86,7 @@ public class Student : MonoBehaviour
                     StartCoroutine(resident.Wandering());
                     GameManager.prosperity --;
                 }
+
                 else
                 {
                     homeindex = 1;
