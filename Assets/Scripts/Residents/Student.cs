@@ -4,7 +4,6 @@ public class Student : MonoBehaviour
 {
     //For deplacement and for working.
     [SerializeField] H_Resident resident;
-    [SerializeField] Collider2D coll2d;
     private Vector3 school;
     private GameObject homeStudent;
     private bool studying;
@@ -22,10 +21,6 @@ public class Student : MonoBehaviour
         if (resident == null)
         {
             resident = gameObject.GetComponent<H_Resident>();
-        }
-        if (coll2d == null)
-        {
-            coll2d = gameObject.GetComponent<Collider2D>();
         }
         resident.hobo = false;
     }
@@ -60,9 +55,9 @@ public class Student : MonoBehaviour
     {
         if (GameManager.schoolBuilded)
         {
-            if (studyDays <= 0)
+            if (!GameManager.day)
             {
-                GameManager.Instance.ChangeWork(gameObject,studywork);
+                return;
             }
             if (!GameManager.day && !boolstud)
             {
@@ -73,19 +68,21 @@ public class Student : MonoBehaviour
             {
                 boolstud = false;
             }
-                    
+            if (studyDays <= 0)
+            {
+                GameManager.Instance.ChangeWork(gameObject,studywork);
+            }
             if (GameManager.day && !studying && !resident.tired)
             {
                 school = GameManager.Instance.school.transform.position;
                 sleep = false; 
                 if (transform.position == sleepPos) 
                 { 
-                    //coll2d.enabled = false;
                     transform.position = homeStudent.transform.position; 
                     resident.agent.enabled = true;
                 } 
                 resident.agent.SetDestination(school);
-                if (Vector3.Distance(transform.position,school) <= 1f && !studying)            
+                if (Vector3.Distance(transform.position,school) <= 1.5f && !studying)            
                 {
                     resident.tired = true; 
                     studying = true;
@@ -94,7 +91,6 @@ public class Student : MonoBehaviour
             else if (!GameManager.day && studying && !sleep && resident.tired) 
             {
                 studying = false;
-                //coll2d.enabled = true;
                 if (GameManager.Instance.homes.Count == 0)
                 {
                     resident.agent.SetDestination(resident.hobWay1);

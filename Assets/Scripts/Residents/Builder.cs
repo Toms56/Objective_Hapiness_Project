@@ -12,7 +12,6 @@ public class Builder : MonoBehaviour
     private int constructionIndex = 1;
     private Vector3 sleepPos = new Vector3(10, 10, 0);
     private bool sleep;
-    private Vector3 positionConstruction;
     SpriteRenderer construcSprite;
     private bool wandering;
 
@@ -88,7 +87,7 @@ public class Builder : MonoBehaviour
             if (construcSprite !=null && construcSprite.color.a >= 1)
             {
                 resident.tired = true;
-                transform.position = positionConstruction;
+                transform.position = construcSprite.transform.position;
                 resident.agent.enabled = true;
                 resident.agent.SetDestination(resident.hobWay1);
                 StartCoroutine(resident.Wandering());
@@ -143,7 +142,6 @@ public class Builder : MonoBehaviour
                     transform.position = sleepPos;
                     GameManager.nbrBuilder--;
                     construcSprite = other.gameObject.GetComponent<SpriteRenderer>();
-                    positionConstruction = other.transform.position;
                 }
                 else
                 {
