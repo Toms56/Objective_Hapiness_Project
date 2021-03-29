@@ -66,6 +66,7 @@ public class Builder : MonoBehaviour
             {
                 if (!wandering)
                 {
+                    Debug.Log("wandering 1");
                     wandering = true;
                     resident.agent.Warp(transform.position);
                     resident.agent.SetDestination(resident.hobWay1);
@@ -76,7 +77,7 @@ public class Builder : MonoBehaviour
         else if (!GameManager.day && !sleep && resident.tired)
         {
             sleep = true;
-            StopCoroutine(resident.Wandering());
+            Debug.Log("sleep");
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);
@@ -94,6 +95,7 @@ public class Builder : MonoBehaviour
             resident.tired = true;
             transform.position = construcSprite.transform.position;
             resident.agent.enabled = true;
+            Debug.Log("wandering after sprite");
             resident.agent.SetDestination(resident.hobWay1);
             StartCoroutine(resident.Wandering());
             construcSprite = null;
@@ -130,6 +132,7 @@ public class Builder : MonoBehaviour
                 {
                     if (!wandering)
                     {
+                        Debug.Log("wandering 2");
                         wandering = true;
                         resident.agent.SetDestination(resident.hobWay1);
                         StartCoroutine(resident.Wandering());
