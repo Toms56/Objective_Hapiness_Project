@@ -447,6 +447,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &770253782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1714853466784966982, guid: 5652ca3142ed1da4ea03de54e27a71f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1714853466156930773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &815977100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -787,6 +799,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &882212534 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1714853466475494350, guid: 5652ca3142ed1da4ea03de54e27a71f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1714853466156930773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &936883508 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5746284079905268104, guid: 56b3649f788721c42990602af0835ff4,
@@ -940,6 +964,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1714853466156930773}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1324571950 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1714853466731842349, guid: 5652ca3142ed1da4ea03de54e27a71f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1714853466156930773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1450370300 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1714853464956675004, guid: 5652ca3142ed1da4ea03de54e27a71f9,
@@ -1225,10 +1261,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1761040599}
-    - target: {fileID: 1618048678, guid: 5652ca3142ed1da4ea03de54e27a71f9, type: 3}
-      propertyPath: m_Color.a
-      value: 0.7294118
-      objectReference: {fileID: 0}
     - target: {fileID: 48292945443880935, guid: 5652ca3142ed1da4ea03de54e27a71f9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1423,7 +1455,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1761040599}
+      objectReference: {fileID: 316709399}
+    - target: {fileID: 1714853466784966982, guid: 5652ca3142ed1da4ea03de54e27a71f9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 1714853466848420979, guid: 5652ca3142ed1da4ea03de54e27a71f9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1586,6 +1623,31 @@ PrefabInstance:
       propertyPath: textnews
       value: 
       objectReference: {fileID: 1714853466156930774}
+    - target: {fileID: 5481693459308024350, guid: 771eba7bd6b908f4098276068c3187cd,
+        type: 3}
+      propertyPath: schoolButton
+      value: 
+      objectReference: {fileID: 882212534}
+    - target: {fileID: 5481693459308024350, guid: 771eba7bd6b908f4098276068c3187cd,
+        type: 3}
+      propertyPath: durationDay
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481693459308024350, guid: 771eba7bd6b908f4098276068c3187cd,
+        type: 3}
+      propertyPath: durationNight
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481693459308024350, guid: 771eba7bd6b908f4098276068c3187cd,
+        type: 3}
+      propertyPath: jobButton
+      value: 
+      objectReference: {fileID: 1324571950}
+    - target: {fileID: 5481693459308024350, guid: 771eba7bd6b908f4098276068c3187cd,
+        type: 3}
+      propertyPath: constructionButton
+      value: 
+      objectReference: {fileID: 770253782}
     - target: {fileID: 5481693459308024351, guid: 771eba7bd6b908f4098276068c3187cd,
         type: 3}
       propertyPath: m_LocalPosition.x
