@@ -48,6 +48,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 5;
                             GameManager.food -= 1;
                             thisBuilding.GetComponent<Home>().construction = true;
+                            thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
                             break;
 
                         case 1:
@@ -55,6 +56,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<School>().construction = true;
+                            thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
                             break;
 
                         case 2:
@@ -62,6 +64,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Farm>().construction = true;
+                            thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
                             break;
 
                         case 3:
@@ -69,6 +72,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Librairy>().construction = true;
+                            thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
                             break;
 
                         case 4:
@@ -76,6 +80,7 @@ public class BuildingManager : MonoBehaviour
                             GameManager.stone -= 6;
                             GameManager.food -= 7;
                             thisBuilding.GetComponent<Museum>().construction = true;
+                            thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
                             break;
                     }
                 }

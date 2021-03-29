@@ -3,7 +3,7 @@ public class School : Building
 {
     private bool good;
 
-    private void Start()
+    void Start()
     {
         buildersNeed = 1;
     }

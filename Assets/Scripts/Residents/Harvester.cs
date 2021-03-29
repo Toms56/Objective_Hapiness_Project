@@ -32,10 +32,12 @@ public class Harvester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(resident.agent.destination);
-        if (GameManager.day && !resident.tired)
+        if (GameManager.day)
         {
             sleep = false;
+        }
+        if (GameManager.day && !resident.tired)
+        {
             if (transform.position == sleepPos)
             {
                 transform.position = homeHarvester.transform.position;
@@ -52,6 +54,7 @@ public class Harvester : MonoBehaviour
         }
         else if (!GameManager.day && !sleep && resident.tired)
         {
+            sleep = true;
             StopAllCoroutines();
             if (GameManager.Instance.homes.Count == 0)
             {
@@ -78,13 +81,13 @@ public class Harvester : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!GameManager.day && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
+        if (!GameManager.day && resident.tired && other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
             if (other.GetComponent<Home>().nbrplace > 0)
             {
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
-                sleep = true;
+                //sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
                 GameManager.prosperity++;

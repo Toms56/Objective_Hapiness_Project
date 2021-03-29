@@ -33,9 +33,12 @@ public class Minor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.day && !resident.tired)
+        if (GameManager.day)
         {
             sleep = false;
+        }
+        if (GameManager.day && !resident.tired)
+        {
             if (transform.position == sleepPos)
             {
                 transform.position = homeMinor.transform.position;
@@ -52,6 +55,7 @@ public class Minor : MonoBehaviour
         }
         else if (!GameManager.day && !sleep && resident.tired)
         {
+            sleep = true;
             StopAllCoroutines();
             if (GameManager.Instance.homes.Count == 0)
             {
@@ -78,13 +82,13 @@ public class Minor : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!GameManager.day && !sleep && other.CompareTag(GameManager.Buildings.Home.ToString()))
+        if (!GameManager.day && resident.tired && other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
             if (other.GetComponent<Home>().nbrplace > 0)
             {
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
-                sleep = true;
+                //sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
                 GameManager.prosperity++;

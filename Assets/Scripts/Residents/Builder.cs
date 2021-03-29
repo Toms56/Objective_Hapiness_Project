@@ -42,10 +42,12 @@ public class Builder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.day && !resident.tired)
+        if (GameManager.day)
         {
             sleep = false;
-
+        } 
+        if (GameManager.day && !resident.tired)
+        {
             if (transform.position == sleepPos)
             {
                 resident.agent.enabled = true;
@@ -56,7 +58,6 @@ public class Builder : MonoBehaviour
                 isconstruc = false;
                 homeindex = 1;
             }
-
             if (BuildingManager.dictoConstructions.Count > 0 && !isconstruc)
             {
                 SearchConstruction();
@@ -66,6 +67,7 @@ public class Builder : MonoBehaviour
                 if (!wandering)
                 {
                     wandering = true;
+                    resident.agent.Warp(transform.position);
                     resident.agent.SetDestination(resident.hobWay1);
                     StartCoroutine(resident.Wandering());
                 }
@@ -73,6 +75,8 @@ public class Builder : MonoBehaviour
         }
         else if (!GameManager.day && !sleep && resident.tired)
         {
+            sleep = true;
+            StopCoroutine(resident.Wandering());
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);
@@ -152,7 +156,7 @@ public class Builder : MonoBehaviour
                 }
                 else
                 {
-                    //resident.agent.Warp(transform.position);
+                    resident.agent.Warp(transform.position);
                     resident.agent.SetDestination(resident.hobWay1);
                     StartCoroutine(resident.Wandering());
                 }
@@ -165,7 +169,7 @@ public class Builder : MonoBehaviour
             {
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
-                sleep = true;
+                //sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
                 wandering = false;

@@ -34,11 +34,13 @@ public class Lumberjack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //wakes up the resident and orders him to go to work.
+        if (GameManager.day)
+        {
+            sleep = false;
+        }
         if (GameManager.day && !resident.tired)
         {
-            //wakes up the resident and orders him to go to work.
-            sleep = false;
-            
             if (transform.position == sleepPos)
             {
                 transform.position = homeLumberjack.transform.position;
@@ -56,6 +58,7 @@ public class Lumberjack : MonoBehaviour
         else if (!GameManager.day && !sleep && resident.tired)
         {
             StopAllCoroutines();
+            sleep = true;
             //if no house is built, the resident wanders.
             if (GameManager.Instance.homes.Count == 0)
             {
@@ -83,14 +86,14 @@ public class Lumberjack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(GameManager.Buildings.Home.ToString()) && !GameManager.day && !sleep)
+        if (other.CompareTag(GameManager.Buildings.Home.ToString()) && !GameManager.day && resident.tired)
         {
             //allows the resident to "sleep" by sending him off the map and removing his tiredness.
             if (other.GetComponent<Home>().nbrplace > 0)
             {
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
-                sleep = true;
+                //sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
                 GameManager.prosperity++;
