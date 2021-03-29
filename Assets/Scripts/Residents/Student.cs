@@ -55,19 +55,6 @@ public class Student : MonoBehaviour
     {
         if (GameManager.schoolBuilded)
         {
-            if (!GameManager.day)
-            {
-                return;
-            }
-            if (!GameManager.day && !boolstud)
-            {
-                boolstud = true;
-                studyDays --;
-            } 
-            if (GameManager.day && boolstud)
-            {
-                boolstud = false;
-            }
             if (studyDays <= 0)
             {
                 GameManager.Instance.ChangeWork(gameObject,studywork);
@@ -82,10 +69,11 @@ public class Student : MonoBehaviour
                     resident.agent.enabled = true;
                 } 
                 resident.agent.SetDestination(school);
-                if (Vector3.Distance(transform.position,school) <= 1.5f && !studying)            
+                if (Vector3.Distance(transform.position,school) <= 1.5f)            
                 {
                     resident.tired = true; 
                     studying = true;
+                    studyDays --;
                 }
             }
             else if (!GameManager.day && studying && !sleep && resident.tired) 
@@ -116,14 +104,15 @@ public class Student : MonoBehaviour
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
                 sleep = true;
-                GameManager.prosperity++;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
+                GameManager.prosperity++;
             }
             else
             {
                 if (GameManager.Instance.homes.Count > homeindex)
                 {
+                    resident.agent.enabled = true;
                     homeStudent = GameManager.Instance.homes[homeindex].gameObject;
                     resident.agent.SetDestination(homeStudent.transform.position);
                     homeindex++;

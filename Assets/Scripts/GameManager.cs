@@ -165,6 +165,7 @@ public class GameManager : MonoBehaviour
                 Destroy(resident.GetComponent<Minor>());
                 break;
             case "Hobo":
+                PoolManager.activeResidents.Add(resident);
                 break;
             default:
                 Debug.LogError("no tag");
