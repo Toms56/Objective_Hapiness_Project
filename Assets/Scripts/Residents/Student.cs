@@ -83,7 +83,7 @@ public class Student : MonoBehaviour
                 transform.position = school;
                 resident.agent.enabled = true;
                 resident.agent.Warp(transform.position);
-                StopCoroutine(resident.Wandering());
+                resident.StopAllCoroutines();
                 if (GameManager.Instance.homes.Count == 0)
                 {
                     resident.agent.SetDestination(resident.hobWay1);

@@ -69,7 +69,7 @@ public class Lumberjack : MonoBehaviour
         {
             StopAllCoroutines();
             sleep = true;
-            StopCoroutine(resident.Wandering());
+            resident.StopAllCoroutines();
             //if no house is built, the resident wanders.
             if (GameManager.Instance.homes.Count == 0)
             {

@@ -78,9 +78,9 @@ public class H_Resident : MonoBehaviour
     {
         while (true)
         {
-            if (Vector3.Distance(transform.position,hobWay1) < 2f)
+            if (Vector3.Distance(transform.position,hobWay1) < 1.5f)
             { agent.SetDestination(hobWay2); }
-            if (Vector3.Distance(transform.position,hobWay2) < 2f)
+            if (Vector3.Distance(transform.position,hobWay2) < 1.5f)
             { agent.SetDestination(hobWay1); }
             yield return new WaitForSeconds(1f);
         }
