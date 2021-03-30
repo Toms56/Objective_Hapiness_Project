@@ -37,15 +37,10 @@ public class Builder : MonoBehaviour
         if (!resident.tired)
         {
             GameManager.nbrBuilder++;
-            resident.agent.SetDestination(resident.hobWay1);
-            StartCoroutine(resident.Wandering());
+            
         }
-        else
-        {
-            resident.agent.enabled = true;
-            resident.agent.SetDestination(resident.hobWay1);
-            StartCoroutine(resident.Wandering());
-        }
+        resident.agent.SetDestination(resident.hobWay1);
+        StartCoroutine(resident.Wandering());
     }
 
     // Update is called once per frame

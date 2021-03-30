@@ -34,17 +34,14 @@ public class Lumberjack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (resident.tired)
-        {
-            resident.agent.SetDestination(resident.hobWay1);
-            StartCoroutine(resident.Wandering());
-        }
+        resident.agent.SetDestination(resident.hobWay1);
+        StartCoroutine(resident.Wandering());
     }
 
     // Update is called once per frame
     void Update()
     {
-        //wakes up the resident and orders him to go to work.
+        //Avoid errors for sleep time.
         if (GameManager.day)
         {
             sleep = false;
@@ -52,6 +49,7 @@ public class Lumberjack : MonoBehaviour
         }
         if (GameManager.day && !resident.tired)
         {
+            //wakes up the resident and orders him to go to work.
             if (transform.position == sleepPos)
             {
                 transform.position = homeLumberjack.transform.position;
@@ -104,7 +102,6 @@ public class Lumberjack : MonoBehaviour
             {
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
-                //sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
                 GameManager.prosperity++;
