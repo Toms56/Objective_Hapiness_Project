@@ -90,6 +90,7 @@ public class Builder : MonoBehaviour
             if (!wandering)
             {
                 wandering = true;
+                resident.agent.enabled = true;
                 resident.agent.Warp(transform.position);
                 resident.agent.SetDestination(resident.hobWay1);
                 //StartCoroutine(resident.Wandering());

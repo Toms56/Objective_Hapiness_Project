@@ -125,7 +125,7 @@ public class UI_Manager : MonoBehaviour
         {
             countDownDayCycle.text = "DayTime : " + Mathf.RoundToInt(durationDay - timeSpent);   
         }
-        else if (!GameManager.day)
+        else
         {
             countDownDayCycle.text = "NightTime : " + Mathf.RoundToInt(durationNight - timeSpent);
         }
@@ -264,10 +264,14 @@ public class UI_Manager : MonoBehaviour
     public void FastForwardQuickly()
     {
         Time.timeScale = 2;
+        textnews.text = "Time x2";
+        StartCoroutine(ResetText());
     }
     public void FastForwardSoMuch()
     {
         Time.timeScale = 3;
+        textnews.text = "Time x3";
+        StartCoroutine(ResetText());
     }
     #endregion
     
@@ -291,7 +295,7 @@ public class UI_Manager : MonoBehaviour
     }
     IEnumerator ResetText()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(6);
         textnews.text = "News : ";
     }
     #endregion
