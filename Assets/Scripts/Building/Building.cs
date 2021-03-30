@@ -44,6 +44,7 @@ public class Building : MonoBehaviour
         {
             BuildingManager.dictoConstructions.Add(gameObject.transform.position, buildersNeed);
             col2d.enabled = true;
+            GameManager.nbrBuilder -= buildersNeed;
         }
 
         if (builded && !navGood)

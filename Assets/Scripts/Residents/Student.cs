@@ -26,7 +26,7 @@ public class Student : MonoBehaviour
         if (spriteresident == null)
         {
             spriteresident = gameObject.GetComponent<SpriteRenderer>();
-            spriteresident.color = Color.white;
+            spriteresident.color = Color.cyan;
         }
         resident.hobo = false;
     }

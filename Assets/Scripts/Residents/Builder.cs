@@ -163,7 +163,7 @@ public class Builder : MonoBehaviour
                     BuildingManager.dictoConstructions[other.transform.position]--;
                     resident.agent.enabled = false;
                     transform.position = buildPos;
-                    GameManager.nbrBuilder--;
+                    //GameManager.nbrBuilder--;
                     isconstruc = true;
                     construcSprite = other.gameObject.GetComponent<SpriteRenderer>();
                 }

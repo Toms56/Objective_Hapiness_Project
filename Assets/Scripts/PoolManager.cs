@@ -95,12 +95,8 @@ public class PoolManager : MonoBehaviour
         {
             inactiveResidents.Enqueue(Instantiate(hobo, transform));
         }
-
-        for (int i = 0; i < 2; i++)
-        {
-            activeResidents.Add(Instantiate(builder, transform));
-        }
-
+        
+        activeResidents.Add(Instantiate(builder, transform));
         activeResidents.Add(Instantiate(harvester, transform));
         activeResidents.Add(Instantiate(lumberjack, transform));
         activeResidents.Add(Instantiate(minor, transform));
