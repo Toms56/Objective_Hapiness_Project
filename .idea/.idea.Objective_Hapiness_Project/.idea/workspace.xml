@@ -4,7 +4,6 @@
     <list default="true" id="bcb0a876-8e73-45d3-8902-c6a12dbeba00" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI_Panel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI_Panel.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SandboxScene_Thomas.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SandboxScene_Thomas.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,6 +95,7 @@
       <workItem from="1617024181958" duration="2262000" />
       <workItem from="1617047799395" duration="90000" />
       <workItem from="1617048395646" duration="62000" />
+      <workItem from="1617048867878" duration="748000" />
     </task>
     <servers />
   </component>
