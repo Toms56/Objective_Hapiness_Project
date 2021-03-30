@@ -42,11 +42,11 @@ public class PoolManager : MonoBehaviour
         {
             foodverification = true;
             Foodverification();
-            SpawnHobo();
         }
-        if (GameManager.day)
+        if (GameManager.day && foodverification)
         {
-            foodverification = false;   
+            foodverification = false;
+            SpawnHobo();
         }
         //limits the total number of residents to 100.
         if (inactiveResidents.Count + activeResidents.Count >= 100 && !stopspawn)
@@ -66,25 +66,21 @@ public class PoolManager : MonoBehaviour
         }
         else
         {
+            int killresidents = Mathf.Abs(foodavailable);
+            for (int i = 0; i < killresidents; i++)
+            {
+                int supp = Random.Range(0,activeResidents.Count);
+                activeResidents[supp].GetComponent<H_Resident>().ResetToHobo();
+                inactiveResidents.Enqueue(activeResidents[supp]);
+                activeResidents[supp].gameObject.SetActive(false);
+                activeResidents.RemoveAt(supp);
+            }
+            GameManager.prosperity -= killresidents * 2;
+            UI_Manager.Instance.ShowKillResidents(killresidents);
+            GameManager.food = foodavailable;
             if (activeResidents.Count == 0)
             {
                 GameManager.gameOver = true;
-            }
-            else
-            {
-                int killresidents = Mathf.Abs(foodavailable);
-                for (int i = 0; i < killresidents; i++)
-                {
-                    int supp = Random.Range(0,activeResidents.Count);
-                    activeResidents[supp].GetComponent<H_Resident>().ResetToHobo();
-                    inactiveResidents.Enqueue(activeResidents[supp]);
-                    activeResidents[supp].gameObject.SetActive(false);
-                    activeResidents.RemoveAt(supp);
-                }
-                GameManager.prosperity -= killresidents * 2;
-                UI_Manager.Instance.ShowKillResidents(killresidents);
-                
-                GameManager.food = foodavailable;
             }
         }
     }
@@ -100,8 +96,6 @@ public class PoolManager : MonoBehaviour
         activeResidents.Add(Instantiate(harvester, transform));
         activeResidents.Add(Instantiate(lumberjack, transform));
         activeResidents.Add(Instantiate(minor, transform));
-
-        SpawnHobo();
     }
     //activates a hobo at the end of each day and respawns 5 if it runs out.
     private void SpawnHobo()

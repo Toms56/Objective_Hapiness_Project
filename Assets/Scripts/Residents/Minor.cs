@@ -43,6 +43,7 @@ public class Minor : MonoBehaviour
         if (GameManager.day)
         {
             sleep = false;
+            homeindex = 1;
         }
         if (GameManager.day && !resident.tired)
         {
@@ -50,7 +51,6 @@ public class Minor : MonoBehaviour
             {
                 transform.position = homeMinor.transform.position;
                 resident.agent.enabled = true;
-                homeindex = 1;
             }
             resident.agent.SetDestination(mine);
             

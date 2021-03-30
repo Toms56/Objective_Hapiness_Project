@@ -48,6 +48,7 @@ public class Lumberjack : MonoBehaviour
         if (GameManager.day)
         {
             sleep = false;
+            homeindex = 1;
         }
         if (GameManager.day && !resident.tired)
         {
@@ -55,7 +56,6 @@ public class Lumberjack : MonoBehaviour
             {
                 transform.position = homeLumberjack.transform.position;
                 resident.agent.enabled = true;
-                homeindex = 1;
             }
             resident.agent.SetDestination(forest);
             //Once at the workplace, he adds his resource via a coroutine and becomes tired.

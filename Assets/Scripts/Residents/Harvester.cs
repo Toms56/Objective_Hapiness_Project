@@ -42,6 +42,7 @@ public class Harvester : MonoBehaviour
         if (GameManager.day)
         {
             sleep = false;
+            homeindex = 1;
         }
         if (GameManager.day && !resident.tired)
         {
@@ -49,7 +50,6 @@ public class Harvester : MonoBehaviour
             {
                 transform.position = homeHarvester.transform.position;
                 resident.agent.enabled = true;
-                homeindex = 1;
             }
             resident.agent.SetDestination(farm);
 

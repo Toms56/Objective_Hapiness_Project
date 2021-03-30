@@ -54,6 +54,7 @@ public class Builder : MonoBehaviour
         if (GameManager.day)
         {
             sleep = false;
+            homeindex = 1;
         } 
         if (GameManager.day && !resident.tired)
         {
@@ -65,7 +66,6 @@ public class Builder : MonoBehaviour
                 GameManager.nbrBuilder++;
                 wandering = false;
                 isconstruc = false;
-                homeindex = 1;
             }
             if (BuildingManager.dictoConstructions.Count > 0 && !isconstruc)
             {

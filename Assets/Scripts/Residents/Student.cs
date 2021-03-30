@@ -64,6 +64,7 @@ public class Student : MonoBehaviour
             if (GameManager.day)
             {
                 sleep = false;
+                homeindex = 1;
             }
             if (GameManager.day && !resident.tired)
             {
@@ -90,7 +91,6 @@ public class Student : MonoBehaviour
                 }
                 else
                 {
-                    homeindex = 1;
                     homeStudent = GameManager.Instance.homes[0].gameObject;
                     resident.agent.SetDestination(homeStudent.transform.position);
                 }

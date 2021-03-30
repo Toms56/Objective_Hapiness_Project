@@ -82,9 +82,9 @@ public class GameManager : MonoBehaviour
         gameOver = false;
         victory = false;
         prosperity = 0;
-        food = 50;
-        wood = 50;
-        stone = 50;
+        food = 20;
+        wood = 20;
+        stone = 20;
         nbrBuilder = 0;
         nbrFarm = 0;
         homes = new List<GameObject>();
