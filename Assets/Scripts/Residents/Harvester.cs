@@ -63,6 +63,7 @@ public class Harvester : MonoBehaviour
         {
             sleep = true;
             StopAllCoroutines();
+            StopCoroutine(resident.Wandering());
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);

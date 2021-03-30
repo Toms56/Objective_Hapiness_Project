@@ -96,6 +96,8 @@ public class PoolManager : MonoBehaviour
         activeResidents.Add(Instantiate(harvester, transform));
         activeResidents.Add(Instantiate(lumberjack, transform));
         activeResidents.Add(Instantiate(minor, transform));
+        
+        SpawnHobo();
     }
     //activates a hobo at the end of each day and respawns 5 if it runs out.
     private void SpawnHobo()

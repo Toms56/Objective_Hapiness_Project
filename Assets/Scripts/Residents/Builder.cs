@@ -87,6 +87,7 @@ public class Builder : MonoBehaviour
         {
             sleep = true;
             //Debug.Log("go to sleep");
+            StopCoroutine(resident.Wandering());
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);
