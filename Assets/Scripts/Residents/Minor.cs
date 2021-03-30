@@ -34,7 +34,7 @@ public class Minor : MonoBehaviour
     void Start()
     {
         resident.agent.SetDestination(resident.hobWay1);
-        StartCoroutine(resident.Wandering());
+        //StartCoroutine(resident.Wandering());
     }
 
     // Update is called once per frame
@@ -64,11 +64,10 @@ public class Minor : MonoBehaviour
         {
             sleep = true;
             StopAllCoroutines();
-            resident.StopAllCoroutines();
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);
-                StartCoroutine(resident.Wandering());
+                //StartCoroutine(resident.Wandering());
                 GameManager.prosperity --;
             }
             else
@@ -112,7 +111,7 @@ public class Minor : MonoBehaviour
                 else
                 {
                     resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
+                    //StartCoroutine(resident.Wandering());
                     GameManager.prosperity--;
                 }
             }

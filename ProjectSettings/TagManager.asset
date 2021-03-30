@@ -16,6 +16,8 @@ TagManager:
   - Librairy
   - Museum
   - Construction
+  - Way1
+  - Way2
   layers:
   - Default
   - TransparentFX

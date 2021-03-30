@@ -109,7 +109,8 @@ public class PoolManager : MonoBehaviour
                 inactiveResidents.Enqueue(Instantiate(hobo, transform));
             }
         } 
-        GameObject activeHobo = inactiveResidents.Dequeue(); 
+        GameObject activeHobo = inactiveResidents.Dequeue();
+        activeHobo.transform.position = transform.position;
         activeHobo.SetActive(true); 
         activeResidents.Add(activeHobo);
     }

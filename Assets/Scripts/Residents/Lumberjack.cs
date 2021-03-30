@@ -35,7 +35,7 @@ public class Lumberjack : MonoBehaviour
     void Start()
     {
         resident.agent.SetDestination(resident.hobWay1);
-        StartCoroutine(resident.Wandering());
+        //StartCoroutine(resident.Wandering());
     }
 
     // Update is called once per frame
@@ -72,7 +72,7 @@ public class Lumberjack : MonoBehaviour
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);
-                StartCoroutine(resident.Wandering());
+                //StartCoroutine(resident.Wandering());
                 GameManager.prosperity --;
             }
             //otherwise he goes to the first house he finds.
@@ -119,7 +119,7 @@ public class Lumberjack : MonoBehaviour
                 else
                 {
                     resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
+                    //StartCoroutine(resident.Wandering());
                     GameManager.prosperity--;
                 }
             }

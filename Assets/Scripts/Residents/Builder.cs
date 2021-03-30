@@ -40,7 +40,7 @@ public class Builder : MonoBehaviour
             
         }
         resident.agent.SetDestination(resident.hobWay1);
-        StartCoroutine(resident.Wandering());
+        //StartCoroutine(resident.Wandering());
     }
 
     // Update is called once per frame
@@ -53,62 +53,67 @@ public class Builder : MonoBehaviour
         } 
         if (GameManager.day && !resident.tired)
         {
-            if (transform.position == sleepPos)
-            {
-                resident.agent.enabled = true;
-                transform.position = homeBuilder.transform.position;
-                resident.agent.Warp(transform.position);
-                GameManager.nbrBuilder++;
-                wandering = false;
-                isconstruc = false;
-            }
-            if (BuildingManager.dictoConstructions.Count > 0 && !isconstruc)
-            {
-                SearchConstruction();
-            }
-            else
-            {
-                if (!wandering)
-                {
-                    //Debug.Log("wandering 1");
-                    wandering = true;
-                    resident.agent.Warp(transform.position);
-                    resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
-                }
-            }
+            GoToWork();
         }
         else if (!GameManager.day && !sleep && resident.tired)
         {
-            sleep = true;
-            //Debug.Log("go to sleep");
-            resident.StopAllCoroutines();
-            if (GameManager.Instance.homes.Count == 0)
-            {
-                resident.agent.SetDestination(resident.hobWay1);
-                StartCoroutine(resident.Wandering());
-                GameManager.prosperity--;
-            }
-            else
-            {
-                //Debug.Log("go home");
-                homeBuilder = GameManager.Instance.homes[0].gameObject;
-                resident.agent.enabled = true;
-                resident.agent.SetDestination(homeBuilder.transform.position);
-            }
+            GoToSleep();
         }
-        if (GameManager.day && construcSprite !=null && construcSprite.color.a >= 1 && !resident.tired)
+        if (construcSprite !=null && construcSprite.color.a >= 1 && !resident.tired)
         {
             resident.tired = true;
             transform.position = construcSprite.transform.position;
             resident.agent.enabled = true;
-            //Debug.Log("wandering after sprite");
             resident.agent.SetDestination(resident.hobWay1);
-            StartCoroutine(resident.Wandering());
+            //StartCoroutine(resident.Wandering());
             construcSprite = null;
         }
     }
 
+    private void GoToWork()
+    {
+        if (transform.position == sleepPos)
+        {
+            transform.position = homeBuilder.transform.position;
+            resident.agent.enabled = true;
+            resident.agent.Warp(transform.position);
+            GameManager.nbrBuilder++;
+            wandering = false;
+            isconstruc = false;
+        }
+        if (BuildingManager.dictoConstructions.Count > 0 && !isconstruc)
+        {
+            SearchConstruction();
+        }
+        else
+        {
+            if (!wandering)
+            {
+                wandering = true;
+                resident.agent.Warp(transform.position);
+                resident.agent.SetDestination(resident.hobWay1);
+                //StartCoroutine(resident.Wandering());
+            }
+        }
+    }
+
+    private void GoToSleep()
+    {
+        sleep = true;
+        if (GameManager.Instance.homes.Count == 0)
+        {
+            resident.agent.SetDestination(resident.hobWay1);
+            //StartCoroutine(resident.Wandering());
+            GameManager.prosperity--;
+        }
+        else
+        {
+            homeBuilder = GameManager.Instance.homes[0].gameObject;
+            resident.agent.enabled = true;
+            resident.agent.SetDestination(homeBuilder.transform.position);
+        }
+    }
+    
     private void SearchConstruction()
     {
         foreach (Vector3 buildpose in BuildingManager.dictoConstructions.Keys)
@@ -141,7 +146,7 @@ public class Builder : MonoBehaviour
                     {
                         wandering = true;
                         resident.agent.SetDestination(resident.hobWay1);
-                        StartCoroutine(resident.Wandering());
+                        //StartCoroutine(resident.Wandering());
                     }
                 }
             }
@@ -159,7 +164,6 @@ public class Builder : MonoBehaviour
                     BuildingManager.dictoConstructions[other.transform.position]--;
                     resident.agent.enabled = false;
                     transform.position = buildPos;
-                    //GameManager.nbrBuilder--;
                     isconstruc = true;
                     construcSprite = other.gameObject.GetComponent<SpriteRenderer>();
                 }
@@ -167,7 +171,7 @@ public class Builder : MonoBehaviour
                 {
                     resident.agent.Warp(transform.position);
                     resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
+                    //StartCoroutine(resident.Wandering());
                 }
             }
         }
@@ -195,7 +199,7 @@ public class Builder : MonoBehaviour
                 else
                 {
                     resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
+                    //StartCoroutine(resident.Wandering());
                     GameManager.prosperity--;
                 }
             }

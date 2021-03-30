@@ -33,7 +33,7 @@ public class Harvester : MonoBehaviour
     void Start()
     {
         resident.agent.SetDestination(resident.hobWay1);
-        StartCoroutine(resident.Wandering());
+        //StartCoroutine(resident.Wandering());
     }
 
     // Update is called once per frame
@@ -67,7 +67,7 @@ public class Harvester : MonoBehaviour
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);
-                StartCoroutine(resident.Wandering());
+                //StartCoroutine(resident.Wandering());
                 GameManager.prosperity--;
             }
             else
@@ -113,7 +113,7 @@ public class Harvester : MonoBehaviour
                 {
                     resident.agent.Warp(transform.position);
                     resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
+                    //StartCoroutine(resident.Wandering());
                     GameManager.prosperity --;
                 }
             }

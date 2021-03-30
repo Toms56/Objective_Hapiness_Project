@@ -51,7 +51,7 @@ public class Student : MonoBehaviour
                 studyDays = 1;
                 break;
             default:
-                Debug.LogError("pas de métier à étudier");
+                Debug.LogError("no studying work");
                 break;
         }
     }
@@ -74,27 +74,11 @@ public class Student : MonoBehaviour
                     transform.position = homeStudent.transform.position; 
                     resident.agent.enabled = true;
                 }
-
                 resident.agent.SetDestination(school);
             }
             else if (!GameManager.day && !sleep && resident.tired) 
             {
-                sleep = true;
-                transform.position = school;
-                resident.agent.enabled = true;
-                resident.agent.Warp(transform.position);
-                resident.StopAllCoroutines();
-                if (GameManager.Instance.homes.Count == 0)
-                {
-                    resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
-                    GameManager.prosperity --;
-                }
-                else
-                {
-                    homeStudent = GameManager.Instance.homes[0].gameObject;
-                    resident.agent.SetDestination(homeStudent.transform.position);
-                }
+                GoToSleep();
             }
             if (studyDays <= 0)
             {
@@ -105,9 +89,30 @@ public class Student : MonoBehaviour
             }
         }
     }
+
+    private void GoToSleep()
+    {
+        sleep = true;
+        transform.position = school;
+        resident.agent.enabled = true;
+        resident.agent.Warp(transform.position);
+        resident.StopAllCoroutines();
+        if (GameManager.Instance.homes.Count == 0)
+        {
+            resident.agent.SetDestination(resident.hobWay1);
+            //StartCoroutine(resident.Wandering());
+            GameManager.prosperity --;
+        }
+        else
+        {
+            homeStudent = GameManager.Instance.homes[0].gameObject;
+            resident.agent.SetDestination(homeStudent.transform.position);
+        }
+    }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //To study similar to sleeping
         if (GameManager.day && !resident.tired && other.CompareTag(GameManager.Buildings.School.ToString()))
         {
             resident.tired = true;
@@ -115,6 +120,7 @@ public class Student : MonoBehaviour
             transform.position = studPos;
             studyDays--;
         }
+        //For sleeping
         if (!GameManager.day && resident.tired && other.CompareTag(GameManager.Buildings.Home.ToString()))
         {
             if (other.GetComponent<Home>().nbrplace > 0)
@@ -137,7 +143,7 @@ public class Student : MonoBehaviour
                 else
                 {
                     resident.agent.SetDestination(resident.hobWay1);
-                    StartCoroutine(resident.Wandering());
+                    //StartCoroutine(resident.Wandering());
                     GameManager.prosperity--;
                 }
             }

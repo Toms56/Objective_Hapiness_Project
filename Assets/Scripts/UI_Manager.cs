@@ -6,23 +6,21 @@ using UnityEngine.UI;
 public class UI_Manager : MonoBehaviour
 {
     #region variables
-    
     public static UI_Manager Instance;
     
     private GameObject resident;
-    //CountDown TimeManagement
-    private float startingTime;
-    //[SerializeField]private float totalTime;
-    
+
     [SerializeField] private Camera cam;
-    //UI Management
+    //Panel UI
     [SerializeField] GameObject panelJobSelection;
     [SerializeField] GameObject panelSelectedPnj;
     [SerializeField] GameObject panelGameOver;
     [SerializeField] GameObject panelWinGame;
+    //Buttons
     [SerializeField] Button jobButton;
     [SerializeField] Button schoolButton;
     [SerializeField] Button constructionButton;
+    //Texts
     [SerializeField] Text foodText;
     [SerializeField] Text woodText;
     [SerializeField] Text stoneText;
@@ -35,13 +33,6 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] Text textnews;
     //ProsperityBar Management
     [SerializeField] Slider prosperityBar;
-
-    private float minutes;
-    private float seconds;
-
-    //public bool useEventTimer;
-
-    private GameObject selectedResident;
 
     private bool play;
     
@@ -66,17 +57,58 @@ public class UI_Manager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
-        #region proserity
         prosperityBar.value = GameManager.prosperity;
-        #endregion
+        play = false;
         DayNightCycle();
     }
 
     // Update is called once per frame
     void Update()
     {
-        #region DayTime
+        TimeGestion();
+        
+        //actualization of prosperity
+        prosperityBar.value = GameManager.prosperity;
 
+        #region RessourcesManagement
+        foodText.text = " " + GameManager.food;
+        woodText.text = " " + GameManager.wood;
+        stoneText.text = " " + GameManager.stone;
+        #endregion
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            SelectResident();
+        }
+        //Player doesn't change resident's job if a school is not builded before
+        if (GameManager.schoolBuilded && panelSelectedPnj.activeSelf)
+        {
+            jobButton.interactable = true;
+        }
+        else
+        {
+            jobButton.interactable = false;
+        }
+        //allows you to build a single school.
+        if (GameManager.schoolBuilded)
+        {
+            schoolButton.interactable = false;
+        }
+
+        #region winAndGameOver
+        if (GameManager.gameOver)
+        {
+            panelGameOver.SetActive(true);
+        }
+        if (GameManager.victory)
+        {
+            panelWinGame.SetActive(true);
+        }
+        #endregion
+    }
+
+    private void TimeGestion()
+    {
         timeSpent += Time.deltaTime;
         if (timeSpent > durationDay && GameManager.day)
         {
@@ -101,46 +133,6 @@ public class UI_Manager : MonoBehaviour
         {
             constructionButton.interactable = false;
         }
-        #endregion
-        //actualization of prosperity
-        prosperityBar.value = GameManager.prosperity;
-
-        #region RessourcesManagement
-        foodText.text = " " + GameManager.food;
-        woodText.text = " " + GameManager.wood;
-        stoneText.text = " " + GameManager.stone;
-        #endregion
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            SelectResident();
-        }
-        
-        //Player doesn't change resident's job if a school is not builded before
-        if (GameManager.schoolBuilded && panelSelectedPnj.activeSelf)
-        {
-            jobButton.interactable = true;
-        }
-        else
-        {
-            jobButton.interactable = false;
-        }
-
-        if (GameManager.schoolBuilded)
-        {
-            schoolButton.interactable = false;
-        }
-
-        #region winAndGameOver
-        if (GameManager.gameOver)
-        {
-            panelGameOver.SetActive(true);
-        }
-        if (GameManager.victory)
-        {
-            panelWinGame.SetActive(true);
-        }
-        #endregion
     }
 
     public async void DayNightCycle()
@@ -154,13 +146,11 @@ public class UI_Manager : MonoBehaviour
             if (GameManager.day)
             {
                 await new WaitForSeconds(durationDay);
-                //GameManager.day = false;
                 dayNum += 1;
             }
             else
             {
                 await new WaitForSeconds(durationNight);
-                //GameManager.day = true;
                 nightNum += 1;
             }
         }
@@ -247,6 +237,7 @@ public class UI_Manager : MonoBehaviour
         }  
     }
 
+    #region Buttons Functions
     public void OnClickRetry()
     {
         SceneManager.LoadScene(1);
@@ -273,14 +264,14 @@ public class UI_Manager : MonoBehaviour
     public void FastForwardQuickly()
     {
         Time.timeScale = 2;
-        //timeSpent += Time.timeScale;
     }
     public void FastForwardSoMuch()
     {
         Time.timeScale = 3;
-        //timeSpent += Time.timeScale;
     }
-
+    #endregion
+    
+    #region Text News
     public void EnoughFood()
     {
         textnews.text = "All residents were able to eat";
@@ -303,4 +294,5 @@ public class UI_Manager : MonoBehaviour
         yield return new WaitForSeconds(5);
         textnews.text = "News : ";
     }
+    #endregion
 }

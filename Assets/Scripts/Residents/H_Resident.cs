@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class H_Resident : MonoBehaviour
 {
@@ -23,6 +23,7 @@ public class H_Resident : MonoBehaviour
 
     void Awake()
     {
+        //Avoid errors.
         if (agent == null)
         {
             agent = gameObject.GetComponent<NavMeshAgent>();
@@ -42,7 +43,7 @@ public class H_Resident : MonoBehaviour
         if (hobo)
         {
             agent.SetDestination(hobWay1);
-            StartCoroutine(Wandering());
+            //StartCoroutine(Wandering());
         }
     }
 
@@ -60,29 +61,47 @@ public class H_Resident : MonoBehaviour
         if (!GameManager.day && !getolder)
         {
             getolder = true;
-            age += 5;
+            age += Random.Range(2,7);
+            if (hobo)
+            {
+                agent.SetDestination(hobWay1);
+            }
         }
         if (GameManager.day && getolder)
         {
             getolder = false;
-        }
-        if (!hobo)
-        {
-            StopCoroutine(Wandering());
+            if (hobo)
+            {
+                agent.SetDestination(hobWay1);
+            }
         }
         #endregion
         
     }
 
-    public IEnumerator Wandering()
+    /*public IEnumerator Wandering()
     {
         while (true)
         {
-            if (Vector3.Distance(transform.position,hobWay1) < 1.5f)
-            { agent.SetDestination(hobWay2); }
+            if (Vector3.Distance(transform.position, hobWay1) < 1.5f)
+            {
+                agent.SetDestination(hobWay2);
+            }
             if (Vector3.Distance(transform.position,hobWay2) < 1.5f)
             { agent.SetDestination(hobWay1); }
             yield return new WaitForSeconds(1f);
+        }
+    }*/
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Way1"))
+        {
+            agent.SetDestination(hobWay2);
+        }
+        if (other.CompareTag("Way2"))
+        {
+            agent.SetDestination(hobWay1);
         }
     }
 

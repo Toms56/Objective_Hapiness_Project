@@ -11,18 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     
     public static float prosperity;
-    
-    //PNJ Comportment Management 
-    /*
-     * public bool isEating;
-     */
-    
-    //TimeManagement
-    /*
-     * public float dayTime;
-     * public int dayCycle;
-     */
-    
+
     //Resources management 
     public static int food;
     public static int wood;
@@ -40,8 +29,6 @@ public class GameManager : MonoBehaviour
     public GameObject school;
     
     public List<GameObject> homes;
-
-    
     
     public enum Works
     {
@@ -76,9 +63,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Avoid errors.
+        //Avoid errors in retry game after win/lose.
         schoolBuilded = false;
-        day = true;
+        GameManager.day = true;
         gameOver = false;
         victory = false;
         prosperity = 0;
@@ -174,6 +161,9 @@ public class GameManager : MonoBehaviour
                 break;
             case "Minor":
                 Destroy(resident.GetComponent<Minor>());
+                break;
+            case "Student" :
+                Destroy(resident.GetComponent<Student>());
                 break;
             case "Hobo":
                 break;
