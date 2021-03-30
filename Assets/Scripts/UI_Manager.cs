@@ -238,11 +238,11 @@ public class UI_Manager : MonoBehaviour
                 break;
             case 2 :
                 panelJobSelection.SetActive(false);
-                GameManager.Instance.ToStudy(resident,GameManager.Works.Harvester);
+                GameManager.Instance.ToStudy(resident,GameManager.Works.Lumberjack);
                 break;
             case 3 : 
                 panelJobSelection.SetActive(false);
-                GameManager.Instance.ToStudy(resident,GameManager.Works.Harvester);
+                GameManager.Instance.ToStudy(resident,GameManager.Works.Minor);
                 break;
         }  
     }
