@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcb0a876-8e73-45d3-8902-c6a12dbeba00" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Objective_Hapiness_Project/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +19,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/TestsScripts/TurnCounterSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI_Manager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Building/BuildingManager.cs" />
       </list>
     </option>
   </component>
@@ -98,6 +97,7 @@
       <workItem from="1617048867878" duration="748000" />
       <workItem from="1617092887561" duration="596000" />
       <workItem from="1617115356719" duration="597000" />
+      <workItem from="1617177221934" duration="1069000" />
     </task>
     <servers />
   </component>
