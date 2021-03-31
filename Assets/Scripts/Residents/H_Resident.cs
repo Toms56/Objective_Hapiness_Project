@@ -50,7 +50,7 @@ public class H_Resident : MonoBehaviour
     {
         //if the resident is too old he is "killed" by being deactivated
         //and reset to be put in the queue of the pool manager.
-        if (age >= 70)
+        if (age >= 60)
         {
             ResetToHobo();
         }
