@@ -19,7 +19,7 @@ public class Building : MonoBehaviour
         yield return new WaitUntil(() => construction);
         while (spriteRend.color.a < 1)
         {
-            spriteRend.color = Vector4.Lerp(Color.clear, Color.white, interpol);
+            spriteRend.color = Vector4.Lerp(new Color(0,0,0,0.2f), Color.white, interpol);
             interpol += addInterpol * Time.deltaTime;
             navObstacle.enabled = true;
             yield return new WaitForUpdate();

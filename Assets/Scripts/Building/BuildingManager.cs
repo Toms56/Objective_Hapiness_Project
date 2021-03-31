@@ -59,7 +59,7 @@ public class BuildingManager : MonoBehaviour
                     GameManager.stone -= 5;
                     GameManager.wood -= 1;
                     thisBuilding.GetComponent<Home>().construction = true;
-                    thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
+                    thisBuilding.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0.2f);
                     break;
 
                 case 1:
@@ -67,7 +67,7 @@ public class BuildingManager : MonoBehaviour
                     GameManager.stone -= 6;
                     GameManager.wood -= 7;
                     thisBuilding.GetComponent<School>().construction = true;
-                    thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
+                    thisBuilding.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0.2f);
                     break;
 
                 case 2:
@@ -75,7 +75,7 @@ public class BuildingManager : MonoBehaviour
                     GameManager.stone -= 6;
                     GameManager.wood -= 7;
                     thisBuilding.GetComponent<Farm>().construction = true;
-                    thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
+                    thisBuilding.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0.2f);
                     break;
 
                 case 3:
@@ -83,7 +83,7 @@ public class BuildingManager : MonoBehaviour
                     GameManager.stone -= 6;
                     GameManager.wood -= 7;
                     thisBuilding.GetComponent<Librairy>().construction = true;
-                    thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
+                    thisBuilding.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0.2f);
                     break;
 
                 case 4:
@@ -91,7 +91,7 @@ public class BuildingManager : MonoBehaviour
                     GameManager.stone -= 6;
                     GameManager.wood -= 7;
                     thisBuilding.GetComponent<Museum>().construction = true;
-                    thisBuilding.GetComponent<SpriteRenderer>().color = Color.clear;
+                    thisBuilding.GetComponent<SpriteRenderer>().color = new Color(0,0,0,0.2f);
                     break;
             }
         }
