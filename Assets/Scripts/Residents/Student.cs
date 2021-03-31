@@ -13,7 +13,6 @@ public class Student : MonoBehaviour
     private Vector3 sleepPos = new Vector3(10, 10, 0);
     private Vector3 studPos = new Vector3(11, 11, 0);
     private bool sleep;
-    private bool boolstud;
 
     private void Awake()
     {
@@ -100,7 +99,6 @@ public class Student : MonoBehaviour
         if (GameManager.Instance.homes.Count == 0)
         {
             resident.agent.SetDestination(resident.hobWay1);
-            //StartCoroutine(resident.Wandering());
             GameManager.prosperity --;
         }
         else
@@ -119,6 +117,10 @@ public class Student : MonoBehaviour
             resident.agent.enabled = false;
             transform.position = studPos;
             studyDays--;
+        }
+        if (!GameManager.day && !resident.tired && other.CompareTag(GameManager.Buildings.School.ToString()))
+        {
+            resident.agent.SetDestination(resident.hobWay1);
         }
         //For sleeping
         if (!GameManager.day && resident.tired && other.CompareTag(GameManager.Buildings.Home.ToString()))

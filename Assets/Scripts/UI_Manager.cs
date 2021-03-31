@@ -99,10 +99,12 @@ public class UI_Manager : MonoBehaviour
         if (GameManager.gameOver)
         {
             panelGameOver.SetActive(true);
+            Time.timeScale = 1;
         }
         if (GameManager.victory)
         {
             panelWinGame.SetActive(true);
+            Time.timeScale = 1;
         }
         #endregion
     }
