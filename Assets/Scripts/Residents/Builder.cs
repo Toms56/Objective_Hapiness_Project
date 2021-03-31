@@ -100,13 +100,13 @@ public class Builder : MonoBehaviour
         if (GameManager.Instance.homes.Count == 0)
         {
             resident.agent.SetDestination(resident.hobWay1);
-            //StartCoroutine(resident.Wandering());
             GameManager.prosperity--;
         }
         else
         {
             homeBuilder = GameManager.Instance.homes[0].gameObject;
             resident.agent.enabled = true;
+            resident.agent.Warp(transform.position);
             resident.agent.SetDestination(homeBuilder.transform.position);
         }
     }

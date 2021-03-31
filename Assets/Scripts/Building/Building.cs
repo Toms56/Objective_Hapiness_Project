@@ -33,7 +33,7 @@ public class Building : MonoBehaviour
     {
         if (collision.CompareTag(GameManager.Works.Builder.ToString()))
         {
-            StartCoroutine(Construct(0.2f));
+            StartCoroutine(Construct(0.15f));
         }
     }
 
