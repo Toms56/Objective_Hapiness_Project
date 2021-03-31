@@ -18,6 +18,9 @@ TagManager:
   - Construction
   - Way1
   - Way2
+  - Forest
+  - Mine
+  - Bushes
   layers:
   - Default
   - TransparentFX

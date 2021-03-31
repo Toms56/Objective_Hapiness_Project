@@ -31,7 +31,6 @@ public class H_Resident : MonoBehaviour
         agent.speed = speed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-
     }
 
     // Start is called before the first frame update
@@ -43,7 +42,6 @@ public class H_Resident : MonoBehaviour
         if (hobo)
         {
             agent.SetDestination(hobWay1);
-            //StartCoroutine(Wandering());
         }
     }
 
@@ -76,22 +74,7 @@ public class H_Resident : MonoBehaviour
             }
         }
         #endregion
-        
     }
-
-    /*public IEnumerator Wandering()
-    {
-        while (true)
-        {
-            if (Vector3.Distance(transform.position, hobWay1) < 1.5f)
-            {
-                agent.SetDestination(hobWay2);
-            }
-            if (Vector3.Distance(transform.position,hobWay2) < 1.5f)
-            { agent.SetDestination(hobWay1); }
-            yield return new WaitForSeconds(1f);
-        }
-    }*/
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -123,6 +106,9 @@ public class H_Resident : MonoBehaviour
                 Destroy(gmobj.GetComponent<Minor>());
                 break;
             case "Hobo":
+                break;
+            case "Student" :
+                Destroy(gmobj.GetComponent<Student>());
                 break;
             default:
                 Debug.Log("no tag");

@@ -33,7 +33,6 @@ public class Harvester : MonoBehaviour
     void Start()
     {
         resident.agent.SetDestination(resident.hobWay1);
-        //StartCoroutine(resident.Wandering());
     }
 
     // Update is called once per frame
@@ -52,22 +51,14 @@ public class Harvester : MonoBehaviour
                 resident.agent.enabled = true;
             }
             resident.agent.SetDestination(farm);
-
-            if (Vector3.Distance(transform.position, farm) <= 2f)
-            {
-                StartCoroutine(AddFood());
-                resident.tired = true;
-            }
         }
         else if (!GameManager.day && !sleep && resident.tired)
         {
             sleep = true;
             StopAllCoroutines();
-            resident.StopAllCoroutines();
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);
-                //StartCoroutine(resident.Wandering());
                 GameManager.prosperity--;
             }
             else
@@ -95,7 +86,6 @@ public class Harvester : MonoBehaviour
             {
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
-                //sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
                 GameManager.prosperity++;
@@ -117,6 +107,11 @@ public class Harvester : MonoBehaviour
                     GameManager.prosperity --;
                 }
             }
+        }
+        if (GameManager.day && !resident.tired && other.CompareTag("Bushes"))
+        {
+            resident.tired = true;
+            StartCoroutine(AddFood());
         }
     }
 }

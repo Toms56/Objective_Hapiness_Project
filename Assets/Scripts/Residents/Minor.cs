@@ -34,7 +34,6 @@ public class Minor : MonoBehaviour
     void Start()
     {
         resident.agent.SetDestination(resident.hobWay1);
-        //StartCoroutine(resident.Wandering());
     }
 
     // Update is called once per frame
@@ -53,12 +52,6 @@ public class Minor : MonoBehaviour
                 resident.agent.enabled = true;
             }
             resident.agent.SetDestination(mine);
-            
-            if (Vector3.Distance(transform.position,mine) <= 2f)            
-            {
-                StartCoroutine(AddStone());
-                resident.tired = true;
-            }
         }
         else if (!GameManager.day && !sleep && resident.tired)
         {
@@ -67,7 +60,6 @@ public class Minor : MonoBehaviour
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);
-                //StartCoroutine(resident.Wandering());
                 GameManager.prosperity --;
             }
             else
@@ -95,7 +87,6 @@ public class Minor : MonoBehaviour
             {
                 other.GetComponent<Home>().nbrplace--;
                 resident.tired = false;
-                //sleep = true;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
                 GameManager.prosperity++;
@@ -111,10 +102,14 @@ public class Minor : MonoBehaviour
                 else
                 {
                     resident.agent.SetDestination(resident.hobWay1);
-                    //StartCoroutine(resident.Wandering());
                     GameManager.prosperity--;
                 }
             }
+        }
+        if (GameManager.day && !resident.tired && other.CompareTag("Mine"))
+        {
+            resident.tired = true;
+            StartCoroutine(AddStone());
         }
     }
 }

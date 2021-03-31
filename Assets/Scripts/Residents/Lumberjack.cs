@@ -35,7 +35,6 @@ public class Lumberjack : MonoBehaviour
     void Start()
     {
         resident.agent.SetDestination(resident.hobWay1);
-        //StartCoroutine(resident.Wandering());
     }
 
     // Update is called once per frame
@@ -55,19 +54,13 @@ public class Lumberjack : MonoBehaviour
                 transform.position = homeLumberjack.transform.position;
                 resident.agent.enabled = true;
             }
+            //goes to his workplace
             resident.agent.SetDestination(forest);
-            //Once at the workplace, he adds his resource via a coroutine and becomes tired.
-            if (Vector3.Distance(transform.position,forest) <= 2f)       
-            {
-                StartCoroutine(AddWood());
-                resident.tired = true;
-            }
         }
         else if (!GameManager.day && !sleep && resident.tired)
         {
             StopAllCoroutines();
             sleep = true;
-            resident.StopAllCoroutines();
             //if no house is built, the resident wanders.
             if (GameManager.Instance.homes.Count == 0)
             {
@@ -123,6 +116,12 @@ public class Lumberjack : MonoBehaviour
                     GameManager.prosperity--;
                 }
             }
+        }
+        //Once at the workplace, he adds his resource via a coroutine and becomes tired.
+        if (GameManager.day && !resident.tired && other.CompareTag("Forest"))
+        {
+            resident.tired = true;
+            StartCoroutine(AddWood());
         }
     }
 }

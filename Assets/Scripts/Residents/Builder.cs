@@ -23,7 +23,6 @@ public class Builder : MonoBehaviour
             spriteresident = gameObject.GetComponent<SpriteRenderer>();
             spriteresident.color = Color.yellow;
         }
-        
     }
 
     // Start is called before the first frame update
@@ -40,7 +39,6 @@ public class Builder : MonoBehaviour
             
         }
         resident.agent.SetDestination(resident.hobWay1);
-        //StartCoroutine(resident.Wandering());
     }
 
     // Update is called once per frame
@@ -65,7 +63,6 @@ public class Builder : MonoBehaviour
             transform.position = construcSprite.transform.position;
             resident.agent.enabled = true;
             resident.agent.SetDestination(resident.hobWay1);
-            //StartCoroutine(resident.Wandering());
             construcSprite = null;
         }
     }
@@ -93,7 +90,6 @@ public class Builder : MonoBehaviour
                 resident.agent.enabled = true;
                 resident.agent.Warp(transform.position);
                 resident.agent.SetDestination(resident.hobWay1);
-                //StartCoroutine(resident.Wandering());
             }
         }
     }
@@ -172,7 +168,6 @@ public class Builder : MonoBehaviour
                 {
                     resident.agent.Warp(transform.position);
                     resident.agent.SetDestination(resident.hobWay1);
-                    //StartCoroutine(resident.Wandering());
                 }
             }
         }
@@ -200,7 +195,6 @@ public class Builder : MonoBehaviour
                 else
                 {
                     resident.agent.SetDestination(resident.hobWay1);
-                    //StartCoroutine(resident.Wandering());
                     GameManager.prosperity--;
                 }
             }
