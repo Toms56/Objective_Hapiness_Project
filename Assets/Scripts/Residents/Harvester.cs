@@ -101,9 +101,7 @@ public class Harvester : MonoBehaviour
                 }
                 else
                 {
-                    resident.agent.Warp(transform.position);
                     resident.agent.SetDestination(resident.hobWay1);
-                    //StartCoroutine(resident.Wandering());
                     GameManager.prosperity --;
                 }
             }

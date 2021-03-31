@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -40,6 +42,8 @@ public class UI_Manager : MonoBehaviour
     public float durationDay;
     public float durationNight;
     [SerializeField] float timeSpent;
+
+    private List<string> works = new List<string>();
     
     #endregion
     private void Awake()
@@ -56,6 +60,9 @@ public class UI_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        works = new List<string>{GameManager.Works.Builder.ToString(),GameManager.Works.Harvester.ToString(),
+            GameManager.Works.Minor.ToString(),GameManager.Works.Hobo.ToString(),
+            GameManager.Works.Lumberjack.ToString(), GameManager.Works.Student.ToString()};
         Time.timeScale = 1;
         prosperityBar.value = GameManager.prosperity;
         play = false;
@@ -137,7 +144,7 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
-    public async void DayNightCycle()
+    private async void DayNightCycle()
     {
         int dayNum = 0;
         int nightNum = 0;
@@ -158,7 +165,7 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
-    public void SelectResident()
+    private void SelectResident()
     {
         Vector3 mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
         mousepos.z = 0f;
@@ -169,48 +176,20 @@ public class UI_Manager : MonoBehaviour
             {
                 countDownTxt.text = "";
                 RaycastHit2D element = arraycast[i];
-                if (element.collider != null && element.collider.CompareTag("Hobo"))
-                { 
-                    panelSelectedPnj.SetActive(true);
-                    resident = element.collider.gameObject;
-                    ageText.text = "Age : " + resident.GetComponent<H_Resident>().age;
-                    jobText.text = " Job : " + resident.tag;
-                }
-                else if (element.collider != null && element.collider.CompareTag("Builder"))
+                if (element.collider != null)
                 {
-                    panelSelectedPnj.SetActive(true);
-                    resident = element.collider.gameObject;
-                    ageText.text = "Age : " + resident.GetComponent<H_Resident>().age;
-                    jobText.text = " Job : " + resident.tag;
-                }
-                else if (element.collider != null && element.collider.CompareTag("Lumberjack"))
-                {
-                    panelSelectedPnj.SetActive(true);
-                    resident = element.collider.gameObject;
-                    ageText.text = "Age : " + resident.GetComponent<H_Resident>().age;
-                    jobText.text = " Job : " + resident.tag;
-                }
-                else if (element.collider != null && element.collider.CompareTag("Harvester"))
-                {
-                    panelSelectedPnj.SetActive(true);
-                    resident = element.collider.gameObject;
-                    ageText.text = "Age : " + resident.GetComponent<H_Resident>().age;
-                    jobText.text = " Job : " + resident.tag;
-                }
-                else if (element.collider != null && element.collider.CompareTag("Minor"))
-                {
-                    panelSelectedPnj.SetActive(true);
-                    resident = element.collider.gameObject;
-                    ageText.text = "Age : " + resident.GetComponent<H_Resident>().age;
-                    jobText.text = " Job : " + resident.tag;
-                }
-                else if (element.collider != null && element.collider.CompareTag("Student"))
-                {
-                    panelSelectedPnj.SetActive(true);
-                    resident = element.collider.gameObject;
-                    ageText.text = "Age : " + resident.GetComponent<H_Resident>().age;
-                    jobText.text = " Job : " + resident.tag;
-                    countDownTxt.text = $"Studying days : {resident.GetComponent<Student>().studyDays}";
+                    string colltag = element.collider.tag;
+                    if (works.Contains(colltag))
+                    {
+                        panelSelectedPnj.SetActive(true);
+                        resident = element.collider.gameObject;
+                        ageText.text = "Age : " + resident.GetComponent<H_Resident>().age;
+                        jobText.text = " Job : " + resident.tag;
+                        if (colltag == GameManager.Works.Student.ToString())
+                        {
+                            countDownTxt.text = $"Studying days : {resident.GetComponent<Student>().studyDays}";
+                        }
+                    }
                 }
             }
         }

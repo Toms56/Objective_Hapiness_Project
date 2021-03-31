@@ -134,8 +134,8 @@ public class GameManager : MonoBehaviour
                 resident.AddComponent<Lumberjack>();
                 break;
             case Works.Minor :
-                resident.name = Works.Lumberjack.ToString();
-                resident.tag = Works.Lumberjack.ToString();
+                resident.name = Works.Minor.ToString();
+                resident.tag = Works.Minor.ToString();
                 resident.GetComponent<H_Resident>().hobo = false;
                 resident.AddComponent<Minor>();
                 break;
