@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 679380936187682841}
-  - component: {fileID: 679380936187682855}
   - component: {fileID: 679380936187682840}
   m_Layer: 0
   m_Name: Collider (1)
@@ -32,22 +31,6 @@ Transform:
   m_Father: {fileID: 679380937410364451}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &679380936187682855
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679380936187682842}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.05272436, y: -0.22949624}
-  serializedVersion: 2
-  m_Radius: 2.1132278
 --- !u!61 &679380936187682840
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -83,7 +66,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 679380936758808080}
-  - component: {fileID: 679380936758808094}
   - component: {fileID: 679380936758808095}
   m_Layer: 0
   m_Name: Collider
@@ -106,22 +88,6 @@ Transform:
   m_Father: {fileID: 679380937410364451}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &679380936758808094
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679380936758808081}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.05272436, y: -0.22949624}
-  serializedVersion: 2
-  m_Radius: 2.1132278
 --- !u!61 &679380936758808095
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -200,11 +166,9 @@ MonoBehaviour:
   - {fileID: 729467786066431382, guid: 08f421454e0c96e4a9d86ad0c32e8cb4, type: 3}
   - {fileID: 729467786066431382, guid: df934bf25facbbf49beddd8791371f2f, type: 3}
   mindistance: 0.5
-  buildingTransform: {fileID: 679380937410364451}
   dontbuild: {r: 1, g: 0, b: 0, a: 1}
   build: {r: 0, g: 1, b: 0.047058824, a: 1}
   _mask:
     serializedVersion: 2
     m_Bits: 512
   _camera: {fileID: 0}
-  builderIndex: 0
