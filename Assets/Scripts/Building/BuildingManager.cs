@@ -105,7 +105,7 @@ public class BuildingManager : MonoBehaviour
             switch (index)
             {
                 case 0: 
-                    if (GameManager.stone >= 5 && GameManager.wood >= 1 && GameManager.nbrBuilder >= 1)
+                    if (GameManager.stone >= 5 && GameManager.wood >= 5 && GameManager.nbrBuilder >= 1)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity,this.gameObject.transform);
@@ -115,7 +115,7 @@ public class BuildingManager : MonoBehaviour
                         UI_Manager.Instance.NotEnoughRessources(); }
                     break;
                 case 1:
-                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 1)
+                    if (GameManager.stone >= 4 && GameManager.wood >= 5 && GameManager.nbrBuilder >= 1)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity,this.gameObject.transform);
@@ -125,7 +125,7 @@ public class BuildingManager : MonoBehaviour
                         UI_Manager.Instance.NotEnoughRessources(); }
                     break;
                 case 2:
-                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 4)
+                    if (GameManager.stone >= 6 && GameManager.wood >= 9 && GameManager.nbrBuilder >= 3)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
@@ -135,7 +135,7 @@ public class BuildingManager : MonoBehaviour
                         UI_Manager.Instance.NotEnoughRessources(); }
                     break;
                 case 3:
-                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 4)
+                    if (GameManager.stone >= 10 && GameManager.wood >= 12 && GameManager.nbrBuilder >= 4)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform);
@@ -145,7 +145,7 @@ public class BuildingManager : MonoBehaviour
                         UI_Manager.Instance.NotEnoughRessources(); }
                     break;
                 case 4:
-                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 4)
+                    if (GameManager.stone >= 6 && GameManager.wood >= 7 && GameManager.nbrBuilder >= 6)
                     {
                         spawned = true;
                         thisBuilding = Instantiate(buildingPrefab[index], transform.position, Quaternion.identity, this.gameObject.transform); }
