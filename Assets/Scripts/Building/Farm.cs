@@ -1,21 +1,22 @@
 ﻿
 public class Farm : Building
 {
-    private bool good;
+    private bool farmGood;
 
     // Start is called before the first frame update
     void Start()
     {
-        buildersNeed = 4;
-        GameManager.nbrFarm++;
+        buildersNeed = 3;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
-        if (builded)
+        if (builded && !farmGood)
         {
+            farmGood = true;
+            GameManager.nbrFarm++;
             this.tag = GameManager.Buildings.Farm.ToString();
         }
     }
