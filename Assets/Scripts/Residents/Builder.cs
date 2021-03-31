@@ -143,7 +143,6 @@ public class Builder : MonoBehaviour
                     {
                         wandering = true;
                         resident.agent.SetDestination(resident.hobWay1);
-                        //StartCoroutine(resident.Wandering());
                     }
                 }
             }

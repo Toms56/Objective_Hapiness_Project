@@ -20,14 +20,12 @@ public class Building : MonoBehaviour
         // At the end the variable construct become false and the variable builded become true
     public IEnumerator Construct(float addInterpol)
     {
-        yield return new WaitUntil(() => construction);
         while (spriteRend.color.a < 1)
         {
             spriteRend.color = Vector4.Lerp(new Color(0,0,0,0.2f), Color.white, interpol);
             interpol += addInterpol * Time.deltaTime;
             navObstacle.enabled = true;
             yield return new WaitForUpdate();
-            //yield return new WaitForFixedUpdate();
         }
         construction = false;
         builded = true;
