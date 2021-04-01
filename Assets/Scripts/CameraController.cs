@@ -7,12 +7,11 @@ public class CameraController : MonoBehaviour
     float screenBorderDeviation = 10f;
 
     public Vector3 pannelLimite;
-    //float fieldOfView = 141f;
 
     // For scrolling Orthographic
     private Camera cam;
     private float targetZoom;
-    public float ZoomLerpSpeed;
+    public float zoomLerpSpeed;
     
 
     // Start is called before the first frame update
@@ -63,7 +62,7 @@ public class CameraController : MonoBehaviour
         // Scrolling for Camera Orthographic
         targetZoom -= scroll * scrollSpeed;
         targetZoom = Mathf.Clamp(targetZoom, 2f, 5f); // Clamp for Camera Orthographic
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * ZoomLerpSpeed);
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);
 
         // Clamp between two value the position on the different axes
         position.x = Mathf.Clamp(position.x, -pannelLimite.x, pannelLimite.x);

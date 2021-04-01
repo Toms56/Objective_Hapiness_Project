@@ -72,7 +72,7 @@ public class UI_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TimeGestion();
+        TimeManagement();
         
         //actualization of prosperity
         prosperityBar.value = GameManager.prosperity;
@@ -116,7 +116,7 @@ public class UI_Manager : MonoBehaviour
         #endregion
     }
 
-    private void TimeGestion()
+    private void TimeManagement()
     {
         timeSpent += Time.deltaTime;
         if (timeSpent > durationDay && GameManager.day)

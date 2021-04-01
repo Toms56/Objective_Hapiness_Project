@@ -94,23 +94,6 @@ public class Builder : MonoBehaviour
         }
     }
 
-    private void GoToSleep()
-    {
-        sleep = true;
-        if (GameManager.Instance.homes.Count == 0)
-        {
-            resident.agent.SetDestination(resident.hobWay1);
-            GameManager.prosperity--;
-        }
-        else
-        {
-            homeBuilder = GameManager.Instance.homes[0].gameObject;
-            resident.agent.enabled = true;
-            resident.agent.Warp(transform.position);
-            resident.agent.SetDestination(homeBuilder.transform.position);
-        }
-    }
-    
     private void SearchConstruction()
     {
         foreach (Vector3 buildpose in BuildingManager.dictoConstructions.Keys)
@@ -146,6 +129,23 @@ public class Builder : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+    
+    private void GoToSleep()
+    {
+        sleep = true;
+        if (GameManager.Instance.homes.Count == 0)
+        {
+            resident.agent.SetDestination(resident.hobWay1);
+            GameManager.prosperity--;
+        }
+        else
+        {
+            homeBuilder = GameManager.Instance.homes[0].gameObject;
+            resident.agent.enabled = true;
+            resident.agent.Warp(transform.position);
+            resident.agent.SetDestination(homeBuilder.transform.position);
         }
     }
 
