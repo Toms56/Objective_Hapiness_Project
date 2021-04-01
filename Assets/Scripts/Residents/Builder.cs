@@ -187,6 +187,7 @@ public class Builder : MonoBehaviour
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
                 wandering = false;
+                homeBuilder = other.gameObject;
                 GameManager.prosperity++;
             }
             else

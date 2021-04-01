@@ -97,6 +97,7 @@ public class Lumberjack : MonoBehaviour
                 resident.tired = false;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
+                homeLumberjack = other.gameObject;
                 GameManager.prosperity++;
             }
             else

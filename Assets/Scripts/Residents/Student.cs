@@ -132,6 +132,7 @@ public class Student : MonoBehaviour
                 resident.tired = false;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
+                homeStudent = other.gameObject;
                 GameManager.prosperity++;
             }
             else

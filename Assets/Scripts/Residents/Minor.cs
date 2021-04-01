@@ -90,6 +90,7 @@ public class Minor : MonoBehaviour
                 resident.tired = false;
                 resident.agent.enabled = false;
                 transform.position = sleepPos;
+                homeMinor = other.gameObject;
                 GameManager.prosperity++;
             }
             else
