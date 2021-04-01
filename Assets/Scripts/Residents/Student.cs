@@ -72,6 +72,7 @@ public class Student : MonoBehaviour
                 { 
                     transform.position = homeStudent.transform.position; 
                     resident.agent.enabled = true;
+                    resident.agent.Warp(transform.position);
                 }
                 resident.agent.SetDestination(school);
             }
@@ -145,7 +146,6 @@ public class Student : MonoBehaviour
                 else
                 {
                     resident.agent.SetDestination(resident.hobWay1);
-                    //StartCoroutine(resident.Wandering());
                     GameManager.prosperity--;
                 }
             }

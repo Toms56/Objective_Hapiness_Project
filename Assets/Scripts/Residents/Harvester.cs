@@ -49,6 +49,7 @@ public class Harvester : MonoBehaviour
             {
                 transform.position = homeHarvester.transform.position;
                 resident.agent.enabled = true;
+                resident.agent.Warp(transform.position);
             }
             resident.agent.SetDestination(farm);
         }

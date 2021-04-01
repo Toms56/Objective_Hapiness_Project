@@ -53,6 +53,7 @@ public class Lumberjack : MonoBehaviour
             {
                 transform.position = homeLumberjack.transform.position;
                 resident.agent.enabled = true;
+                resident.agent.Warp(transform.position);
             }
             //goes to his workplace
             resident.agent.SetDestination(forest);
@@ -65,7 +66,6 @@ public class Lumberjack : MonoBehaviour
             if (GameManager.Instance.homes.Count == 0)
             {
                 resident.agent.SetDestination(resident.hobWay1);
-                //StartCoroutine(resident.Wandering());
                 GameManager.prosperity --;
             }
             //otherwise he goes to the first house he finds.

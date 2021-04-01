@@ -69,6 +69,7 @@ public class Builder : MonoBehaviour
 
     private void GoToWork()
     {
+        //makes the builder again available for builds
         if (transform.position == sleepPos)
         {
             transform.position = homeBuilder.transform.position;
@@ -84,6 +85,7 @@ public class Builder : MonoBehaviour
         }
         else
         {
+            //Avoid errors
             if (!wandering)
             {
                 wandering = true;
@@ -93,7 +95,8 @@ public class Builder : MonoBehaviour
             }
         }
     }
-
+    //this function will search directly in the dictionary if there is a need for builders
+    //for this construction to navigate there and will update itself if builders have arrived before.
     private void SearchConstruction()
     {
         foreach (Vector3 buildpose in BuildingManager.dictoConstructions.Keys)
@@ -125,6 +128,8 @@ public class Builder : MonoBehaviour
                     if (!wandering)
                     {
                         wandering = true;
+                        resident.agent.enabled = true;
+                        resident.agent.Warp(transform.position);
                         resident.agent.SetDestination(resident.hobWay1);
                     }
                 }
@@ -151,6 +156,8 @@ public class Builder : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //when he will collide with the building, the builder will deactivate
+        //the construction time and remove a builder from the need of the building.
         if (other.CompareTag(GameManager.Buildings.Construction.ToString()))
         {
             if (BuildingManager.dictoConstructions.ContainsKey(other.transform.position))

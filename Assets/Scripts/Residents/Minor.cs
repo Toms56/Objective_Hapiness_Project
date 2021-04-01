@@ -50,6 +50,7 @@ public class Minor : MonoBehaviour
             {
                 transform.position = homeMinor.transform.position;
                 resident.agent.enabled = true;
+                resident.agent.Warp(transform.position);
             }
             resident.agent.SetDestination(mine);
         }
