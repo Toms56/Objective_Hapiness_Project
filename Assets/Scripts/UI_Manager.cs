@@ -116,6 +116,7 @@ public class UI_Manager : MonoBehaviour
         #endregion
     }
 
+    //With this function, we will display and get the duration of a day and a night. 
     private void TimeGestion()
     {
         timeSpent += Time.deltaTime;
@@ -144,6 +145,7 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
+    //Get and display the numbers of days and nights past
     private async void DayNightCycle()
     {
         int dayNum = 0;
@@ -165,6 +167,8 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
+    
+    //With this function, we can select a resident oon the map, and display information about him like his age, and job, thanks to a raycast. 
     private void SelectResident()
     {
         Vector3 mousepos = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -195,6 +199,7 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
+    //With this function, we can change the job of a resident. We are calling the Works enum in GameManager
     public void ChangeJob(int n)
     {
         switch (n)
@@ -256,6 +261,7 @@ public class UI_Manager : MonoBehaviour
     }
     #endregion
     
+    //Display of information in real time in the game, and advertising message.
     #region Text News
     public void EnoughFood()
     {
