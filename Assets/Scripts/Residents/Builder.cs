@@ -2,7 +2,7 @@
 
 public class Builder : MonoBehaviour
 {
-    //This script is commented in detail on Lumberjack.
+    //This script is commented in detail on Lumberjack except for the search construction part.
     [SerializeField] H_Resident resident;
     private SpriteRenderer spriteresident;
     private Vector3 building;

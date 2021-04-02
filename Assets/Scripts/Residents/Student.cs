@@ -33,21 +33,21 @@ public class Student : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //allows you to configure the number of days that the student
+        //allows to configure the number of days that the student
         //will take to learn depending on the job.
         switch (studywork)
         {
             case GameManager.Works.Builder :
-                studyDays = 2;
+                studyDays = 3;
                 break;
             case GameManager.Works.Harvester : 
-                studyDays = 3;
+                studyDays = 4;
                 break;
             case GameManager.Works.Lumberjack :
                 studyDays = 4;
                 break;
             case GameManager.Works.Minor :
-                studyDays = 1;
+                studyDays = 2;
                 break;
             default:
                 Debug.LogError("no studying work");
@@ -90,13 +90,16 @@ public class Student : MonoBehaviour
         }
     }
 
+    //allows the student to be taken out of school and sent to the first house.
     private void GoToSleep()
     {
         sleep = true;
-        transform.position = school;
+        if (transform.position == studPos)
+        {
+            transform.position = school;
+        }
         resident.agent.enabled = true;
         resident.agent.Warp(transform.position);
-        resident.StopAllCoroutines();
         if (GameManager.Instance.homes.Count == 0)
         {
             resident.agent.SetDestination(resident.hobWay1);

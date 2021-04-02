@@ -1716,6 +1716,11 @@ PrefabInstance:
       propertyPath: day
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2390486085258571667, guid: 769d3939849cc8542932bf106e0f03a3,
+        type: 3}
+      propertyPath: bushesWaypoint
+      value: 
+      objectReference: {fileID: 175363316}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 769d3939849cc8542932bf106e0f03a3, type: 3}
 --- !u!114 &2101235583 stripped

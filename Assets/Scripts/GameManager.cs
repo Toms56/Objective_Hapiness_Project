@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public NavMeshSurface2d surface2d;
     public GameObject hoboWaypoint1;
     public GameObject hoboWaypoint2;
-    public GameObject farmWaypoint;
+    public GameObject bushesWaypoint;
     public GameObject mineWaypoint;
     public GameObject forestWaypoint;
     public GameObject school;

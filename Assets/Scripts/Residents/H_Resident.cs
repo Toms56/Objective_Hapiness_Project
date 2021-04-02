@@ -50,9 +50,9 @@ public class H_Resident : MonoBehaviour
     {
         //if the resident is too old he is "killed" by being deactivated
         //and reset to be put in the queue of the pool manager.
-        if (age >= 60)
+        if (age >= 70)
         {
-            ResetToHobo();
+            ResetToHobo(); 
         }
 
         #region GetOlder
@@ -76,6 +76,7 @@ public class H_Resident : MonoBehaviour
         #endregion
     }
 
+    //wanders between 2 points.
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Way1"))
@@ -87,7 +88,7 @@ public class H_Resident : MonoBehaviour
             agent.SetDestination(hobWay1);
         }
     }
-
+    //returns the resident to its original state by deactivating it for reuse later.
     public void ResetToHobo()
     {
         GameObject gmobj = gameObject;

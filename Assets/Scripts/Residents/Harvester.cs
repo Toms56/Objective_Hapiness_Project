@@ -15,7 +15,7 @@ public class Harvester : MonoBehaviour
 
     private void Awake()
     {
-        farm = GameManager.Instance.farmWaypoint.transform.position;
+        farm = GameManager.Instance.bushesWaypoint.transform.position;
         //Avoid errors.
         if (resident == null)
         {
